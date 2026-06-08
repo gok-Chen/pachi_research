@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青斯洛機種比較報告 (2026/6)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青斯洛機種比較報告 (2026/6)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチスロ機種比較報告（2026年6月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年6月的重點パチスロ機種如下。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | L 東京喰種 | スパイキー | 2025年近期 |
+| 2 | スマスロ 甲鉄城のカバネリ 海門決戦 | サミー | 2026年近期 |
+| 3 | スマスロ バイオハザードRE:3 | エンターライズ | 2026/05/11 |
+| 4 | スマスロスーパーリオエース2 | 山佐ネクスト | 2026/05/11 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | Lパチスロうみねこのなく頃に2 | 42% |
+| 2 | A-SLOT+ ディスクアップ ULTRAREMIX | 38% |
+| 2 | パチスロひぐらしのなく頃に祭2 | 38% |
+| 2 | ドラゴンハナハナ～閃光～ | 38% |
+| 2 | スマスロ北斗の拳 | 38% |
+| 3 | 麻雀格闘倶楽部 覚醒 | 37% |
+
+> 勝率排名以技術介入型（ノーマルタイプ）為主。高波動的AT/スマスロ機勝率偏低，但人氣與導入台數反而更高。本月勝率排名相較4月變動不大，「うみねこ2」取代「ひぐらし祭2」躍居首位。
+
+### 導入台數關注度
+
+2026年5月導入的兩台新機種「スマスロ バイオハザードRE:3」（單店最多30台）和「スマスロスーパーリオエース2」（單店最多24台）為本月最大量導入機種，迅速攀升至人氣TOP4。「L 東京喰種」和「カバネリ 海門決戦」持續維持高人氣，連續兩月穩坐榜上。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | L 東京喰種 | スマスロ カバネリ 海門決戦 | スマスロ バイオハザードRE:3 | スマスロスーパーリオエース2 |
+|------|-----------|---------------------------|----------------------------|----------------------------|
+| 製造商 | スパイキー | サミー | エンターライズ | 山佐ネクスト |
+| 類型 | L機（有利區間機） | スマスロ | スマスロ | スマスロ |
+| 機械割 | 近期公布 | 近期公布 | 97.5%～113.1% | 97.7%～112.1% |
+| AT類型 | 近期公布 | 連莊型 | ゲーム數管理＋ボーナス連鎖型 | ゲーム數上乗せ型 |
+| 純增 | 近期公布 | 約高純增 | AT中約1.0枚/G（上位AT約4.5枚） | 約2.5枚/G（上位AT約4.5枚） |
+| 天井 | 有 | 有 | 1000G＋α（設定變更後650G＋α） | 750G＋α（設定變更後500G＋α） |
+| 最強觸發器 | 近期公布 | 上位AT | 上位AT（純增6.0枚＋引き戻し50%超） | 上位AT循環（ノワールクライシス約50%成功） |
+| 使用者評價 | ★★★（普通） | ★★★★（高評價） | ★1.58（160則） | ★1.70（141則） |
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 機械割上限 | スマスロ バイオハザードRE:3 | 設定6達113.1%，純增切換型 |
+| 上位AT爆發力 | スマスロ バイオハザードRE:3 | 純增約4.5枚＋引き戻し50%超＋ボーナス約1/56 |
+| 遊玩友善度 | スマスロスーパーリオエース2 | CZ成功率約50%＋天井750G＋設定變更後500G短縮 |
+| 系統獨創性 | スマスロ バイオハザードRE:3 | パンデミックチャンス＋ウィルス感染系統＋NE-カウンター |
+| 品牌號召力 | L 東京喰種 | 超人氣IP持續穩居TOP4 |
+| 長期稼動力 | スマスロ カバネリ 海門決戦 | 前作系列實績＋連續多月維持高人氣 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① L 東京喰種（スパイキー）
+
+![L 東京喰種 筐体](pachislot/images/04_tokyo_ghoul/cabinet.jpg)
+
+本機於4月報告已有詳細分析。連續兩月維持人氣第一，東京喰種IP的角色魅力與「覺醒」演出設計的長期吸引力再次得到證明。
+
+**本月更新：** 持續穩坐人氣榜首。解析資訊持續更新中（チャンスモード移行率等），顯示遊技者持續深度研究此機種。
+
+👉 [查看完整分析（2026年4月報告）](report_pachislot_202604.html)
+
+---
+
+### ② スマスロ 甲鉄城のカバネリ 海門決戦（サミー）
+
+![スマスロ カバネリ 海門決戦 筐体](pachislot/images/03_kabaneri_unato/cabinet.jpg)
+
+本機於4月報告已有詳細分析。連續兩月維持高人氣，前作的成功基因完美傳承。
+
+**本月更新：** 穩定維持TOP4地位。9月預定導入的「e 甲鉄城のカバネリ2 輪廻の果報119ver.」（パチンコ版）顯示IP仍在積極展開中。
+
+👉 [查看完整分析（2026年4月報告）](report_pachislot_202604.html)
+
+---
+
+### ③ スマスロ バイオハザードRE:3（エンターライズ）
+
+![スマスロ バイオハザードRE:3 筐体](pachislot/images/05_biohazard_re3/cabinet.jpg)
+![スマスロ バイオハザードRE:3 ゲームフロー](pachislot/images/05_biohazard_re3/game_flow.jpg)
+![スマスロ バイオハザードRE:3 ボーナス出現率](pachislot/images/05_biohazard_re3/hit_rate.jpg)
+
+**原作IP：** 遊戲「バイオハザード RE:3」（CAPCOM，2020年發售的リメイク作品）
+
+**賣點與好玩之處：**
+- 前作「パチスロ バイオハザード RE:2」的正統續作，系統繼承並大幅進化
+- AT中純增約1.0枚/G的低純增設計，換取ボーナス確率約1/60的高頻度爆發
+- パンデミックチャンス：ST型報酬獲得系統，リプレイ・レア役でウィルスを感染
+- 3種ウィルス（＋G/D/S）＋Mウィルス的組合改變ボーナス性能，戰略深度極高
+- ナイトメアゾーン：5G繼續的ボーナス高確，約65%成功率的緊張感
+- 上位AT「ハザードラッシュインフェルノ」：純增約4.5枚＋ハズレ1回即抽選＋CZ約98%勝率
+- ボーナス11回後進入インフェルノチャンス→上位AT的長期目標設計
+- 上位CZ「フェイトオアフォーチューン」引き戻し率50%超，上位AT可持續循環
+- ナイトメアフリーズ期待枚數約1850枚，プレミアムインフェルノフリーズ約3500枚
+- NE-カウンター跨通常時/AT繼承的獨特設計
+
+**中心思想：**
+> 「感染擴散＝連鎖進化的恐懼」— 以「ウィルス感染」為核心概念，每次ボーナス都在「培養」下一次的爆發潛力。3種ウィルス的組合創造出「同一台機器卻每次體驗不同」的變化性。低純增AT換取高頻ボーナス的設計，讓玩家體驗「不斷被追趕卻逐漸變強」的バイオハザード式生存感。ボーナス11回→インフェルノ的長期目標，完美對應原作中「從逃亡到反擊」的角色成長弧線。
+
+**套用至其他遊戲的可能性：**
+- RPG的「裝備強化＋素材組合」系統 — 每次戰鬥獲得的素材改變下次戰鬥的體驗
+- Roguelike的「遺物（Relic）累積」機制 — 每層獲得的道具改變角色性能
+- 生存恐怖遊戲的「資源管理→反擊」循環 — 從被動逃跑到主動出擊的轉換
+- 卡牌遊戲的「甲板建構（Deck Building）」概念 — 遊戲中逐步構築自己的「ウィルスデッキ」
+- MMORPG的「多段階Boss戰」— 11回ボーナス到達インフェルノ的設計如同Raid Boss的Phase切換
+
+**Slot Game 轉用分析：**
+
+- **逐步收集改變獎勵內容**
+  パンデミックチャンス中「逐一獲得ウィルス，組合決定ボーナス性能」的機制，可轉化為 Slot 的 Bonus Round 設計。這裡的 Bonus 形式就是 Free Spin（免費轉N次的獎勵回合）— 每完成一輪 Free Spin 就算完成一次 Bonus。玩家每次觸發 Free Spin 時，會先進入一個「選擇」畫面，根據這次選的道具（對應 G/D/S 三種ウィルス），接下來整輪 Free Spin 的規則會不同 — 選「G」則轉數增加、選「D」則所有中獎金額自動翻倍、選「S」則每轉保證出現 Wild。此外，「ボーナス11回才進入インフェルノ」的設計，可做成畫面上的累積計數器：每完成一輪 Free Spin，計數器 +1，集滿11次後觸發超強的 Super Bonus 關卡。
+
+  **舉例：** 玩家觸發 Free Spin 後，畫面先暫停進入「選擇畫面」— 出現3個試管讓你挑一個：紅色（G型 — Free Spin 從10轉增加為15轉）、藍色（D型 — 整輪 Free Spin 中所有中獎金額自動 ×2）、綠色（S型 — 整輪 Free Spin 每轉保證至少出現1個 Wild 圖案）。玩家選了藍色D型，然後 Free Spin 正式開始。接下來的每一轉中獎時，金額都自動翻倍（不需要再做任何事，選了就全程生效）。Free Spin 結束後，計數器自動 +1，顯示 [8/11]。再觸發3次 Free Spin 就能進入「INFERNO MODE」超級關卡。玩家心想「再3次就到 INFERNO 了，不能現在離開桌子...」這就是長期目標的黏著力。
+
+- **百搭圖案（Wild）隨收集狀態變化**
+  3種ウィルス改變ボーナス性能的概念，可轉化為「Wild 圖案會根據你之前收集了什麼而變形」。舉例：如果之前的 Bonus 收集了「D型」，下一輪的 Wild 出現時會「黏住不消失」（術語叫 Sticky Wild，意思是 Wild 圖案留在畫面上不消失，下一轉繼續有效）；如果收集了「S型」，Wild 出現時會「擴張填滿整列」（Expanding Wild，一個 Wild 變成一整排）；如果收集了「G型」，Wild 自帶 ×2 乘數（中獎金額加倍）。這讓同一款 Slot 每次玩的手感都不同，增加重複遊玩的動力。
+
+  **舉例：** 玩家上一輪 Bonus 收集了「D型」ウィルス。這一輪 Base Game 中出現了 Wild 圖案 — 但它沒有像平常一樣消失，而是留在原位發出紫色脈動光（Sticky Wild 效果）。下一轉這個 Wild 還在，又出現了新的 Wild！兩個 Wild 同時在場組成了一條超高價值的中獎線。玩家感受到的是「我上次的選擇影響了現在的結果」— 同一款遊戲每次的體驗都不同，這就是「組合改變性能」的魅力。
+
+**Fish Game 轉用分析：**
+
+- **打小魚累積能量→Boss 弱點由你決定**
+  ボーナス11回→インフェルノ 的概念，可轉化為：玩家持續擊殺普通魚，畫面上方的能量條逐漸累積，滿了之後 Boss 魚出場。關鍵差異是 — Boss 的弱點和獎勵倍率，取決於你之前打了哪些種類的魚（紅魚打多了→Boss 弱火屬性，藍魚打多了→Boss 弱冰屬性）。這對應パチスロ中「3種ウィルス的組合決定ボーナス性能」的設計，讓玩家在打普通魚時就有策略感：「我要刻意多打紅魚，讓等一下的 Boss 更好打」。
+
+  **舉例：** 玩家注意到場上有紅、藍、綠三色魚群。他刻意集中火力打紅魚（雖然藍魚獎金稍高），因為畫面上方的「屬性累積條」顯示紅色已經 80% 了。能量條滿後 Boss 出場 — 由於紅色累積最高，Boss 顯示「弱點：火」，玩家的砲台自動附帶火屬性加成，每發傷害 ×3。如果之前亂打沒累積任何屬性，Boss 就沒有弱點，要花更多子彈才能打死。策略從打普通魚的時候就開始了。
+
+- **擊殺爆炸連鎖（感染擴散）**
+  Dウィルス的「增殖」機制（獎金 ×2 → ×3 → ×4 逐段放大）可轉化為：擊殺一隻特殊魚後，牠會爆炸並波及周圍的魚，被波及的魚再爆炸又打到更遠的魚 — 最多連鎖 4 段。每段連鎖的倍率遞增（1x → 2x → 3x → 4x），畫面上看到的就是「一發子彈引發整片海域的連環爆炸」，視覺衝擊力極強且獎金快速累加。
+
+  **舉例：** 玩家瞄準一隻帶有紫色光環的「感染魚」射擊 — 命中！牠爆炸了（×1），爆炸波及旁邊3隻普通魚也跟著爆炸（×2），其中一隻的爆炸又波及到更遠的2隻（×3），最遠的一隻爆炸還打到了一隻大型魚（×4）！畫面上連環爆炸從左到右擴散，金幣像瀑布一樣飛出。一發子彈換來了4段連鎖、總計9隻魚的擊殺獎金，而且越後面的倍率越高。這就是「感染擴散」的視覺化。
+
+---
+
+### ④ スマスロスーパーリオエース2（山佐ネクスト）
+
+![スマスロスーパーリオエース2 筐体](pachislot/images/06_super_rio_ace2/cabinet.jpg)
+![スマスロスーパーリオエース2 ゲームフロー](pachislot/images/06_super_rio_ace2/game_flow.jpg)
+![スマスロスーパーリオエース2 ボーナス出現率](pachislot/images/06_super_rio_ace2/hit_rate.jpg)
+
+**系列背景：** スーパーブラックジャック/リオエース系列的最新作，以カジノディーラー「リオ」為主角的華麗系パチスロ
+
+**賣點與好玩之處：**
+- Vベルシステム：約1/20的小Vベル次ゲーム約20%出現レア役，強小Vベル後レア役濃厚
+- Vベルハッキング：20G ST型レア役高確（ループ率77.5%），可貫通通常時→ボーナス→AT
+- ステートハッキング：20G ST型的狀態轉送，4段階昇格可獲得ノワールクライシス（上位CZ）
+- AT「リオラッシュ」：純增約2.5枚/G，33Gごとにカジノバトル（勝率約57%）
+- カジノバトル勝利→リオチャンス：獨特的報酬選擇系統（小役2連續獲得報酬）
+- ノワールタイム：10G＋α的上乗せ特化（平均+105G），リバースシステム讓殘りG數逆增
+- 上位AT「リオラッシュEX」：純增約4.5枚，終了後必ず上位CZ（約50%循環）
+- 5種エースモード提供通常時的多樣化攻略感
+- ボーナス中3種告知タイプ可選＋裏モード，遊玩自由度極高
+- 先ボグカスタム等豐富的自訂功能增加遊玩深度
+
+**中心思想：**
+> 「華麗的賭場＝多層報酬的驚喜」— 以「カジノ」為主題，將パチスロ的各種抽選化為「賭桌上的遊戲」。Vベル→レア役→ノワールルーム→ボーナス→AT→カジノバトル→リオチャンス→ノワールタイム的多層連鎖結構，讓每一步都有「下一個驚喜」的期待感。リオチャンスの「小役2連續才獲得報酬」設計完美重現了賭桌上「等待好牌」的緊張感。
+
+**套用至其他遊戲的可能性：**
+- 卡牌遊戲的「連鎖コンボ」機制 — A觸發B、B觸發C的多層連鎖快感
+- RPG的「バフ重ね掛け」系統 — 多種強化效果疊加創造指數級爆發
+- 節奏遊戲的「コンボ維持→ボーナスタイム→特殊モード」遞進結構
+- 賭場遊戲的「Side Bet」機制 — 主線遊戲之外的額外獎勵抽選
+- 動作遊戲的「Style切換」系統 — 3種告知タイプ如同3種戰鬥風格的自由切換
+
+**Slot Game 轉用分析：**
+
+- **消除連鎖＋升級計量表**
+  Vベル→レア役→ノワールルーム→AT→カジノバトル→リオチャンス→ノワールタイム 的多層連鎖，可轉化為 Slot 常見的「消除連鎖（Cascade/Tumble）」機制的強化版。所謂消除連鎖，就是中獎的圖案消除後，上方圖案落下補位，如果又組成新的中獎線就再次消除 — 反覆直到沒有新組合為止。在此基礎上加入「升級計量表」：畫面旁邊有一條計量條，每次成功連鎖就往上推一格，推到頂就進入大獎模式（對應ノワールタイム）。リオチャンス的「連續2次中役才拿到獎勵」概念，可轉化為「必須連續2次消除成功才推進計量表」，增加挑戰性。
+
+  **舉例：** 玩家 Spin 後出現3個相同符號 — 消除！上方符號落下又組成新的中獎線 — 連續消除2次！計量表推進1格（因為要連續2次才算）。又消除了第3、4次 — 再推1格！計量表現在 8/10，再推2格就進入「ノワールタイム Super Mode」。玩家每一轉都在期待「能不能連鎖、能不能推到頂」，和原作中一步步從Vベル推進到ノワールタイム的多層驚喜感完全對應。
+
+- **玩家自選 Free Spin 模式**
+  3種告知タイプ（リオ/アリス/ノワール）的設計，可直接轉化為觸發 Free Spin 時讓玩家自己選模式：模式A（高頻低賠 — 常常中獎但金額小）、模式B（中頻中賠 — 平衡型）、模式C（低頻高賠 — 很少中但中了就是大獎）。這讓同一款 Slot 能滿足不同風格的玩家。更進一步 — 「裏モード」的概念可轉化為「隱藏模式」：例如選了模式A之後，如果在一定條件下（比如 Free Spin 中出現某個特殊圖案），模式會偷偷切換成「裏A」— 外觀看起來一樣，但中獎機率和倍率都大幅提升。玩家不一定馬上發現，但回顧結算時會「咦？怎麼贏這麼多？」，創造驚喜感和「下次想再觸發裏模式」的回訪動機。
+
+  **舉例：** Free Spin 觸發後，畫面出現リオ、アリス、ノワール三位角色讓玩家選擇。玩家選了リオ（高頻低賠模式），12轉中幾乎每轉都有小中獎，穩穩累積。但第7轉時出現了一個隱藏的紫色符號 — 畫面微微閃爍了一下，其實模式已經偷偷切換成「裏リオ」了。玩家沒注意到，但後面5轉的中獎金額明顯比前面大。結算時顯示「SECRET MODE BONUS +150x」！玩家驚喜地發現「原來剛才進了隱藏模式！下次要注意那個閃爍...」
+
+- **對戰型 Bonus 關卡**
+  カジノバトル（4回合、4種對手、勝率各異）可轉化為 Slot 的對戰型 Bonus：觸發後畫面切換為戰鬥場景，系統隨機配對一個對手（弱/中/強/Boss，對應オーリン/クラーク/ローザ/ノワール），然後進行幾回合的「轉輪決鬥」— 每回合 Spin 一次，出現攻擊圖案就給對手傷害，出現防禦圖案就閃避對方攻擊。打贏後進入獎勵輪盤選取報酬（對應リオチャンス）。打 Boss（ノワール）贏了還有額外大獎。
+
+  **舉例：** Bonus 觸發後畫面切換為華麗的賭場戰鬥場景，對手是「ノワール」（Boss級），玩家有3條命。第1回合 Spin — 出現劍符號，リオ揮劍砍向ノワール造成傷害！第2回合 — 出現盾符號，ノワール的反擊被擋下。第3回合 — 沒出現攻擊也沒出現防禦，ノワール攻擊命中，損失1條命（剩2條）。第4回合出現雙劍 — Critical Hit！ノワール被打敗！畫面切換為獎勵輪盤，玩家獲得 300x 獎金＋進入「ノワールタイム Special」。如果3條命都用完還沒打敗對手就算失敗（只拿安慰獎 20x）。對手是弱的オーリン容易贏但獎金少，選到Boss才有大獎。
+
+**Fish Game 轉用分析：**
+
+- **多砲台模式讓玩家自選風格**
+  5種エースモード可轉化為「5種砲台」讓玩家自選：①速射砲（子彈便宜、威力低、適合打小魚賺穩定收益）、②散彈砲（一發打一片範圍、適合魚群密集時）、③狙擊砲（子彈貴、威力大、專打大魚）、④幸運砲（普通威力但附帶隨機暴擊機率）、⑤Boss砲（只對Boss魚有特效加成）。玩家可隨時切換，不同場景用不同砲台，增加操作策略感。此外，カジノバトル可轉化為「挑戰賽」— 畫面上突然出現一個限時目標（如「30秒內擊殺3隻金魚」），達成就獲得倍率獎勵。
+
+  **舉例：** 場上出現大量密集小魚群，玩家迅速切換為②散彈砲，一發打中5隻 — 效率極高！突然右側游入一隻高價值大魚，玩家立刻切換為③狙擊砲瞄準射擊 — 一發高傷害命中。接著畫面彈出「CASINO CHALLENGE: 30秒內擊殺3隻金魚！」，金魚開始從各處游出，玩家切換為④幸運砲（暴擊機率高）瘋狂掃射...在最後3秒打中第3隻！「CHALLENGE COMPLETE! ×5 BONUS!」獎金全部 ×5。隨時切換砲台的策略感讓整場遊玩都不會無聊。
+
+- **連續擊殺不中斷＝砲台持續強化**
+  ノワールタイム的「リバースシステム」（本來倒數計時的殘餘時間反而逆向增加）可轉化為 Fever 機制：玩家連續擊殺魚不中斷時，砲台進入「過熱模式」— 威力持續上升，而且子彈消耗不增加（等於免費加強）。只要你持續命中就一直維持在過熱狀態，一旦連續幾發都沒打中魚就退出。這創造了「手感好的時候根本停不下來」的爽快循環，對應原作ノワールタイム中「殘りゲーム數反而在增加」的逆轉體驗。
+
+  **舉例：** 玩家連續命中了5隻魚沒有miss，砲台開始發出紅色光芒並顯示「FEVER ×1.5」。繼續命中 — 「×2.0」「×2.5」...倍率持續上升！連續命中到第15隻時倍率已達 ×4.0，砲台變為金色且射速加倍。但突然2發都miss了 — 「FEVER END」，回歸普通狀態。玩家懊悔「早知道第13隻打那隻慢的就好了...」。下次再進入 Fever 時會更謹慎選擇射擊目標，確保連續命中不中斷 — 這就是「殘りゲーム數反而在增加」的翻版：只要你表現好，強化就一直持續。
+
+---
+
+## 4. 2026年7月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 機械割 | 關注重點 |
+|-----------|--------|--------|--------|----------|
+| 06/08 | L戦国乙女5 業火を穿つ宿焔の双刃 | オリンピア | 97.9%～114.9% | 人氣系列最新作，本期最高機械割 |
+| 06/08 | スロット ソードアート・オンラインⅡ | パオン・ディーピー | 97.6%～114.9% | SAO系列新作 |
+| 06/08 | スマスロ BIRDIE WING | ユニバーサルブロス | 97.5%～112.4% | 高爾夫動畫IP |
+| 06/22 | スマート沖スロ ダークハイビ | パイオニア | 97.5%～110.0% | 沖スロ新概念 |
+| 07/06 | Lパチスロ からくりサーカス2 | SANKYO | 97.7%～114.9% | 人氣漫畫IP續作，高機械割 |
+| 07/06 | 戦国コレクション6 | コナミアミューズメント | 97.9%～114.9% | 人氣系列第6作 |
+| 08/03 | スマスロ やじきた道中記参る！ | ユニバーサルブロス | 準備中 | ユニバ新作 |
+| 09/07 | スマスロ リコリス・リコイル | サミー | 97.9%～114.6% | 超人氣動畫IP×サミー，最大焦點 |
+
+> ※9月的「スマスロ リコリス・リコイル」為下半年最受矚目的大作。パチンコ版已持續數月維持人氣第一，パチスロ版的期待值極高。
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| L 東京喰種 | 覺醒與變貌 | ★★★ | RPG覺醒系統、動作遊戲暴走模式 |
+| スマスロ カバネリ 海門決戦 | 生存戰鬥的緊迫感 | ★★★★ | 生存遊戲、波次防禦、Boss戰 |
+| スマスロ バイオハザードRE:3 | 感染擴散＝連鎖進化的恐懼 | ★★★★★ | Roguelike遺物、Deck Building、Raid Boss |
+| スマスロスーパーリオエース2 | 華麗的賭場＝多層報酬的驚喜 | ★★★★ | 卡牌連鎖、バフ重疊、Side Bet |
+
+**最具系統深度的設計：** スマスロ バイオハザードRE:3 的「パンデミックチャンス＋3種ウィルス＋ボーナス11回→インフェルノ」創造出パチスロ業界少見的「中長期目標追求」體驗。每次ボーナス的ウィルス組合都不同，實現了「同一台機器每次打都有不同體驗」的設計理想。
+
+**最具遊戲性的設計：** スマスロスーパーリオエース2 的「Vベル→レア役→ノワールルーム→AT→カジノバトル→リオチャンス→ノワールタイム」多層連鎖結構，加上5種エースモード和3種告知タイプ，提供了パチスロ中罕見的「自由度」。遊技者可以根據自己的偏好選擇遊玩風格。
+
+**最具長期稼動力的設計：** L 東京喰種 連續兩月穩居人氣第一，カバネリ 海門決戦 同樣持續高位。兩者的共通點是「強力IP＋適度規格＋高品質演出」的三位一體。9月「スマスロ リコリス・リコイル」能否複製パチンコ版的成功，將是下半年最大看點。
+
+---
+
+## 補充：パチスロ ↔ Slot Game ↔ Fish Game 設計概念對照表
+
+| 設計概念 | パチスロ | Slot Game | Fish Game |
+|----------|----------|-----------|-----------|
+| 基本迴圈 | 投幣→轉軸→役物成立 | 下注→Spin→Pay Line命中 | 下注（子彈）→射擊→擊殺判定 |
+| 射幸性控制 | 機械割（97%~114%） | RTP（92%~97%） | 命中率表＋倍率表 |
+| 波動性表現 | AT/Rush突入率×出玉期待值 | Volatility（Low/Med/High） | 魚種倍率分布（小魚高頻低倍/Boss低頻高倍） |
+| Feature觸發 | CZ成功/直撃/天井 | Scatter 3個以上/Feature Buy | 能量條滿/Boss出現/特殊武器觸發 |
+| 爆發模式 | AT / Rush / 上位AT | Free Spin / Bonus Round / Super Mode | Boss Fight / Fever Time / 特殊砲台 |
+| 連鎖設計 | ボーナス循環/ST繼續 | Re-trigger / Cascading Wins | 連鎖擊殺/爆炸連鎖 |
+| 長期目標 | 天井到達/エンディング/インフェルノ | Progressive Jackpot / 累積Feature | 砲台升級/Boss討伐計數器 |
+| 狀態遷移 | 通常→高確→AT→上位AT | Base Game→Feature→Super Feature | 通常→Fever→Super Fever |
+| 自力感 | 目押し/択當て/演出選擇 | Gamble Feature / Feature Buy選擇 | 瞄準/砲台切換/射擊時機 |
+| 視覺回饋 | リーチ演出/確定演出/フリーズ | Big Win演出/Mega Win/Epic Win | 擊殺特效/倍率飛散/畫面震動 |
+
+### 設計移植時的關鍵差異
+
+| 差異點 | パチスロ | Slot Game | Fish Game |
+|--------|----------|-----------|-----------|
+| 單局時間 | 數小時（持續投入） | 數秒/Spin | 持續射擊（無明確局概念） |
+| 技術介入 | 高（目押し、状態看破） | 極低（純RNG） | 中（瞄準、時機判斷） |
+| 資訊透明度 | 低（内部状態隱藏） | 高（RTP/規則公開） | 低（命中率不公開） |
+| 留存設計 | 天井保底/設定示唆 | Daily Login Bonus / Feature Buy | 砲台等級/VIP累積 |
+| 法規限制 | 極嚴（日本遊技機規則） | 中等（各國博弈法規） | 各地法規差異大 |
+
+> 從パチスロ提取設計概念時，核心是將「狀態遷移＋期待感演出＋射幸性數學模型」三位一體的框架，轉化為目標平台的形式。Slot 重視數學模型的優雅性與視覺衝擊力；Fish Game 重視即時操作的爽快感與社交競爭性。
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青哥機種比較報告 (2026/6)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青哥機種比較報告 (2026/6)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチンコ機種比較報告（2026年6月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年6月的重點パチンコ機種如下。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | eリコリス・リコイル | ニューギン | 2026/04/06 |
+| 2 | e 東京喰種 超デカ超一撃ver. | ビスティ | 2026/06/08 |
+| 3 | e 東京喰種 | ビスティ | 2025/04/21 |
+| 4 | eカケグルイ 7500ver | D-light | 2026/05/11 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | P大海物語5スペシャル | 41% |
+| 2 | P大海物語4スペシャル | 40% |
+| 3 | PA大海物語4スペシャル Withアグネス・ラム | 34% |
+| 4 | PAわんわんパラダイスCELEBRATION | 33% |
+| 4 | P大海物語5 | 33% |
+
+> 勝率排名依然以甘デジ・ライトスペック系為主。ミドル以上的機種波動較大，勝率偏低，但人氣與導入台數反而更高。
+
+### 導入台數關注度
+
+2026年6月最受矚目的新台是「e 東京喰種 超デカ超一撃ver.」（6/8導入），以約1/999的超高規格搭配最大9000個的驚人出玉設計。「eリコリス・リコイル」自4月導入以來持續維持高人氣，穩坐榜首。「eカケグルイ 7500ver」以7500個出玉的衝擊力快速攀升至TOP4。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | eリコリス・リコイル | e 東京喰種 超デカ超一撃ver. | e 東京喰種 | eカケグルイ 7500ver |
+|------|---------------------|-------------------------------|------------|---------------------|
+| 製造商 | ニューギン | ビスティ | ビスティ | D-light |
+| 類型 | スマパチ | スマパチ | スマパチ | スマパチ |
+| 規格帶 | ライトミドル | 超ハイスペック | ミドル | ライトミドル |
+| 大當機率（通常時） | 未公開（偏輕） | 約1/999（図柄揃い） | ミドル帶 | 1/204 |
+| LT突入率 | 約50% | 約50% | — | 約50%（50/50ジャッジメント經由） |
+| LT/RUSH繼續率 | ST型（內部模式2種） | 約50%（ST 5回転） | 高繼續率 | 約75%（ST 135回転） |
+| 大當出玉 | 上位3000個以上 | 約3000～9000個 | ミドル帶出玉 | 約300或1500個（7500個ループ可能） |
+| 特殊系統 | 內部模式切換・ULTIMATE DRIVE | 超デカ出玉・ツラヌキチャレンジ | 東京喰種世界觀演出 | 50/50ジャッジメント・7500ループ |
+| 使用者評價 | ★★★★（高評價） | ★1.63（39則）※導入初期 | ★★★★（高評價） | ★2.14（74則） |
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 一擊出玉力 | e 東京喰種 超デカ超一撃ver. | 最大9000個，業界頂級水準 |
+| RUSH繼續率 | eカケグルイ 7500ver | 約75%的ST 135回転，連莊穩定 |
+| 遊玩友善度 | eリコリス・リコイル | 初當偏輕＋RUSH突入50%，平衡性佳 |
+| 出玉ループ性 | eカケグルイ 7500ver | 7500個×30%ループ的夢想設計 |
+| IP話題性 | e 東京喰種 超デカ超一撃ver. | 東京喰種IP仍維持極高人氣 |
+| 長期稼動力 | eリコリス・リコイル | 導入後2個月仍穩居人氣第一 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① eリコリス・リコイル（ニューギン）
+
+![eリコリス・リコイル 筐体](pachinko/images/01_lycoris_recoil/cabinet.jpg)
+
+本機於4月報告已有詳細分析。導入兩個月後依然穩坐人氣第一名，證明了「低風險＋高回報的雙面性」設計的長期吸引力。
+
+**本月更新：** 持續維持高稼動。初當偏輕的設計讓遊技場回轉率高，加上ULTIMATE DRIVE的夢想性，形成極佳的長期留存結構。
+
+👉 [查看完整分析（2026年4月報告）](#)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年4月報告）](#)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年4月報告）](#)
+
+---
+
+### ② e 東京喰種 超デカ超一撃ver.（ビスティ）
+
+![e 東京喰種 超デカ超一撃ver. 筐体](pachinko/images/01_tokyo_ghoul_deka/cabinet.jpg)
+![e 東京喰種 超デカ超一撃ver. ゲームフロー](pachinko/images/01_tokyo_ghoul_deka/game_flow.jpg)
+![e 東京喰種 超デカ超一撃ver. 大当り詳細](pachinko/images/01_tokyo_ghoul_deka/hit_rate.jpg)
+
+**原作IP：** 漫畫/動畫「東京喰種トーキョーグール」（石田スイ 作）
+
+**賣點與好玩之處：**
+- 通常時約1/999的超高規格，但搭配チャージ（約1/538.8）合算後實質約1/349.9
+- LT突入＝ラッキートリガー發動，一旦進入即獲得最低3000個出玉
+- RUSH中大當出玉オール3000個以上，ST 5回転的超高速消化
+- 50/50ジャッジメント成功時獲得7500個的壓倒性出玉
+- ツラヌキチャレンジ讓7500個以30%機率循環，理論上可無限連鎖
+- 最大一擊出玉9000個（1500個×6回）的業界頂級設計
+- スマートスタート搭載，ステージ安定消化
+- 前作「e 東京喰種」的長期高稼動證明了IP的持久號召力
+
+**中心思想：**
+> 「極限的一擊＝超デカの衝撃」— 以約1/999的超低初當機率換取一擊9000個的壓倒性回報。「進入RUSH的瞬間就已經是大勝利」的設計思想，將パチンコ的射幸性推至極限。50/50ジャッジメント的「生死一線」緊張感完美呼應原作中喰種與人類之間的生存對決。
+
+**套用至其他遊戲的可能性：**
+- 超高難度Boss戰的「一擊必殺報酬」設計 — 挑戰代價極高但獎勵壓倒性
+- 抽卡遊戲的「超稀有出率＋天井保底＋超大獎勵」三位一體設計
+- Roguelike遊戲的「超高風險樓層→超強裝備」交換機制
+- 格鬥遊戲的「孤注一擲（All-in）」機制 — 賭上一切換取逆轉
+
+**Slot Game 轉用分析：**
+
+- **Ultra High Volatility 單發設計（極低觸發率但 5000x+ 回報）**
+  「約1/999初當＋最大9000個出玉」的設計哲學，可直接轉化為 Slot 的 Ultra High Volatility（超高波動）規格：Bonus 觸發率極低（可能連轉 1000 轉都不觸發），但一旦觸發即保證最低 1000x 以上回報，最高可達 5000x+。不存在「小獎」—— 要嘛不中，要嘛就是改變人生級的大獎。這是將「進入RUSH的瞬間就已經是大勝利」翻譯為 Slot 語言的結果。
+
+  **舉例：** 玩家已經連轉了 800 轉沒有任何 Bonus 觸發，投入感覺越來越深。突然第 856 轉時，畫面全黑、出現金木研覺醒的紅色眼睛，「超デカ BONUS」文字閃爍登場 — 這個 Bonus 的形式是一段超強的 Free Spin（免費轉數回合）。Free Spin 中每一轉都保證全盤 Wild 或超高倍率符號，最終結算時顯示「TOTAL WIN: 5,280x」。一瞬間回收了所有投入還大幅盈利。玩家感受到的是「漫長等待換來的一擊必殺」。
+
+- **All-or-Nothing Bonus Round（全有或全無的獎勵回合）**
+  對應 50/50ジャッジメント 的設計，可設計為 Slot 的「All-or-Nothing」Bonus：觸發 Bonus 後，玩家面對一次二選一的抉擇 — 選 A 立即獲得確定的 500x 獎金離開；選 B 進入「生死判定」，50% 機率獲得 3000x，50% 機率僅獲得 50x（幾乎等於沒中）。完美重現原作中「喰種與人類之間的生存對決」的緊張感。
+
+  **舉例：** Bonus 觸發後畫面出現兩扇門：左邊門上寫著「500x — 安全撤離」，右邊門上寫著「??? — 生死一線」。玩家選擇右邊門，畫面切入金木研 vs 搜查官的對決動畫。硬幣旋轉 3 秒後落下 — 正面！「3,000x MEGA WIN」金色文字爆炸登場。如果是反面，只有 50x 並伴隨「殘念...」的灰暗演出。這個選擇的瞬間讓心跳加速。
+
+**Fish Game 轉用分析：**
+
+- **超稀有傳說魚（整場僅出現一次、費用高昂但回報 1000 倍）**
+  「約1/999的超低機率」轉化為捕魚機中的「傳說魚種」設計：整場遊戲（如 30 分鐘）中只會出現 1 次的超稀有 Boss 魚。出現時全場廣播通知，所有玩家可集火攻擊。但攻擊這隻魚的彈藥成本是普通的 10 倍，且HP極高需要大量子彈。擊殺後獎金為投入彈藥的 1000 倍，由參與攻擊的玩家依貢獻分配。
+
+  **舉例：** 遊戲進行 20 分鐘後，畫面突然變為血紅色，全場出現「⚠ 傳說的赫子出現！」廣播。一隻佔據 1/4 畫面的巨型赫子形態魚從右側緩緩游入，HP 條顯示 10000。玩家切換為最高火力砲台瘋狂輸出（每發成本 10 倍），30 秒後集體擊殺成功，依照各自傷害貢獻分配 1000 倍總獎金池。有人一次拿到等同整場遊戲 2 小時收入的獎金。
+
+- **50/50 生死判定機制（Double-or-Nothing 決戰）**
+  「50/50ジャッジメント」直接轉化為捕魚機的「命運判定」系統：當玩家擊殺特定 Boss 魚後，不直接獲得獎金，而是進入「生死判定」畫面。玩家選擇「收下」或「挑戰」：收下 = 獲得基本獎金；挑戰 = 進行 50/50 判定，成功獎金翻倍，失敗只拿回 10%。最多可連續挑戰 3 次（理論最高 8 倍，但全失敗幾乎歸零）。
+
+  **舉例：** 玩家擊殺了一隻 200 倍的 Boss 魚，畫面出現「獲得 200x！是否挑戰 Double-or-Nothing？」。玩家選擇挑戰，金木研的赫眼閃爍 — 成功！獎金變為 400x。再次出現選擇：「繼續挑戰？」玩家貪心選了第二次 — 硬幣旋轉...失敗。獎金從 400x 暴跌為 20x（原始的10%），畫面顯示金木研的痛苦表情。一瞬間的貪婪與後悔。
+
+---
+
+### ③ e 東京喰種（ビスティ）
+
+![e 東京喰種 筐体](pachinko/images/02_tokyo_ghoul/cabinet.jpg)
+
+**原作IP：** 漫畫/動畫「東京喰種トーキョーグール」（石田スイ 作）
+
+**賣點與好玩之處：**
+- 2025年4月導入後持續維持極高人氣，至今仍在TOP4
+- 東京喰種獨特的黑暗世界觀與角色魅力完美融入パチンコ演出
+- ミドル帶規格的穩定遊技感
+- 金木研的「覺醒」演出帶來極強的情感張力
+- 喰種vs搜查官的對立構圖適合戰鬥系演出設計
+- 長期稼動超過1年的驚人表現
+
+**中心思想：**
+> 「覺醒的二重性」— 主角既是人類又是喰種的「雙面性」，對應パチンコ中通常時與RUSH的「狀態轉換」。從壓抑到爆發的情感曲線，驅動玩家持續遊技的動力。一年以上的持續高人氣證明了「角色共鳴＋適度規格」是長期稼動的黃金公式。
+
+**套用至其他遊戲的可能性：**
+- RPG的「覺醒/變身系統」— 累積條件後觸發強化狀態
+- 動作遊戲的「暴走模式」— 風險與回報並存的強化狀態
+- 長期營運遊戲的「角色深度→留存率」設計公式
+
+**Slot Game 轉用分析：**
+
+- **Transformation Feature（角色變身升級所有後續中獎）**
+  「覺醒的二重性」可轉化為 Slot 的「角色變身」機制：遊戲中設有一個「覺醒條件」（例如累積 50 次中獎、或在特定 Free Spin 中出現 3 個特殊符號），達成後主角角色從「人類態」變身為「喰種態」。變身後所有符號的賠率表永久升級（本次 Session 內）：原本 ×5 的符號變為 ×15，原本 ×2 的變為 ×8。畫面風格也從溫和色調切換為暗紅色調。
+
+  **舉例：** 玩家持續遊玩中，畫面上的金木研頭像旁的「RC細胞」計量表逐漸填充。在累積到 100% 後，畫面演出金木研的經典覺醒場景（白髮化＋赫眼發動），從此刻開始所有中獎倍率翻 3 倍，且持續到本次 Session 結束為止（不會退回）。玩家感受到的是「從壓抑到爆發」的情感曲線 — 前期雖然回報普通，但知道覺醒後一切都會永久不同，所以願意持續投入直到觸發覺醒。
+
+- **長期參與型角色成長系統（跨 Session 進度累積）**
+  對應「一年以上持續高人氣」的長期吸引力設計：可設計為 Slot 的「角色等級系統」— 玩家每次遊玩都會為選定角色累積經驗值。角色升級後解鎖新的 Bonus 種類、新的 Free Spin 模式、或提升基礎賠率。這不影響 RTP（Return to Player = 回報率，即長期平均每下注 $1 能回收的金額），但讓玩家有「長期培養」的動力，提升留存率。
+
+  **舉例：** 玩家首次遊玩時選擇「金木研」作為夥伴角色（Lv.1）。每次 Spin 都累積少量經驗值，Lv.5 時解鎖「赫子 Free Spin」模式，Lv.10 時覺醒態的倍率加成從 ×2 提升為 ×3。玩家下次回來時角色等級保留，感覺「我的角色在成長，不想換別的遊戲」。這就是原作中「角色共鳴→長期留存」的設計翻譯。
+
+**Fish Game 轉用分析：**
+
+- **雙模式砲台（累積遊玩後砲台進化）**
+  「覺醒」概念轉化為捕魚機的「砲台進化系統」：玩家的砲台有「人類態」和「喰種態」。初始為人類態（普通火力），隨著持續擊殺魚群累積「RC細胞能量」。能量滿後砲台自動進化為「喰種態」— 射速加倍、彈道附帶穿透（可貫穿多隻魚）、外觀變為紅黑色赫子造型。但喰種態會持續消耗能量，停止擊殺則能量衰減直到退回人類態。
+
+  **舉例：** 玩家持續高效擊殺魚群，砲台旁的 RC 計量表穩定上升。填滿後砲台爆發紅色光芒變為赫子造型，射出的子彈從單發變為三發扇形 + 穿透效果。此時效率大幅提升，但如果 5 秒沒有命中任何魚，能量開始快速下降。玩家必須持續命中才能維持「喰種態」的高效輸出 — 對應了原作中金木必須持續「捕食」才能維持喰種力量的設定。
+
+- **RC 細胞能量系統（全場共享的累積觸發機制）**
+  設計一個全場玩家共享的「RC 能量條」：所有玩家的擊殺都會為公共能量條充電。當能量條滿時，場上所有砲台同時進入「覺醒狀態」30 秒 — 全員火力翻倍。這鼓勵所有玩家積極射擊（因為每個人的貢獻都在推動公共能量條），創造出「集體覺醒」的共同體驗高潮。
+
+  **舉例：** 畫面頂部有一個所有玩家都能看到的巨型「RC ENERGY」條，隨著全場擊殺逐漸填充。當填到 90% 時，畫面開始閃爍紅光並出現倒數「AWAKENING IN 3...2...1...」。滿格瞬間全場砲台同時變為赫子造型，所有玩家的火力翻倍持續 30 秒。在這 30 秒內全場瘋狂掃射高價值魚群，金幣嘩啦啦地跳出 — 這是一個全場共同經歷的「覺醒高潮」。
+
+---
+
+### ④ eカケグルイ 7500ver（D-light）
+
+![eカケグルイ 7500ver 筐体](pachinko/images/03_kakegurui/cabinet.jpg)
+![eカケグルイ 7500ver ゲームフロー](pachinko/images/03_kakegurui/game_flow.jpg)
+![eカケグルイ 7500ver 大当り詳細](pachinko/images/03_kakegurui/hit_rate.jpg)
+
+**原作IP：** 漫畫/動畫「賭ケグルイ」（河本ほむら 原作、尚村透 作畫）
+
+**賣點與好玩之處：**
+- 通常時約1/204的ライトミドル帶，初當相對輕鬆
+- 初當後約25%進入「50/50ジャッジメント」— 成功＝7500個出玉＋RUSH突入
+- RUSH為ST 135回転、繼續率約75%的高安定型
+- RUSH中大當出玉1500個以上
+- 「運命の一撃」約60%觸發「ツラヌキチャレンジ」
+- ツラヌキチャレンジ成功＝7500個ループ（30%繼續）
+- 多達5種演出模式可選（スタンダード/デバイス一発告知/キャラ告知/違和感告知/完全告知）
+- 違和感告知模式有38種以上違和感要素，探索樂趣豐富
+- 各リーチ信頼度設計精密，演出層次豐富
+
+**中心思想：**
+> 「狂氣的賭注＝All-in的快感」— 以「賭ケグルイ」的核心主題「狂氣地享受賭博本身」為設計哲學。50/50ジャッジメント的「生死一瞬」完美重現原作中蛇喰夢子面對勝負時的恍惚表情。7500個×ループ的設計讓「一旦贏了就停不下來」的賭徒心理被完美轉化為遊戲體驗。
+
+**套用至其他遊戲的可能性：**
+- 賭場系遊戲的「Double or Nothing」機制 — 每次勝利後可選擇加倍或收手
+- 卡牌遊戲的「All-in→報酬倍增」設計
+- Roguelike遊戲的「高風險高回報房間」— 進入前只知道50%成功率
+- 心理戰遊戲的「讀牌→下注→開牌」三段式緊張感設計
+- 手遊活動的「挑戰次數限定＋高倍率獎勵」限時機制
+
+**Slot Game 轉用分析：**
+
+- **超強化版 50/50 Gamble Feature（贏了翻倍＋重新觸發機會）**
+  「50/50ジャッジメント」的核心可直接轉化為 Slot 的 Gamble Feature（賭博功能），但做大幅強化：傳統 Gamble 只是「猜對翻倍、猜錯歸零」。本設計的強化點在於 — 猜對後不只獎金翻倍，還自動重新觸發一次 Gamble 機會（對應ツラヌキチャレンジ的30%ループ）。玩家可以選擇「收手」或「繼續賭」，理論上可無限連續翻倍。但每次失敗不是完全歸零而是保留 10%（讓玩家不至於完全絕望）。
+
+  **舉例：** 玩家在 Free Spin 中贏了 100x，結束後出現「GAMBLE？」選項。玩家選擇賭，蛇喰夢子翻開撲克牌 — 紅色！成功！獎金變為 200x，且自動再次出現 Gamble 選項（30% 機率出現，本次幸運出現了）。玩家再賭一次 — 又成功！400x！第三次 Gamble 選項出現...玩家深呼吸選擇「收手」帶走 400x。如果繼續賭失敗，400x 會變為 40x（保留10%）。那種「該收還是該繼續」的煎熬正是賭ケグルイ的精髓。
+
+- **Risk-Reward 玩家選擇系統（主動選擇風險等級）**
+  對應「狂氣地享受賭博本身」的主題，可設計為 Slot 的「風險等級選擇」：每次觸發 Free Spin 前，玩家可主動選擇風險等級 — Low（12轉，×1倍率）、Medium（8轉，×3倍率）、High（4轉，×10倍率）、INSANE（2轉，×50倍率）。選擇越高風險意味著轉數越少（更難累積中獎），但每次中獎的倍率越高。讓玩家「自己決定要多瘋狂」。
+
+  **舉例：** Free Spin 觸發後，蛇喰夢子的聲音問玩家：「あなたの賭け方は？（你要怎麼賭？）」。畫面顯示四個選項對應四種風險等級。玩家選擇「INSANE」— 只有 2 轉，但每轉中獎都是 ×50。第一轉...沒中。最後一轉了，全部的希望押在這一轉 — 5 個符號排列...中了！×50 的大中獎！感覺像是把一切都賭在最後一把的狂喜。選 Low 的人穩穩拿到小獎，選 INSANE 的人可能空手而歸也可能大贏 — 這就是玩家自主選擇的刺激感。
+
+**Fish Game 轉用分析：**
+
+- **Double-or-Nothing 彈藥升級系統（特定門檻觸發加倍賭注）**
+  「50/50ジャッジメント」轉化為捕魚機的「彈藥升級賭注」：當玩家累積擊殺達到特定門檻（如連續擊殺 10 隻魚不失誤）時，系統自動彈出「UPGRADE？」選項。選擇 YES 進入 50/50 判定 — 成功則砲台火力永久翻倍（本回合內），失敗則火力降為原本的一半持續 30 秒。玩家可以選擇安全地維持現狀，或冒險追求更強火力。
+
+  **舉例：** 玩家連續精準擊殺了 10 隻魚，畫面閃爍金光出現「DOUBLE UP CHANCE！接受挑戰？」。玩家選擇 YES，蛇喰夢子的硬幣旋轉動畫出現...正面！砲台外觀從銀色變為金色，每發子彈的威力永久翻倍。如果失敗，砲台會變為灰色且縮小，30 秒內火力只有一半（打中魚的獎金也減半）。那種「明明可以穩穩玩卻忍不住想賭」的衝動就是カケグルイ。
+
+- **Boss 前賭注 Mini-Game（先下注、命中才兌現）**
+  對應「All-in的快感」，設計為捕魚機的「Boss 賭注系統」：當 Boss 魚出現前，系統強制進入一個 3 秒的賭注畫面 — 玩家必須決定要投入多少彈藥作為「賭注」（最少 10 發、最多 100 發）。賭注越高，Boss 被擊殺時獲得的獎金倍率越高（10發=×5，50發=×20，100發=×50）。但如果 Boss 存活逃走了，所有賭注全部沒收。
+
+  **舉例：** 畫面出現警告「BOSS INCOMING — PLACE YOUR BET！」倒數 3 秒。玩家咬牙選擇下注 100 發（最大賭注），對應 ×50 倍率加成。Boss 登場後全力射擊，其他玩家的攻擊也在幫忙削減 HP...最後 1 秒 HP 歸零擊殺成功！玩家獲得的獎金是正常擊殺的 50 倍。但如果 Boss 逃走了，那 100 發子彈的成本就是純粹損失。選擇下多少注的瞬間，腎上腺素直接飆升。
+
+---
+
+## 4. 2026年7月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 大當機率 | 關注重點 |
+|-----------|--------|--------|---------|----------|
+| 06/22 | PシャカRUSH Z Jr. | マルホン | — | マルホン新作 |
+| 06/08 | eソードアート・オンライン オルタナティブ ガンゲイル・オンライン | 大都技研 | — | 人氣動畫IP |
+| 06/08 | e 学園黙示録ハイスクール・オブ・ザ・デッド3 | 高尾 | — | 人氣系列第3作 |
+
+> ※6月前半為大量導入月（全13機種），「e 東京喰種 超デカ超一撃ver.」和「eソードアート・オンライン GGO」為最大焦點。
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| eリコリス・リコイル | 低風險＋高回報的雙面性 | ★★★★ | 手遊抽卡、Roguelike |
+| e 東京喰種 超デカ超一撃ver. | 極限的一擊＝超デカの衝撃 | ★★★★★ | Boss戰、All-in機制、超稀有獎勵 |
+| e 東京喰種 | 覺醒的二重性 | ★★★ | RPG變身系統、長期營運留存設計 |
+| eカケグルイ 7500ver | 狂氣的賭注＝All-in的快感 | ★★★★★ | 賭場Double or Nothing、心理戰、Roguelike |
+
+**最具衝撃力的設計：** e 東京喰種 超デカ超一撃ver. 的「約1/999初當＋最大9000個出玉」設計將パチンコ的射幸性推至法規允許的極限。其「進入即大勝利」的簡潔設計哲學，對應到遊戲設計就是「超高難度Boss＝超高報酬」的本質。
+
+**最具遊戲性的設計：** eカケグルイ 7500ver 的「50/50ジャッジメント＋7500ループ＋5種演出模式＋違和感告知38種」在射幸性與遊戲深度之間取得了極佳平衡。特別是違和感告知模式將「找碴遊戲」的樂趣融入パチンコ，是極具創意的演出設計。
+
+**最具長期稼動力的設計：** eリコリス・リコイル 連續2個月維持人氣第一，「e 東京喰種」更是導入超過1年仍在TOP4。兩者的共同點是「適度規格＋高品質演出＋角色魅力」的三位一體。這印證了遊戲營運中「留存率比爆發力更重要」的設計原則。
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+</script>
+</body>
+</html>

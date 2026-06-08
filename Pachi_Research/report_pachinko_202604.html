@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青哥機種比較報告 (2026/4)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青哥機種比較報告 (2026/4)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチンコ機種比較報告（2026年4月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年4月的重點パチンコ機種如下。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | eリコリス・リコイル | ニューギン | 2026/04/06 |
+| 2 | eフィーバーキン肉マン | SANKYO | 2026/04/20 |
+| 3 | e86-エイティシックス- | アムテックス | 2026/04/20 |
+| 4 | eリング 最恐領域 | オレンジ | 2026/04/20 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | P大海物語5スペシャル | 42% |
+| 2 | P大海物語4スペシャル | 41% |
+| 3 | PAわんわんパラダイスCELEBR… | 36% |
+| 4 | PA大海物語5 Withアグネス… | 33% |
+| 5 | PA大海物語4スペシャル With… | 33% |
+
+> 勝率排名以甘デジ・ライトスペック系為主。ミドル以上的機種波動較大，勝率偏低，但人氣與導入台數反而更高。
+
+### 導入台數關注度
+
+2026年4月新台中，「eフィーバーキン肉マン」預估為最大量導入機種。「eリコリス・リコイル」也作為前半導入的主打機種大量鋪設。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | eリコリス・リコイル | eフィーバーキン肉マン | e86-エイティシックス- | eリング 最恐領域 |
+|------|---------------------|----------------------|----------------------|------------------|
+| 製造商 | ニューギン | SANKYO | アムテックス | オレンジ |
+| 類型 | スマパチ | スマパチ | スマパチ | スマパチ |
+| 規格帶 | ライトミドル | ミドル | ライトミドル | ミドル |
+| 大當機率（通常時） | 未公開（偏輕） | 未公開（ミドル帶） | 1/239.1 | 未公開 |
+| RUSH 突入率 | 約50% | 約51%（LT直行） | 約54.5%→再約55%突破 | 狀態變化型 |
+| RUSH 繼續率 | ST型（內部模式2種） | 約77%（ST型） | 約79%（含LAST JUDGE回拉） | 狀態變化型 |
+| 大當出玉 | 依狀態變化（上位3000個以上） | 六成為3000個以上 | 約300或1500個（付出） | 依狀態變化 |
+| 特殊系統 | 內部模式切換・ULTIMATE DRIVE | 保留4個蓄力型 | フラグ管理バトル・スタサポ | 狀態變化型 |
+| 使用者評價 | ★★★★（高評價） | ★★★★（高評價） | ★2.80（43則） | ★★★（普通） |
+
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 初當輕度 | eリコリス・リコイル | 初當偏輕，容易上手 |
+| RUSH 繼續率 | e86-エイティシックス- | 約79%為最高（含回拉） |
+| 一擊出玉力 | eフィーバーキン肉マン | 六成大當3000個以上，爆發力強 |
+| 遊玩友善度 | eリコリス・リコイル | 初當輕＋RUSH突入50%，平衡性佳 |
+| 革新性 | e86-エイティシックス- | フラグ管理バトル＋スタサポ全新系統 |
+| 恐怖演出 | eリング 最恐領域 | 恐怖系IP打造獨特緊張感 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① eリコリス・リコイル（ニューギン）
+
+![eリコリス・リコイル 筐体](pachinko/images/01_lycoris_recoil/cabinet.jpg)
+![eリコリス・リコイル ゲームフロー](pachinko/images/01_lycoris_recoil/game_flow.jpg)
+
+**原作IP：** TV動畫「リコリス・リコイル」（2022年播出，A-1 Pictures 製作）
+
+**賣點與好玩之處：**
+- 初當偏輕，可輕鬆遊玩的設計
+- 大當的約50%可進入RUSH（LT），壓力較小
+- RUSH中有2種內部模式，上位模式大當出玉3000個以上
+- 50%機率觸發6000個＋加乘的「ULTIMATE DRIVE」，充滿夢想的設計
+- 活用人氣動畫的影像與樂曲進行演出
+
+**中心思想：**
+> 「低風險＋高回報的雙面性」— 以輕量初當降低門檻，同時透過內部模式切換保留一擊翻盤的夢想。「誰都能玩，但越玩越深」的設計。
+
+**套用至其他遊戲的可能性：**
+- 接近手遊抽卡設計（低成本可抽，但上位排出帶來大獎感）
+- 可轉用至Roguelike系遊戲的「樓層切換改變獎勵表」機制
+- 與社群遊戲的「一般關卡→獎勵關卡」雙層結構高度契合
+
+**Slot Game 轉用分析：**
+
+- **雙模式 Free Spin（Normal Mode vs Powered-Up Mode 隨機切換）**
+  eリコリス・リコイル 的「內部模式切換」概念，可轉化為 Slot 中的「雙面 Free Spin」設計：玩家觸發 Free Spin 後，每一轉都有機率在 Normal Mode 與 Powered-Up Mode 之間隨機切換。Normal Mode 下倍率為 ×2，Powered-Up Mode 下倍率跳升至 ×10 並附帶 Expanding Wild（Wild 圖案出現時會擴張填滿整列）。玩家無法預測何時會切換，營造出「隨時可能爆發」的雙面性期待感。
+
+  **舉例：** 玩家進入 Free Spin 後前三轉都在 Normal Mode（×2 倍率），第四轉畫面突然切換為紅色背景、角色換裝（對應錦木千束的戰鬥模式），進入 Powered-Up Mode（×10 倍率＋Expanding Wild），這一轉直接獲得 50 倍以上的回報。但第五轉又切回 Normal Mode — 背景恢復日常色調，倍率回到 ×2。玩家永遠不知道下一轉是哪個模式，所以每按一次 Spin 都帶著「會不會又變紅？」的期待。這種隨機切換讓高倍率不是「進入就穩了」而是「每一轉都可能出現也可能消失」。
+
+- **低門檻 Bonus Buy（輕量投入即可觸發特殊回合）**
+  對應本機「初當偏輕＋低風險」的設計哲學，可設計為 Slot 中的「低價版 Bonus Buy」：一般 Bonus Buy 需要 100 倍 Bet，但這款設計只需 20 倍 Bet 即可購買一次「Mini Bonus」，保證至少獲得 5 轉 Free Spin。雖然不是最高回報，但門檻低、容易觸發，讓玩家持續留在遊戲中。
+
+  **舉例：** 玩家下注 $0.50/轉，花 $10 即可購買一次 Mini Bonus（正常版需 $50）。進入後保證 5 轉 Free Spin，過程中若觸發模式切換則自動升級為完整的 12 轉 Premium Free Spin。玩家感覺「花一點小錢就能體驗到 RUSH 的入口」，願意反覆購買。
+
+**Fish Game 轉用分析：**
+
+- **安全區/危險區系統（雙區域切換）**
+  將「內部模式切換」轉化為捕魚機的場景設計：畫面分為「安全海域」與「危險海域」，定時隨機切換。安全海域中魚群密集但獎金普通（容易打中、穩定回收），危險海域中魚少但每條價值極高（高風險高回報）。切換時機不可預測，玩家必須在「穩穩打小魚」與「準備迎接高價值區」之間快速調整策略。
+
+  **舉例：** 玩家正在安全海域中穩定擊殺小魚群，突然畫面轉暗、出現警告音效「⚠ DANGER ZONE」，海域切換為深海場景。此時只有 3 條金色大魚游過，每條價值是普通魚的 100 倍，但移動速度快且只停留 15 秒。玩家瞬間從「輕鬆撈」變成「全力集火」的緊張狀態。
+
+- **小魚累積觸發高獎勵區（低風險累積→高回報爆發）**
+  對應「初當偏輕但 RUSH 中可獲得 3000 個以上」的結構：玩家持續擊殺小魚時，畫面上方的「任務條」逐漸填滿。填滿後自動進入「ULTIMATE ZONE」（對應 ULTIMATE DRIVE），此時場上出現一隻巨型 Boss 魚，所有玩家可共同攻擊，擊殺後依貢獻度分配獎金（最高 500 倍）。
+
+  **舉例：** 玩家花了 3 分鐘穩定擊殺普通魚群，任務條從 0% 填到 100%。畫面頂端出現「ULTIMATE DRIVE 發動！」字樣，一隻佔據半個畫面的巨型千束魚（Boss）出現。所有在場玩家可集火 20 秒，最終依照各自造成的傷害比例瓜分 2000 倍的總獎金池。玩家感受到「一直小打小鬧終於換來大場面」的滿足感。
+
+---
+
+### ② eフィーバーキン肉マン（SANKYO）
+
+![eフィーバーキン肉マン 筐体](pachinko/images/02_kinnikuman/cabinet.jpg)
+![eフィーバーキン肉マン ゲームフロー](pachinko/images/02_kinnikuman/game_flow.jpg)
+
+**原作IP：** 漫畫「キン肉マン」（ゆでたまご 作，週刊少年ジャンプ 連載）
+
+**賣點與好玩之處：**
+- LT直行型，初當的約51%可進入RUSH
+- ST形式的RUSH繼續率約77%，連莊穩定
+- 大當的六成為3000個以上，出玉力強勁
+- SANKYO招牌的「圖柄テンパイ→保留4個蓄力→決定出玉」帶來的緊張感
+- キン肉マン的熱血戰鬥演出，超人們的必殺技重現
+- 4月預估最大量導入 → 遊技場稼動率高，容易找到空位
+
+**中心思想：**
+> 「王道戰鬥×爆發力」— 簡單明瞭的RUSH直行型，透過保留蓄力決定出玉的「一發定勝負」緊張感。讓玩家體驗キン肉マン式的「友情力量」逆轉劇。
+
+**套用至其他遊戲的可能性：**
+- 格鬥遊戲的「必殺技量表→一擊必殺」快感設計
+- 卡牌遊戲的「手牌蓄力→一口氣釋放」機制
+- 動作RPG的「Boss戰中QTE（快速反應事件）」式緊張感演出
+
+**Slot Game 轉用分析：**
+
+- **Charge Meter 蓄力系統（每次中獎累積能量，滿格觸發超大獎）**
+  保留4個蓄力→決定出玉的機制，可轉化為 Slot 的「Charge Meter」設計：畫面側邊設置一個能量條，玩家每次 Spin 獲得任何中獎都會為能量條充電。當能量條集滿 4 格（對應保留4個）後，自動觸發「超人 Mega Payout」— 一次性支付累積獎金的 ×20 倍率。能量條不會因為沒中獎而歸零，只會緩慢衰減，讓玩家覺得「再多轉幾次就滿了」。
+
+  **舉例：** 玩家連續中了 3 次小獎，能量條亮起 3 格並發出脈動光效，畫面顯示「あと1つ！（還差1個！）」。下一轉又中獎時，能量條滿格爆發，畫面切入キン肉マン的「キン肉バスター」必殺技動畫，直接派發 200 倍大獎。玩家體驗到的是「一步步積蓄力量然後一口氣爆發」的王道戰鬥快感。
+
+- **Hold & Spin 蓄力型（固定符號累積至觸發條件）**
+  保留4個的概念可直接對應 Hold & Spin（保持並旋轉）機制的變體：中獎時特定符號會被「鎖定」在轉輪上不動，其餘位置繼續旋轉。每鎖定一個符號等於「蓄力一格」，當同一列或指定位置集齊 4 個鎖定符號時觸發 Mega Bonus。這讓每次新的鎖定都帶來「越來越接近」的蓄力緊張感。
+
+  **舉例：** 玩家在 Hold & Spin 回合中，第一轉鎖定了左上角的肉符號，第二轉鎖定右下角，第三轉鎖定中間 — 此時 3 個肉符號在畫面上閃爍，「あと1つ！」的字幕出現。最後一轉，第四個肉符號落在最後的空位上，4 個符號連線爆發出金色光芒，獎金從 ×5 跳升為 ×100。如同超人集結友情之力完成合體技。
+
+**Fish Game 轉用分析：**
+
+- **蓄力砲（長按蓄力發射超強一擊）**
+  「保留4個蓄力→一發定勝負」直接轉化為捕魚機的「蓄力射擊」機制：玩家可以選擇長按發射鍵不放，子彈不會射出但畫面上的蓄力條開始累積（最多4段）。放開時發射一顆超大型子彈，威力為普通子彈的 4/8/16/32 倍（對應1~4段蓄力）。蓄力期間消耗的彈藥費用也成比例增加，形成「高風險高回報」的賭注感。
+
+  **舉例：** 一隻高價值的 Boss 魚（金色キン肉マン造型）游入畫面。玩家立刻長按蓄力鍵，畫面顯示「第1段→第2段→第3段→MAX！」的充能動畫，砲台從普通砲變成金色巨砲。放開瞬間發射一顆巨大的光球直擊 Boss，一發命中獲得 300 倍獎金。如果沒蓄滿就發射，威力不足可能打不死 Boss 白白浪費彈藥。
+
+- **摔角式 Mini-Boss 戰鬥事件（互動式戰鬥演出）**
+  キン肉マン的格鬥元素轉化為「Boss 戰互動事件」：當特定 Mini-Boss 魚出現時，畫面進入「對決模式」。玩家不是單純射擊，而是按照畫面指示進行快速反應操作（類似 QTE）— 如「連打！」「瞄準弱點！」「閃避！」。成功完成所有指令則 Boss 被擊敗並獲得大獎，失敗則 Boss 逃走但返還部分彈藥費用。
+
+  **舉例：** 一隻惡魔超人造型的 Boss 魚出現，畫面切入戰鬥界面。第一回合顯示「連打10次！」玩家瘋狂按鍵成功；第二回合顯示「瞄準頭部！」玩家移動準心射擊弱點；第三回合顯示「最後一擊！蓄力MAX！」長按放開，完成キン肉バスター終結技動畫，Boss 爆裂獲得 500 倍獎金。全場玩家看到動畫都會興奮。
+
+---
+
+### ③ e86-エイティシックス-（アムテックス）
+
+![e86-エイティシックス- 筐体](pachinko/images/03_86_eighty_six/cabinet.jpg)
+![e86-エイティシックス- ゲームフロー](pachinko/images/03_86_eighty_six/game_flow.jpg)
+
+**原作IP：** 輕小說/TV動畫「86-エイティシックス-」（安里アサト 著）
+
+**賣點與好玩之處：**
+- 業界首創「フラグ管理バトルシステム」— 每1顆彈珠入賞即進行攻擊/被彈旗標的真實抽選
+- 我方5人 vs 敵方3機（或5機）的即時戰鬥感
+- 「スタートサポートシステム（スタサポ）」讓轉數穩定（250顆約13轉）
+- 右打中無保留，逐顆抽選的「一球入魂」緊張感
+- 加乘特化「キリヤ血戦」最高可獲得12300個大量出玉
+- 豐富的演出自訂（6種MODEカスタム等），可依喜好調整玩法
+- 搭載樂曲皆為神曲（境界線、Avid、LilaS等）
+- 使用者口碑中「右打革新又有趣」「打到發抖」等高度好評
+
+**中心思想：**
+> 「自力感與緊張感的極致」— 明明是パチンコ卻實現了パチスロ般的「每一轉都能感受抽選」的體驗。將原作「每一條生命在戰場上逐漸消逝」的主題，透過我方逐一減少/敵方逐一擊破的系統讓玩家親身體會。
+
+**套用至其他遊戲的可能性：**
+- 塔防系遊戲的「單位消耗 vs 敵方擊破」資源管理
+- Roguelike系的「每一回合的判斷決定生死」緊張感設計
+- FPS/TPS的「彈藥管理」式每一發的份量感
+- 桌遊的「擲骰→即時結果反映」機制
+- **最具通用性的設計思想** — 「有限資源下的攻防」可適用於眾多遊戲類型
+
+**Slot Game 轉用分析：**
+
+- **每一轉都有意義的 Progress Bar 系統（全 Spin 反應型）**
+  「フラグ管理バトル」中每一顆彈珠都進行抽選的概念，可轉化為 Slot 中的「全 Spin 反應型 Progress Bar」：不是只有中獎時才有進展，而是每一次 Spin 的結果（包括不中獎）都會影響畫面上的戰鬥進度條。中獎 = 對敵人造成傷害，不中獎 = 敵人對我方攻擊（我方HP減少）。當敵方HP歸零 = 觸發大獎 Bonus；當我方HP歸零 = 戰鬥結束。這讓「每一轉」都有意義，消除了普通 Spin 的無聊感。
+
+  **舉例：** 玩家每轉 Spin 後，不論結果如何，畫面上都有戰鬥動畫：中獎時我方的ジャガーノート（戰鬥機甲）對敵方レギオン發射砲彈，敵方HP條下降；不中獎時敵方反擊，我方HP下降並有隊員受傷演出。玩家緊盯HP條，「再一次中獎就能擊破敵人了！但我方也快沒血了...」的緊張感貫穿全程。
+
+- **Battle Mode — 符號即攻擊（Symbol = Damage 系統）**
+  對應「每一球即一次攻擊」的設計，可轉化為 Slot 的「戰鬥模式」：特定觸發後進入 Battle Mode，此時轉輪上的每個符號都代表一種攻擊類型。高價值符號 = 大傷害，低價值符號 = 小傷害，Scatter = 必殺技，Wild = 防禦（抵消敵方攻擊）。目標是在有限轉數（如 10 轉）內將 Boss HP 打到零。
+
+  **舉例：** Battle Mode 進入後，畫面上方顯示レギオン Boss 的 HP 為 100，下方顯示「殘餘回合：10」。玩家第一轉出現 3 個高價值符號，造成 30 傷害（HP 降至 70）；第二轉只有低價值符號，僅造成 5 傷害；第三轉沒出現任何攻擊符號 — Boss 發動反擊，殘餘回合從 7 被扣為 6（等於少了一次機會）。幸好第四轉出現 Wild 符號，成功防禦住 Boss 的下一次反擊，回合數沒有減少。剩餘 5 轉要打掉 65 HP — 玩家每一轉都在計算「剩下的回合夠不夠打死牠」。
+
+**Fish Game 轉用分析：**
+
+- **限定超級彈藥系統（5 發必殺彈、每發獨立判定）**
+  「每一球入賞即進行獨立抽選」的核心概念，已經與捕魚機的基礎玩法相似，因此在此特別強調「限定彈藥」變體：玩家在特定時機獲得恰好 5 發「超級彈藥」（對應我方 5 人），每一發的命中/未命中完全獨立判定，威力是普通彈藥的 50 倍。沒有補充機會，用完即止。這讓每一發的發射決策都充滿份量感。
+
+  **舉例：** Boss 戰開始時，玩家的砲台切換為金色並顯示「殘彈：5」。第一發瞄準 Boss 核心射出 — 命中！獲得 100 倍獎金，殘彈變為 4。第二發稍微偏了 — 未命中，殘彈變為 3，畫面顯示隊員一人倒下。玩家手心冒汗：「只剩 3 發了，每一發都不能浪費...」。這就是原作中「每一條生命在戰場上逐漸消逝」的緊張感。
+
+- **我方隊員消耗制（Squad System — 被擊中則永久失去一名成員）**
+  將「我方5人 vs 敵方」的系統直接轉化：玩家擁有 5 名隊員，每名隊員代表一種砲台能力（散射、穿透、追蹤、蓄力、範圍）。當玩家的子彈被特定敵方魚「反彈」或未能擊殺限時魚時，隨機失去一名隊員（該砲台能力永久消失）。全員陣亡 = 本回合結束。玩家必須在「保全隊員」和「追求高分」之間做出取捨。
+
+  **舉例：** 玩家帶著 5 名隊員進入深海區。前方出現一隻帶有反射護盾的魚，玩家冒險射擊但被反彈 — 散射砲手陣亡，畫面上該角色頭像變暗。現在只剩 4 種砲台可用。接下來出現大群小魚正適合用散射清理，但散射已經沒了...玩家開始後悔剛才的冒進，更加謹慎地選擇目標。這就是「有限資源下的攻防」。
+
+---
+
+### ④ eリング 最恐領域（オレンジ）
+
+![eリング 最恐領域 筐体](pachinko/images/04_ring_saikyo/cabinet.jpg)
+![eリング 最恐領域 ゲームフロー](pachinko/images/04_ring_saikyo/game_flow.jpg)
+
+**原作IP：** 電影「リング」系列（鈴木光司 原作的恐怖作品）
+
+**賣點與好玩之處：**
+- 恐怖演出帶來獨特的緊張感與恐懼體驗
+- 狀態變化型規格，依所處狀態改變大當內容分配
+- 如「最恐領域」之名，恐懼與期待一體兩面的演出設計
+- 精準打中恐怖迷・リング粉絲的IP運用
+
+**中心思想：**
+> 「恐懼＝期待」— 恐怖演出中的「好可怕」被轉換為「可能要中了」的獨特體驗設計。同時煽動不安與期待，創造出與一般パチンコ截然不同的情緒曲線。
+
+**套用至其他遊戲的可能性：**
+- 恐怖遊戲的「恐懼→獎勵」循環設計（類似バイオハザード的資源管理）
+- 抽卡演出的「不祥演出→稀有排出」期待感設計
+- 密室逃脫遊戲的「危機→突破→獎勵」循環
+
+**Slot Game 轉用分析：**
+
+- **恐懼累積型 Free Spin（Fear Gauge System — 越害怕越高倍率）**
+  eリング 最恐領域的「恐懼＝期待」核心概念，可轉化為 Slot 中的「恐懼量表」設計：畫面側邊設置一個 Fear Gauge（恐懼量表），每次 Spin 不中獎時量表上升一格（代表緊張感累積），當量表填滿時強制觸發「最恐 Free Spin」。關鍵在於：Fear Gauge 越高，觸發後的 Free Spin 倍率越大（低恐懼 = ×3，中恐懼 = ×8，滿格恐懼 = ×25）。這讓「一直不中獎」的挫折感被轉化為「恐懼值越來越高＝即將獲得超大獎」的期待感，完美再現原機的情緒設計。
+
+  **舉例：** 玩家連續 20 轉不中獎，畫面逐漸變暗、背景音樂漸漸轉為不安的弦樂。Fear Gauge 已經到了第 4 格（共 5 格），螢幕邊緣開始出現模糊的黑髮影子。第 25 轉時量表滿格 — 畫面突然全黑，電視機「沙沙」雜訊畫面出現，貞子緩緩爬出，然後畫面爆裂轉入「最恐 FREE SPIN」（×25 倍率，12 轉）。玩家剛才的焦慮瞬間轉化為「終於來了！」的狂喜。恐懼的頂點就是期待的頂點。
+
+- **狀態變化型 Bonus（遊戲狀態隨機劣化/進化，形成不可預測的恐懼感）**
+  對應本機「狀態變化型規格」的核心設計：Slot 進入 Bonus Round 後，不是固定的 Free Spin 回合數，而是處於一個「狀態不斷變化」的系統。每一轉結束後，系統隨機決定下一轉的狀態：「安全」（普通倍率）、「不安」（倍率略升但有結束風險）、「恐懼」（高倍率但 50% 機率下一轉直接結束）、「最恐」（超高倍率，本轉後必定結束）。玩家永遠不知道下一轉會變好還是變壞，也不知道何時會突然結束 — 如同恐怖片中「不知道怪物何時出現」的恐懼感。
+
+  **舉例：** 玩家進入 Bonus 後，第一轉狀態為「安全」（×2，背景是平靜的房間），第二轉升為「不安」（×5，燈光開始閃爍），第三轉跳入「恐懼」（×15，畫面出現貞子的井底場景），玩家心跳加速：「這轉結束後有 50% 會直接終止 Bonus...」。幸運地沒有結束，第四轉居然跳入「最恐」狀態（×50！但這是最後一轉），畫面全紅、貞子正面凝視玩家 — 這一轉的中獎金額乘以 50 倍作為最終獎勵。整個 Bonus 過程中玩家的情緒從平靜→不安→恐懼→狂喜，完美再現恐怖片的情緒曲線。
+
+**Fish Game 轉用分析：**
+
+- **詛咒魚系統（Cursed Fish — 碰到就會帶來連鎖恐懼事件，但獎金極高）**
+  將「恐懼＝期待」轉化為捕魚機中的「詛咒魚」設計：場上會隨機出現外觀陰暗、被黑髮纏繞的「詛咒魚」。射擊詛咒魚時，無論是否擊殺，都會觸發「詛咒事件」— 畫面變暗 7 秒，期間所有普通魚消失，取而代之的是從畫面底部緩緩浮上的「貞子魚群」（全身是黑髮的恐怖造型），每條價值是普通魚的 50~200 倍。但詛咒事件期間玩家的子彈消耗也加倍。敢不敢在恐懼中射擊？恐懼的深度決定獎勵的高度。
+
+  **舉例：** 一條纏繞黑髮的詛咒魚緩緩游過畫面中央。玩家猶豫一秒後射擊 — 命中！畫面瞬間全黑，「ザザザ...」的電視雜訊音響起。3 秒後畫面恢復但色調變為陰暗的藍綠色，所有普通魚都消失了。從畫面底部，5 條巨大的「貞子魚」帶著飄散的黑髮緩慢上浮，每條標記著 ×100 的獎金倍率。但子彈消耗從 1 變成了 3 — 玩家必須在 7 秒內決定「要全力射擊博取超高獎金」還是「保存彈藥等恐懼事件結束」。選擇勇氣的玩家擊殺了 2 條貞子魚，獲得 200 倍獎金。
+
+- **深淵潛行模式（The Deeper You Go — 越深獎金越高但恐怖越強且逃脫越難）**
+  對應「狀態變化型規格」的層層深入設計：捕魚機設置「深度系統」，玩家可選擇「繼續下潛」或「返回水面」。每下潛一層，場上的魚群價值倍增（第1層 ×1、第2層 ×3、第5層 ×20），但同時環境越來越恐怖（畫面越暗、出現詛咒魚的機率越高、子彈飛行速度越慢），且「返回水面」按鈕有冷卻時間（越深冷卻越長）。如果在深層被詛咒魚觸碰 3 次，強制結束並沒收當層獎金。玩家必須在「貪婪」與「恐懼」之間做決策。
+
+  **舉例：** 玩家從水面開始（第1層，明亮、魚多、×1 倍率）。選擇下潛到第2層（稍暗、×3 倍率），打了一會獲得不錯的收益。再下潛到第3層（陰暗、×7 倍率、偶爾有黑影閃過）— 獎金翻了好幾倍，但已經被詛咒魚觸碰了 1 次。「返回」按鈕顯示冷卻中還有 10 秒... 此時玩家面臨選擇：繼續待在第3層賺 ×7 的魚（但隨時可能被碰第2次），還是等冷卻結束趕快撤退保住已有獎金？一名大膽的玩家選擇繼續下潛到第4層（幾乎全黑、×12 倍率、貞子的臉會突然浮現在畫面上），在極度恐懼中擊殺了一條大魚獲得 600 倍獎金，然後趕在第3次被觸碰前按下返回按鈕逃出深淵。
+
+---
+
+## 4. 2026年5月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 大當機率 | 關注重點 |
+|-----------|--------|--------|---------|----------|
+| 05/07 | eまわるん超ワープ ギンギラパラダイス VIVA FESTA | サンスリー | 1/319.6 | LT繼續率約81%，搭載波浪舞台 |
+| 05/07 | e ライザのアトリエ | 京楽 | 1/239.7 | 人氣遊戲IP，ST中1/69.5 |
+| 05/11 | eカケグルイ 219ver / 7500ver | D-light | 1/219 / 1/204 | 賭博漫畫IP，雙規格展開 |
+| 05/11 | e バイオハザード6 | 七匠 | 約1/159〜1/299 | 可變機率的嶄新規格 |
+| 05/11 | eルパン三世VSキャッツ・アイ | アムテックス | 1/157.9 | 人氣IP聯名 |
+| 05/11 | eひきこまり吸血姫の悶々 | 藤商事 | 1/129（CZ） | CZ經由型的新遊戲性 |
+| 06/08 | eフィーバー デッドマウント・デスプレイ | SANKYO | 1/349.9 | 高規格，RUSH中1/43 |
+| 06/08 | e 化物語 鬼99ver. | サミー | 1/99.9 | 甘デジ帶，輕鬆遊玩 |
+| 06/08 | PAスーパー海物語IN沖縄6 Withえなこ | 三洋 | 1/99.9 | 海物語×えなこ聯名 |
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| eリコリス・リコイル | 低風險＋高回報的雙面性 | ★★★★ | 手遊抽卡、Roguelike |
+| eフィーバーキン肉マン | 王道戰鬥×爆發力 | ★★★ | 格鬥遊戲、卡牌遊戲 |
+| e86-エイティシックス- | 自力感與緊張感的極致 | ★★★★★ | 塔防、Roguelike、FPS |
+| eリング 最恐領域 | 恐懼＝期待 | ★★★★ | 恐怖遊戲、密室逃脫 |
+
+**最具革新性的設計：** e86-エイティシックス- 的「フラグ管理バトルシステム」提供了超越パチンコ框架的全新遊戲體驗，對其他類型遊戲的轉用可能性最高。
+
+**最具平衡性的設計：** eリコリス・リコイル 的「輕量初當＋模式切換改變出玉」設計，容易被廣泛使用者接受，與 F2P（Free to Play）遊戲的變現設計最為接近。
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+</script>
+</body>
+</html>

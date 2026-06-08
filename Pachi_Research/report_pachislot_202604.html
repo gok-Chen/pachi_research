@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青斯洛機種比較報告 (2026/4)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青斯洛機種比較報告 (2026/4)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチスロ機種比較報告（2026年4月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年4月的重點パチスロ機種如下。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | スマスロ ミリオンゴッド-神々の軌跡- | ミズホ | 2026/04/20 |
+| 2 | スマスロ 甲鉄城のカバネリ 海門決戦 | サミー | 近期 |
+| 3 | L 東京喰種 | スパイキー | 近期 |
+| 4 | 真打 吉宗 | 大都技研 | 2026/04/06 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | パチスロひぐらしのなく頃に祭2 | 46% |
+| 2 | Lパチスロうみねこのなく頃に2 | 41% |
+| 3 | ドラゴンハナハナ～閃光～ | 40% |
+| 4 | パチスロ甲鉄城のカバネリ | 38% |
+| 5 | 沖ドキ！BLACK | 37% |
+| 6 | スマスロ北斗の拳 | 37% |
+
+> 勝率排名以A+AT型及ノーマルタイプ（技術介入型）為主。高波動的AT機勝率偏低，但人氣與導入台數反而更高。
+
+### 導入台數關注度
+
+2026年4月新台中，「スマスロ ミリオンゴッド-神々の軌跡-」為最大量導入機種（單店最多40台），是本月最受矚目的超級大作。「真打 吉宗」也作為前半導入的主打機種大量鋪設（單店最多41台）。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | スマスロ ミリオンゴッド-神々の軌跡- | 真打 吉宗 | スマスロ 甲鉄城のカバネリ 海門決戦 | L 東京喰種 |
+|------|--------------------------------------|-----------|--------------------------------------|-----------|
+| 製造商 | ミズホ | 大都技研 | サミー | スパイキー |
+| 類型 | スマスロ | スマスロ | スマスロ | L機（有利區間機） |
+| 機械割 | 97.2%～114.6% | 97.8%～114.0% | 近期公布 | 近期公布 |
+| AT類型 | セット上乗せ型（GG 50G/セット） | 差枚數管理型（初期150枚） |  連莊型 | 近期公布 |
+| 純增 | 約7枚/G | 約2.7枚/G | 約高純增 | 近期公布 |
+| 天井 | 最大1480G | 有（周期制） | 有 | 有 |
+| 最強觸發器 | GOD揃い→PGG（期待值3000枚以上） | 真BIG（2000枚）＋究極鷹ブレイク（+1000枚循環） | 上位AT | 近期公布 |
+| 使用者評價 | ★1.93（143則） | ★1.77（93則） | ★★★★（高評價） | ★★★（普通） |
+
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 機械割上限 | スマスロ ミリオンゴッド | 設定6達114.6%，為本期最高 |
+| 純增速度 | スマスロ ミリオンゴッド | 約7枚/G，出玉速度壓倒性 |
+| 一擊爆發力 | 真打 吉宗 | 真BIG 2000枚＋究極鷹ブレイク +1000枚循環，理論上無上限 |
+| 遊玩友善度 | 真打 吉宗 | CZ成功率約55%，天國移行率約43%，機會較多 |
+| 品牌號召力 | スマスロ ミリオンゴッド | GOD系列為パチスロ史上最具代表性的品牌之一 |
+| 系統革新性 | スマスロ ミリオンゴッド | ガイアステージ＋Z-ZONE＋SGG多層AT結構 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① スマスロ ミリオンゴッド-神々の軌跡-（ミズホ）
+
+![スマスロ ミリオンゴッド 筐体](pachislot/images/01_million_god/cabinet.jpg)
+![スマスロ ミリオンゴッド ゲームフロー](pachislot/images/01_million_god/game_flow.jpg)
+
+**系列背景：** ミリオンゴッド系列為パチスロ業界最具傳奇性的品牌，以「神」為主題，追求極致的出玉體驗
+
+**賣點與好玩之處：**
+- GOD系列終於以スマスロ形態回歸，粉絲期待值極高
+- 純增約7枚/G的壓倒性出玉速度
+- GG（ゴッドゲーム）為50G/セット的上乗せ型AT，平均獲得350枚
+- SGG（スーパーゴッドゲーム）繼續率75%以上，每セット10～100G
+- PGG（プレミアムゴッドゲーム）為GOD揃い後的最強AT，期待值3000枚以上
+- Z-ZONE・Z-GAME 的黃7連續系統帶來獨特的上乗せ體驗
+- ガイアステージ為GG的超高確率狀態，小役履歷抽選也被優遇
+- 液晶出目系統（リーチ目）延續系列傳統，辨識樂趣豐富
+- ユニメモ連動的裏ボタン系統增加遊玩深度
+- 設定6機械割114.6%，高設定的回報極為豐厚
+
+**中心思想：**
+> 「神的降臨＝一擊逆轉的浪漫」— 以極端的波動性為核心，讓玩家在漫長的通常時中等待「神降臨」的瞬間。GOD揃い的1/16384、赤7揃い的1/6900等超低確率觸發器，一旦命中便帶來壓倒性的回報。這是「高風險高回報」哲學的極致體現。
+
+**套用至其他遊戲的可能性：**
+- MMO/RPG的「世界Boss」設計 — 極低出現率但擊敗後獲得頂級裝備
+- 抽卡遊戲的「天井保底＋超稀有排出」雙重保障機制
+- 賭場遊戲的「累積獎金（Jackpot）」概念的數位化實現
+- 動作遊戲的「多階段變身系統」（GG→SGG→PGG的層級遞進）
+
+**Slot Game 轉用分析：**
+
+- **超低機率觸發超高倍率的 Jackpot 設計**
+  GOD揃い（1/16384）→PGG（期待值3000枚以上）的概念，可直接對應 Slot 的 Progressive Jackpot（累積獎金池）設計：每次 Spin 都有極小機率觸發最大獎，而且獎金池隨時間累積越來越大。更進一步，GG→SGG→PGG 的三層結構可轉化為 Mini/Minor/Major/Grand 四層 Jackpot — 玩家先觸發小獎的機會較高，但每次觸發後有機率「升級」到下一層，最終到達 Grand Jackpot。這讓玩家即使沒中最大獎，「差一點就升級了」的體驗也能維持興趣。
+
+  **舉例：** 玩家連轉了 500 轉，突然畫面全黑只剩金色光芒 — 觸發了 Mini Jackpot（×100）。獎金結算後出現「UPGRADE CHANCE」字幕，金色旋轉輪盤開始轉動...停在「↑ MAJOR」！直接跳升到 Major Jackpot（×1000），畫面上宙斯降臨的演出配合雷電特效。玩家感受到的是「我本來只中了小獎，居然一路升級到了大獎！」的逆轉驚喜 — 跟パチスロ中「GG 中突然 GOD揃い 直通 PGG」的情緒完全一樣。
+
+- **多層 AT 結構轉化為多段 Free Spin**
+  GG（50G/セット）→SGG（繼續率75%）→PGG 的遞進結構，可轉化為 Slot 的「升級型 Free Spin」：先觸發普通 Free Spin（10轉），在 Free Spin 中出現特定圖案可升級為 Super Free Spin（倍率提升），再中可進入 Premium Free Spin（所有中獎 ×5 以上）。玩家每次 Free Spin 中都在期待「能不能升級」。
+
+  **舉例：** 玩家觸發了 Free Spin（第1層，10轉），前面7轉只中了小獎，但第8轉出現了3個 Scatter 圖案 — 畫面閃金光、音效變激昂，字幕顯示「UPGRADE! → Super Free Spin」，升級到第2層後剩餘的每一轉中獎金額都乘以3倍。如果10轉結束時沒湊齊升級條件，Free Spin 就直接結束（不會再給機會）。玩家想「拜託在剩下的轉數裡再出現特殊圖案...」，這就是那種「好想繼續留在高狀態」的體驗 — 和パチスロ中「SGG繼續率75%、拜託不要掉下來」完全一樣的情緒。
+
+**Fish Game 轉用分析：**
+
+- **極稀有大魚＝一擊翻盤**
+  GOD揃い 的超低確率＋超高回報，可轉化為捕魚機中的「傳說級魚種」— 出現機率極低（可能整場只出現1~2次），但一旦擊殺獎金是普通魚的 500 倍以上。畫面上可加入「預兆演出」（海面開始發光、背景音樂變化），讓所有玩家同時緊張起來。
+
+  **舉例：** 玩家打了15分鐘都是普通魚群，突然海面開始發出金色光芒，背景音樂切換為莊嚴的管風琴曲（致敬GOD系列BGM），全場廣播「⚠ 神魚降臨！」。一隻全身金色、佔據1/3畫面的巨型魚緩緩從深處浮出。所有玩家同時瘋狂集火 — 15秒後擊殺成功，獎金是普通魚的500倍！全場歡呼。但如果沒打死牠就沉回深海了，要再等可能整場都不會再出現。
+
+- **多階段砲台強化（對應 GG→SGG→PGG）**
+  可轉化為「砲台能量系統」：持續擊殺魚累積能量，第一階段砲台威力 ×2，第二階段 ×5 且附帶範圍傷害，第三階段（極難到達）威力 ×10 且子彈自動追蹤。但能量會隨時間衰減，玩家必須持續命中才能維持高階段 — 這對應了 SGG 繼續率75% 的「快要掉下來但努力維持」的緊張感。
+
+  **舉例：** 玩家持續命中，砲台升到了第2階段（×5＋範圍傷害），子彈變為藍色光球打中一隻魚會波及旁邊的魚。能量條開始緩慢下降...玩家拼命打魚維持能量。終於在能量快見底時打到了一隻稀有魚，能量瞬間回滿並升至第3階段 — 砲台變為金色，子彈自動追蹤最近的魚！但這個狀態衰減極快，只能維持約10秒。玩家在這10秒中瘋狂掃射高價值目標，心跳加速「快要掉回去了！再多打一隻！」
+
+---
+
+### ② 真打 吉宗（大都技研）
+
+![真打 吉宗 筐体](pachislot/images/02_shinuchi_yoshimune/cabinet.jpg)
+![真打 吉宗 ゲームフロー](pachislot/images/02_shinuchi_yoshimune/game_flow.jpg)
+
+**系列背景：** 吉宗系列為パチスロ的經典名作，以江戶時代將軍「德川吉宗」為主題，初代機於2003年登場即造成轟動
+
+**賣點與好玩之處：**
+- 差枚數管理型AT「勧善懲悪ラッシュ」，純增約2.7枚/G，初期150枚
+- CZ「悪人成敗チャンス」成功率約55%，5種對手各有對應役
+- AT中每40G消化進行周期抽選，搭配レア役上乗せ
+- 真高確率中約1/168的青7揃い可觸發真BIG
+- 真BIG獲得2000枚！純增約9.0枚/G的超弩級ボーナス
+- 真BIG約50%循環，連鎖時出玉驚人
+- 究極鷹ブレイク為+1000枚循環上乗せ的最強觸發器，結束後還保證真BIG
+- 豐富的演出模式選擇（バトル告知・セクシー告知・お裁き告知＋初代模式）
+- 隱藏PUSH按鈕系統極為豐富，增加探索樂趣
+- 天國移行率約43%，CZ機會相對頻繁
+
+**中心思想：**
+> 「暴君的審判＝大起大落的戲劇性」— 以「懲惡揚善」為主題，通常時的忍耐與真BIG降臨時的爆發形成強烈對比。2000枚的真BIG＋循環機制創造出「一旦開始就停不下來」的連鎖快感。這是「蓄力→爆發」設計哲學的典型。
+
+**套用至其他遊戲的可能性：**
+- ARPG的「蓄力攻擊→連鎖技」系統
+- 音樂遊戲的「Fever模式→Super Fever」的多段階強化
+- 策略遊戲的「資源累積→一口氣投入」的爆發型戰術
+- 格鬥遊戲的「超必殺技→究極必殺技」的層級觸發
+
+**Slot Game 轉用分析：**
+
+- **高倍率 Bonus ＋循環再觸發**
+  真BIG（2000枚）＋約50%循環的設計，可轉化為 Slot 的「Re-trigger 型 Bonus」：觸發 Bonus Round 後獲得大量獎金，結束時有 50% 機率重新觸發同一個 Bonus — 如果連續 Re-trigger 就像真BIG循環一樣「停不下來」。究極鷹ブレイク（+1000枚＋保證真BIG）可轉化為「Bonus 中出現特殊圖案，獎金直接追加一大筆，而且保證 Re-trigger」的超級事件。
+
+  **舉例：** 玩家觸發了 Bonus Round，結算獲得 500x 大獎。結束瞬間畫面出現「RE-TRIGGER?」的50/50判定 — 鷹飛過畫面，落在「YES」上！再次進入 Bonus，又拿了 300x。第二次結束時又 Re-trigger 成功！第三輪的 Bonus 中還出現了金色鷹符號（究極鷹ブレイク對應）— 直接追加 1000x 且保證下次 Re-trigger。玩家連續拿了4輪 Bonus，累計超過 2000x，完全停不下來。
+
+- **蓄力→爆發的倍率累積系統**
+  CZ成功率55%→AT→周期40G抽選→真BIG 的「忍耐後爆發」結構，可轉化為 Slot 的「Multiplier Trail（倍率階梯）」：Base Game 中每次小中獎都往階梯推進一格，推到頂時觸發的 Free Spin 自帶高倍率。階梯越高，Free Spin 的起始倍率越大 — 對應了パチスロ中「漫長通常時的忍耐換來真BIG的爆發」。
+
+  **舉例：** 畫面左側有一道10格階梯，每次中獎推進一格。玩家花了80轉終於推到第10格 — 觸發 Free Spin 時起始倍率為 ×10（如果只推到第3格觸發，起始倍率只有 ×2）。Free Spin 中的每一次中獎都乘以這個 ×10，原本 20x 的中獎變成 200x！玩家感受到「前面忍了這麼久推到頂端是值得的」，這正是吉宗「漫長通常時→真BIG 2000枚爆發」的核心情感翻譯。
+
+**Fish Game 轉用分析：**
+
+- **Boss 魚循環出現（對應真BIG循環）**
+  真BIG 50%循環的概念，可轉化為：擊殺 Boss 魚後，有 50% 機率「下一隻 Boss 立刻再出現」。連續出現的 Boss 倍率逐次增加（第1隻 ×50、第2隻 ×100、第3隻 ×200...），創造「今天 Boss 連出3隻！」的爽快體驗和玩家間的話題性。
+
+  **舉例：** 玩家花了30發子彈終於打死一隻 ×50 的大鯊魚，獲得 ¥500 獎金。結算畫面還沒消失，海底突然又冒出第2隻鯊魚 — 這隻是 ×100！玩家興奮地繼續射擊，打死後又出第3隻（×200）。全桌其他玩家都在旁邊看，「這傢伙連出3隻Boss了！」這就是真BIG循環帶來的「一旦開始就停不下來」翻版。
+
+- **蓄力型特殊武器**
+  究極鷹ブレイク的「一發觸發後獲得巨額獎勵＋保證下次 Boss」，可轉化為捕魚機的「蓄力武器」：畫面角落有一個能量瓶，持續擊殺普通魚慢慢充能，充滿後可發射一發超強砲彈 — 命中任何魚都給予 ×100 倍率獎勵，而且發射後保證下一隻 Boss 魚立刻出場。
+
+  **舉例：** 玩家耐心擊殺小魚5分鐘，能量瓶終於充滿發出金色光芒。瞄準一隻 ×20 的中型魚發射 — 金色巨型砲彈命中！本來 ×20 的獎金直接變成 ×2000（×100倍率加成）。結算後畫面震動，下一秒一隻巨型Boss鯊魚從畫面右側衝入。玩家快速切回普通彈藥開始攻擊Boss — 如果打死又有50%機率再循環出下一隻。這就是「蓄力換來一整串爆發」的連鎖感。
+
+---
+
+### ③ スマスロ 甲鉄城のカバネリ 海門決戦（サミー）
+
+![スマスロ カバネリ 海門決戦 筐体](pachislot/images/03_kabaneri_unato/cabinet.jpg)
+![スマスロ カバネリ 海門決戦 ゲームフロー](pachislot/images/03_kabaneri_unato/game_flow.jpg)
+
+**原作IP：** TV動畫「甲鉄城のカバネリ」及劇場版「海門決戦」（WIT STUDIO 製作）
+
+**賣點與好玩之處：**
+- カバネリ系列前作為パチスロ史上最成功的機種之一，續作備受期待
+- サミー製造的高品質演出與遊戲性
+- 原作的熱血戰鬥場面完美重現
+- 前作的高稼動率證明了IP與遊戲性的完美結合
+- 勝率排名中前作仍維持38%的高勝率
+
+**中心思想：**
+> 「生存戰鬥的緊迫感」— 以末日世界觀中人類對抗カバネ的生存戰為核心，將「活下去」的緊張感轉化為遊戲體驗。前作成功的關鍵在於「適度的射幸性＋高品質演出＋合理的遊戲平衡」。
+
+**套用至其他遊戲的可能性：**
+- 生存遊戲的「資源管理＋戰鬥」循環
+- 動作遊戲的「波次防禦（Wave Defense）」模式
+- 手遊的「限時活動Boss戰」設計
+
+**Slot Game 轉用分析：**
+
+- **波次型 Free Spin（Wave Defense 概念）**
+  カバネリ的「生存戰鬥＝一波又一波的敵人」可轉化為 Slot 的「Wave Free Spin」：Free Spin 分為多個波次（Wave 1 → Wave 2 → Wave 3），每波結束如果累積獎金達到門檻就進入下一波（倍率更高），沒達到就結束。這創造了「每一轉都有意義，差一點就能挺過這波」的生存緊張感，對應原作中「能不能活到下一站」的核心體驗。
+
+  **舉例：** 玩家進入 Wave Free Spin，Wave 1 有5轉，目標是累積 50x。前4轉只累積了 40x...最後一轉出現了大中獎 — 總計 65x，突破門檻！畫面顯示「WAVE 2 突入！」倍率從 ×1 升為 ×3。Wave 2 也是5轉但門檻提高到 150x（以 ×3 計算後的值）。玩家心想「撐過去就有 Wave 3 的 ×10 了...」每一轉都緊張得不得了。這就是カバネリ式「一站一站地活下去」的翻版。
+
+- **適度波動率＋高品質演出＝長期留存的設計公式**
+  カバネリ前作的長期稼動秘訣在於「不靠極端射幸性，靠平衡和演出吸引人」。轉化為 Slot 即：Medium Volatility ＋頂級視覺和音效製作。RTP 設定在 96% 左右讓玩家不會太快輸光，搭配 IP 原作的高品質動畫演出讓每次中獎都有觀看價值。
+
+  **舉例：** 這款 Slot 的波動率設為 Medium — 玩家不會連轉 200 次都不中獎，大約每 15-20 轉就有一次中等回報。但真正讓人願意留下來的是演出品質：每次觸發 Free Spin 都播放一段カバネリ衝出甲鉄城的原作動畫（15秒），中大獎時生駒的拔刀場面配合原作 BGM 震撼登場。玩家在社群分享「就算沒贏大錢，光看演出就值回票價」— 這就是長期留存率的來源。
+
+**Fish Game 轉用分析：**
+
+- **波次防禦型特殊關卡**
+  可轉化為捕魚機的「防禦事件」：畫面上突然出現大量敵方魚群從四面八方湧來（Wave Defense），玩家必須在限定時間內擊退一定數量，成功就獲得倍率獎勵，失敗就結束事件。多波連續挑戰（每波魚更快、更密集），挺過越多波獎勵越高。
+
+  **舉例：** 畫面突然變暗，警報響起「WAVE 1 START！」大量カバネ造型的黑色魚群從右側湧入，倒數30秒內要擊殺20隻。玩家瘋狂射擊勉強達標 — 「WAVE 2！」這次是30隻且移動速度更快。第3波要擊殺50隻只有25秒...撐過去獎金 ×5！撐不過去只拿到前面累積的分數。每一波的「快來不及了！」緊張感正是カバネリ式生存體驗。
+
+- **多人協力 Boss 戰**
+  カバネリ的「團隊對抗怪物」主題，可轉化為 Fish Game 的多人協力模式：畫面出現超大型 Boss 魚，單人打不動，需要多個玩家同時集火才能擊殺。擊殺後獎金根據各人貢獻度分配。這能增加社交互動，也是 Fish Game 相比 Slot 的獨有優勢。
+
+  **舉例：** 全場6名玩家正在各打各的，突然畫面中央出現巨型Boss — 一隻佔據半個畫面的カバネ融合體，HP 顯示 50000。單人火力根本打不動（每發只扣10HP），但6人同時集火就是每秒 -600HP。Boss 有80秒存活時間，全場必須協力才能在時間內擊殺。成功後 ×500 總獎金依照各人傷害貢獻比例分配，最高傷害者額外獲得「MVP ×2」加成。打完後全場互看一眼的默契感 — 這是單人 Slot 做不到的體驗。
+
+---
+
+### ④ L 東京喰種（スパイキー）
+
+![L 東京喰種 筐体](pachislot/images/04_tokyo_ghoul/cabinet.jpg)
+![L 東京喰種 ゲームフロー](pachislot/images/04_tokyo_ghoul/game_flow.jpg)
+
+**原作IP：** 漫畫/動畫「東京喰種トーキョーグール」（石田スイ 作）
+
+**賣點與好玩之處：**
+- 超人氣黑暗奇幻IP的パチスロ化
+- 東京喰種獨特的世界觀與角色魅力
+- 喰種vs搜查官的對立構圖適合戰鬥演出
+- 金木研的「覺醒」場面極具演出張力
+
+**中心思想：**
+> 「覺醒與變貌」— 主角從人類到喰種的「變化」過程，對應パチスロ中從通常時到AT的「狀態變化」。內在的衝突與覺醒帶來的力量爆發，是驅動遊戲體驗的核心情感。
+
+**套用至其他遊戲的可能性：**
+- RPG的「覺醒/變身系統」— 累積條件後觸發強化狀態
+- 動作遊戲的「暴走模式」— 風險與回報並存的強化狀態
+- 卡牌遊戲的「進化/覺醒」機制
+
+**Slot Game 轉用分析：**
+
+- **狀態變化型 Feature（覺醒系統）**
+  通常時→AT的「覺醒」過程，可轉化為 Slot 的「Character Transformation Feature」：Base Game 中主角以人類形態出現，Wild 只有普通功能。但當累積一定次數的中獎後，主角「覺醒」變為喰種形態 — 此時 Wild 變成 Expanding Wild（擴張填滿整列），且帶有 ×2 倍率。覺醒狀態持續數轉後會回歸普通。
+
+  **舉例：** 玩家打了20轉都是小獎，畫面左邊的「覺醒計量表」逐漸填滿。第21轉計量表滿了 — 主角金木研的眼睛變紅，頭髮變白（覺醒動畫），接下來5轉中所有出現的 Wild 都會擴張成整列且附帶倍率。玩家心想「趁覺醒狀態趕快多中幾次！」
+
+**Fish Game 轉用分析：**
+
+- **喰種型態切換的砲台變身**
+  「人類→喰種」的雙面性概念，可轉化為捕魚機的「砲台變身系統」：正常狀態下是普通砲台，但持續打魚累積「RC細胞能量」（畫面上顯示赫子形狀的能量條），滿了之後砲台自動變身為「喰種砲台」— 外觀改變、射擊音效改變、子彈變成赫子形狀，而且威力 ×3、附帶穿透效果（一發可打穿多隻魚）。變身持續15秒後自動回歸。
+
+  **舉例：** 玩家普通地打著魚，能量條到了80%...90%...滿了！砲台瞬間變形，發出紅色光芒，接下來射出的每一發都是紅色赫子彈，穿過一隻 ×5 的魚後繼續飛行又打中後面 ×10 的魚。15秒結束前玩家瘋狂射擊想多賺一點 — 這就是「覺醒」帶來的爆發體驗。
+
+---
+
+## 4. 2026年5月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 機械割 | 關注重點 |
+|-----------|--------|--------|--------|----------|
+| 05/11 | スマスロ バイオハザードRE:3 | エンターライズ | 97.5%～113.1% | 人氣恐怖遊戲IP，高機械割 |
+| 05/11 | スマスロスーパーリオエース2 | 山佐ネクスト | 97.7%～112.1% | 人氣系列續作 |
+| 05/11 | スマスロ ビッグドリーム THE GOLDEN PUSHER | サミー | 97.4%～111.3% | サミー新概念機 |
+| 05/11 | Ｌタクトオーパス デスティニー | アムテックス | 97.6%～113.5% | 高機械割上限 |
+| 05/11 | Lパチスロ 機動戦士ガンダムユニコーン 覚醒DRIVE | ビスティ | 97.7%～114.9% | 本期最高機械割114.9% |
+| 05/25 | LB スロット GALFY | オーイズミ | 98.2%～108.7% | B-type機 |
+| 06/08 | スマスロ BIRDIE WING | ユニバーサルブロス | 97.5%～112.4% | 高爾夫動畫IP |
+| 06/08 | L戦国乙女5 | オリンピア | 準備中 | 人氣系列最新作 |
+| 07/06 | Lパチスロ からくりサーカス2 | SANKYO | 準備中 | 人氣漫畫IP續作 |
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| スマスロ ミリオンゴッド | 神的降臨＝一擊逆轉的浪漫 | ★★★★★ | MMO世界Boss、抽卡天井、累積獎金 |
+| 真打 吉宗 | 暴君的審判＝大起大落的戲劇性 | ★★★★ | ARPG連鎖技、音遊Fever、格鬥超必殺 |
+| スマスロ カバネリ 海門決戦 | 生存戰鬥的緊迫感 | ★★★★ | 生存遊戲、波次防禦、Boss戰 |
+| L 東京喰種 | 覺醒與變貌 | ★★★ | RPG覺醒系統、動作遊戲暴走模式 |
+
+**最具傳奇性的設計：** スマスロ ミリオンゴッド 的「多層AT結構（GG→SGG→PGG）」搭配極低確率的超強觸發器，是パチスロ業界「射幸性設計」的集大成之作。其「等待神降臨」的核心體驗，與MMO中等待稀有掉落、抽卡遊戲中追求SSR的心理機制完全一致。
+
+**最具爆發力的設計：** 真打 吉宗 的「真BIG 2000枚＋約50%循環＋究極鷹ブレイク」創造出理論上近乎無限的出玉可能性。「蓄力→爆發→連鎖」的設計模式是遊戲設計中最經典的快感循環之一。
+
+**最具平衡性的設計：** スマスロ カバネリ 海門決戦 的前作證明了「適度射幸性＋高品質演出＋合理平衡」的組合是長期稼動的關鍵。這與F2P遊戲追求的「長期留存率」設計理念高度一致。
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+</script>
+</body>
+</html>
