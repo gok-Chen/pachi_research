@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>柏青哥機種比較報告 (2026/6)</title>
+<title>柏青哥機種比較報告 (2026/5)</title>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,7 +61,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC
 </head>
 <body>
 <div class="toolbar">
-  <h1>&#x1F4C4; 柏青哥機種比較報告 (2026/6)</h1>
+  <h1>&#x1F4C4; 柏青哥機種比較報告 (2026/5)</h1>
   <a href="../index.html">&#x2190; 報告一覽</a>
   <button id="btn-toc">&#x1F4D1; 目次</button>
 </div>
@@ -72,7 +72,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC
 <div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
 <button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
 <script type="text/markdown" id="report-md">
-# パチンコ機種比較報告（2026年6月版）
+# パチンコ機種比較報告（2026年5月版）
 
 > 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
 > ※內容為出處網站資訊之摘要與重新整理
@@ -81,7 +81,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC
 
 ## 1. 人氣排名與關注度
 
-根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年6月的重點パチンコ機種如下。
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年5月的重點パチンコ機種如下。
 
 ### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
 
@@ -106,7 +106,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC
 
 ### 導入台數關注度
 
-2026年6月最受矚目的新台是「e 東京喰種 超デカ超一撃ver.」（6/8導入），以約1/999的超高規格搭配最大9000個的驚人出玉設計。「eリコリス・リコイル」自4月導入以來持續維持高人氣，穩坐榜首。「eカケグルイ 7500ver」以7500個出玉的衝擊力快速攀升至TOP4。
+2026年5月最受矚目的新台是「e 東京喰種 超デカ超一撃ver.」（6/8導入），以約1/999的超高規格搭配最大9000個的驚人出玉設計。「eリコリス・リコイル」自4月導入以來持續維持高人氣，穩坐榜首。「eカケグルイ 7500ver」以7500個出玉的衝擊力快速攀升至TOP4。
 
 ---
 
@@ -149,15 +149,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC
 
 **本月更新：** 持續維持高稼動。初當偏輕的設計讓遊技場回轉率高，加上ULTIMATE DRIVE的夢想性，形成極佳的長期留存結構。
 
-👉 [查看完整分析（2026年4月報告）](#)
+👉 [查看完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
 
 **Slot Game 轉用分析：**
 
-👉 [查看 Slot Game 完整分析（2026年4月報告）](#)
+👉 [查看 Slot Game 完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
 
 **Fish Game 轉用分析：**
 
-👉 [查看 Fish Game 完整分析（2026年4月報告）](#)
+👉 [查看 Fish Game 完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
 
 ---
 
@@ -437,6 +437,28 @@ window.addEventListener('scroll', () => btnTop.classList.toggle('visible', windo
 btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 render();
+
+// Hash-based scroll: scroll to heading containing the hash text
+function scrollToHash() {
+  const hash = decodeURIComponent(window.location.hash.slice(1));
+  if (!hash) return;
+  const normalizedHash = hash.replace(/\s+/g, '');
+  const headings = content.querySelectorAll('h1,h2,h3');
+  for (const el of headings) {
+    const normalizedText = el.textContent.replace(/\s+/g, '');
+    if (normalizedText.includes(normalizedHash)) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.style.transition = 'background 0.3s';
+        el.style.background = '#fff3cd';
+        setTimeout(() => { el.style.background = ''; }, 2000);
+      }, 300);
+      return;
+    }
+  }
+}
+scrollToHash();
+window.addEventListener('hashchange', scrollToHash);
 </script>
 </body>
 </html>
