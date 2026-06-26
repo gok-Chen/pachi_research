@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青哥機種比較報告 (2026/6)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青哥機種比較報告 (2026/6)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチンコ機種比較報告（2026年6月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年6月的重點パチンコ機種如下。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | e 東京喰種 超デカ超一撃ver. | ビスティ | 2026/06/08 |
+| 2 | e 東京喰種 | ビスティ | 2025/04/21 |
+| 3 | eリコリス・リコイル | ニューギン | 2026/04/06 |
+| 4 | eソードアート・オンライン オルタナティブ ガンゲイル・オンライン | 大都技研 | 2026/06/08 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | P大海物語4スペシャル | 44% |
+| 2 | P大海物語5スペシャル | 40% |
+| 3 | PAわんわんパラダイスCELEBRATION | 34% |
+| 3 | PA大海物語5 Withアグネス・ラム | 34% |
+| 4 | Pポチッと一発！おだてブタ2 | 33% |
+
+> 勝率排名依然以甘デジ・ライトスペック系為主。ミドル以上的機種波動較大，勝率偏低，但人氣與導入台數反而更高。本月 P大海物語4スペシャル 躍升第一（44%），表現穩定。
+
+### 導入台數關注度
+
+2026年6月，TOP3 維持不變（e 東京喰種 超デカ超一撃ver.、e 東京喰種、eリコリス・リコイル），顯示這三台的長期稼動力極強。新進入 TOP4 的是 6/8 導入的「eソードアート・オンライン オルタナティブ ガンゲイル・オンライン」（大都技研），以 1/319.9 的ミドル規格搭配 LT 繼續率約80%＋突入時保證3600個出玉的安定設計，快速獲得高人氣。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | e 東京喰種 超デカ超一撃ver. | e 東京喰種 | eリコリス・リコイル | eソードアート・オンライン GGO |
+|------|-------------------------------|------------|---------------------|-------------------------------|
+| 製造商 | ビスティ | ビスティ | ニューギン | 大都技研 |
+| 類型 | スマパチ | スマパチ | スマパチ | スマパチ |
+| 規格帶 | 超ハイスペック | ミドル | ライトミドル | ミドル |
+| 大當機率（通常時） | 約1/999（図柄揃い） | ミドル帶 | 未公開（偏輕） | 1/319.9 |
+| ST突入率 | 約50% | — | 約50% | 100%（初當後必ずST） |
+| LT/RUSH繼續率 | 約50%（ST 5回転） | 高繼續率 | ST型（內部模式2種） | 約80%（ST 160回転） |
+| ST突破率 | — | — | — | 約40%（50回転） |
+| 大當出玉 | 約3000～9000個 | ミドル帶出玉 | 上位3000個以上 | 約300～4500個（LT中平均高） |
+| 特殊系統 | 超デカ出玉・ツラヌキチャレンジ | 東京喰種世界觀演出 | 內部模式切換・ULTIMATE DRIVE | SJ JUDGE→SJ RUSH・96種演出組合 |
+| 使用者評價 | ★1.63（39則） | ★★★★（高評價） | ★★★★（高評價） | ★1.84（65則）※導入初期 |
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 一擊出玉力 | e 東京喰種 超デカ超一撃ver. | 最大9000個，業界頂級水準 |
+| RUSH繼續率 | eソードアート・オンライン GGO | 約80%的ST 160回転，長連莊穩定 |
+| 遊玩友善度 | eリコリス・リコイル | 初當偏輕＋RUSH突入50%，平衡性佳 |
+| RUSH突入確定感 | eソードアート・オンライン GGO | 初當後100% ST突入，必有機會挑戰 |
+| IP話題性 | e 東京喰種 超デカ超一撃ver. | 東京喰種IP仍維持極高人氣 |
+| 長期稼動力 | eリコリス・リコイル | 導入後3個月仍穩居人氣前三 |
+| 演出多樣性 | eソードアート・オンライン GGO | 8種演出模式×12種カスタム＝96種組合 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① e 東京喰種 超デカ超一撃ver.（ビスティ）
+
+![e 東京喰種 超デカ超一撃ver. 筐体](pachinko/images/01_tokyo_ghoul_deka/cabinet.jpg)
+
+本機於5月報告已有詳細分析。連續兩個月穩坐人氣第一名，「約1/999初當＋最大9000個出玉」的極致射幸性設計持續吸引大量玩家。
+
+**本月更新：** 導入滿3週，稼動表現依然極強。高風險高回報的設計哲學完美吻合核心粉絲群的需求，但使用者評價兩極（★1.63），反映出「大多數人輸，少數人大贏」的本質。
+
+👉 [查看完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種超デカ超一撃ver)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種超デカ超一撃ver)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種超デカ超一撃ver)
+
+---
+
+### ② e 東京喰種（ビスティ）
+
+![e 東京喰種 筐体](pachinko/images/02_tokyo_ghoul/cabinet.jpg)
+
+本機於5月報告已有詳細分析。導入超過14個月仍然維持在人氣TOP4，堪稱2025-2026年最具長期稼動力的パチンコ機種之一。
+
+**本月更新：** 超デカ ver. 的導入不但沒有分食本機客群，反而形成「東京喰種雙機種制霸」的局面。原作IP的角色魅力與覺醒演出的情感共鳴是長青的核心。
+
+👉 [查看完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種（ビスティ）)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種（ビスティ）)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種（ビスティ）)
+
+---
+
+### ③ eリコリス・リコイル（ニューギン）
+
+![eリコリス・リコイル 筐体](pachinko/images/01_lycoris_recoil/cabinet.jpg)
+
+本機於4月報告即有完整分析，5月持續維持高位。導入3個月後仍在TOP3，印證了「低風險＋高回報的雙面性」設計的長期吸引力。
+
+**本月更新：** 從人氣第一退至第三，主因是東京喰種超デカ ver. 與 SAO GGO 的強勢導入。但稼動率依然很高，遊技場的回轉率表現穩定。
+
+👉 [查看完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
+
+---
+
+### ④ eソードアート・オンライン オルタナティブ ガンゲイル・オンライン（大都技研）
+
+![eソードアート・オンライン GGO 筐体](pachinko/images/04_sao_ggo/cabinet.jpg)
+![eソードアート・オンライン GGO ゲームフロー](pachinko/images/04_sao_ggo/game_flow.jpg)
+![eソードアート・オンライン GGO 大当り詳細](pachinko/images/04_sao_ggo/hit_rate.jpg)
+
+**原作IP：** ライトノベル/動畫「ソードアート・オンライン オルタナティブ ガンゲイル・オンライン」（時雨沢恵一 著、原案：川原礫）
+
+**賣點與好玩之處：**
+- 通常時1/319.9的ミドル規格，初當有一定的挑戰性
+- 初當後100% ST突入（含LT直行3%），不存在「當了卻直接回通常」的挫折
+- ST 50回転突破率約40%，突破即獲得3600個出玉＋RUSH突入
+- RUSH（SJ RUSH）為ST 160回転、繼續率約80%的高安定型
+- RUSH突入時期待獲得出玉約12300個的高回報設計
+- 8種演出模式（表4種＋裏4種）×12種カスタム＝96種遊玩組合
+- 先バレ、落ちブル、マズルフラッシュ等多樣化告知カスタム
+- RUSH中出玉種類豐富（300～3600個），30%機率獲得最高3600個
+- 特殊狀態搭載：特定條件下大當出玉3600個濃厚
+- SQUAD JAM BONUS BURST 的5種出玉告知演出讓每次大當都有驚喜
+- 大都技研招牌的先バレ演出＋レン役物的精緻互動
+
+**中心思想：**
+> 「確定ST的安心感＋96種演出組合的探索深度」— 以「初當後必定有機會挑戰RUSH」為基礎安心感，加上業界最多級的演出カスタム組合（96種），讓玩家在同一台機器上能持續發現新的遊玩方式。GGO原作中「在虛擬世界中尋找自我」的主題，被轉化為「在多樣的演出模式中找到最適合自己的遊玩風格」的遊戲設計哲學。
+
+**套用至其他遊戲的可能性：**
+- 射擊遊戲的「確定進場→挑戰突破→高回報連戰」三段式循環設計
+- 手遊的「百變自定義介面」— 讓玩家深度個人化遊戲體驗提升留存
+- Battle Royale 遊戲的「小隊戰鬥＋個人風格」系統
+- RPG 的「裝備組合×技能配置＝無限Build」深度探索設計
+- 線上遊戲的「保底機制＋突破挑戰＋連勝獎勵」漸進式回報結構
+
+**Slot Game 轉用分析：**
+
+- **確定 Free Spin 突入＋突破挑戰型 Bonus（100% Trigger → 40% Break-through）**
+  「初當後100% ST突入→40%突破率→突破即大獎」的三段式設計，可轉化為 Slot 的「確定 Free Spin 觸發系統」：Scatter 3個觸發 Bonus 時，不直接給獎金，而是進入「突破挑戰 Free Spin」（相當於 SJ JUDGE 的50回転）。在這個短期 Free Spin 中（例如5轉），每轉有 ~15% 機率觸發「突破」— 合計約40%整體突破率。突破成功則直接進入「主力 Free Spin」且保證一次 1000x 以上的大獎；突破失敗則獲得小額安慰獎（相當於初當300個出玉的 GUN GALE BONUS）。關鍵設計哲學：玩家永遠不會「什麼都沒得到」，但真正的大獎需要通過第二關挑戰。
+
+  **舉例：** 玩家集滿 3 個 Scatter，畫面切入 SJ JUDGE 風格的倒數場景 —「50 SPINS REMAIN」。每一轉都有小型戰鬥動畫（レン vs 敵人），命中特殊符號組合代表「突破」。第 23 轉時，畫面爆出「BREAK THROUGH！」紅色大字，直接跳轉至主力 Free Spin 並立即獲得 1000x 保底獎金。如果 50 轉內未突破，玩家仍帶走過程中累積的小獎（約 30-50x），不至於完全空手而歸。這個「確定有機會＋需要突破」的設計，既保留了挑戰的刺激感，又消除了「Scatter 白觸發」的挫折。
+
+- **96 種演出組合型遊玩個人化系統（Player Profile Customization）**
+  對應「8種演出模式×12種カスタム＝96種組合」的深度自定義設計：在 Slot 中可設計為「遊玩風格選擇器」— 玩家可以從多種維度自定義自己的遊戲體驗：(1) 視覺主題（角色主題切換）、(2) 告知方式（即時告知/後告知/先讀み型）、(3) 音效風格（原作BGM/戰鬥系/沉浸系）、(4) 倍率表現（直接顯示數字/動畫演出/驚喜後置）。這些選擇不影響 RTP 或中獎機率，純粹是體驗個人化，但能大幅提升玩家的「所有權感」和長期留存率。
+
+  **舉例：** 遊戲首次啟動時，レン（主角）問玩家：「あなたのプレイスタイルは？」然後展開設定面板。玩家選擇「ピトフーイ模式」（告知方式＝後置型驚喜）＋「マズルフラッシュ」（視覺提示＝槍口閃光暗示中獎等級）。從此以後，每次接近中獎時畫面下方會有微弱閃光預告，而實際獎金數字要等到動畫結束才揭曉。另一個玩家可能選了「フカ次郎模式」（即時型＝按鈕震動告知），體驗完全不同。兩人在同一台遊戲上獲得截然不同的感受，各自找到最舒適的遊玩節奏。
+
+**Fish Game 轉用分析：**
+
+- **Squad Jam 團隊模式（4人組隊突破 Boss 關卡）**
+  「SJ JUDGE→SJ RUSH」的兩段式系統轉化為捕魚機的「團隊突破關卡」：每隔固定時間（如10分鐘），場上會出現「SQUAD JAM 挑戰」— 系統隨機將4位玩家編為一組（對應GGO中的小隊戰）。小隊需要在50秒內合力擊殺一隻高HP的 Boss 魚（對應ST 50回転的突破挑戰）。如果成功擊殺（約40%成功率，依 Boss 難度），全隊進入「SJ RUSH 模式」— 接下來160秒內場上魚群價值全部翻倍＋出現稀有高價值魚。失敗的隊伍仍獲得參與獎勵（基本擊殺分）。
+
+  **舉例：** 畫面突然響起警報「SQUAD JAM START！」，系統顯示「Your Squad: Player A, B, C, D」。一隻巨大的機械龍魚（SJ Boss）從畫面中央浮現，HP 條 8000。四人集中火力猛攻，倒數計時 50 秒...最後 3 秒 HP 剩 200，Player C 切換至最強火力一發擊殺！「SQUAD JAM CLEAR！→ SJ RUSH 160s！」全場歡呼，接下來的 160 秒內金色稀有魚不斷湧現。那種「四人合力達成」的達成感無與倫比。
+
+- **武器カスタム系統（砲台個人化＝遊玩風格多樣化）**
+  對應「96種演出組合」的自定義深度，設計為捕魚機的「武器カスタム系統」：玩家可以從多種砲台類型中自由選擇和切換 —（1）P90型（高射速低單發傷害，適合掃小魚群）、（2）狙撃型（低射速高單發傷害，適合瞄準大魚）、（3）擴散型（範圍攻擊，適合密集魚群）、（4）穿透型（貫穿攻擊，適合魚群排列時連鎖擊殺）。每種類型還可搭配「彈藥升級」（火/冰/電屬性，對特定魚種有額外傷害）。組合自由度高讓每個玩家都能找到自己的最佳打法。
+
+  **舉例：** 玩家在遊戲介面看到武器選擇面板：レン最愛的粉紅色 P90（高射速）、エム的巨大盾牌砲（防禦射擊＝射擊同時減少自身彈藥消耗）、ピトフーイ的光劍砲（近距離超高傷害但射程短）、フカ次郎的雙持擴散砲。選擇後還能裝備「冰屬性彈藥」讓被擊中的魚減速。場上另一位玩家用狙撃型＋火屬性專打Boss，而自己用P90＋冰彈控場掃小魚 — 不同風格互補合作，體驗完全不同。
+
+---
+
+## 4. 2026年7月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 關注重點 |
+|-----------|--------|--------|----------|
+| 07/06 | ぱちんこ 必殺仕事人Ⅵ | 京楽 | 人氣長壽シリーズ最新作 |
+| 07/06 | e 東京リベンジャーズ 聖夜決戦編 | サミー | 超人氣動畫IP新作 |
+| 07/06 | e魔法少女リリカルなのは | サンスリー | 經典動畫IP機種化 |
+| 07/21 | デカスタeベルセルク無双第2章 10連撃Ver. | ニューギン | デカスタ規格的壓倒性出玉設計 |
+
+> 7月6日為大量導入月（全19機種：パチンコ12機種/パチスロ7機種）。「e 東京リベンジャーズ 聖夜決戦編」為最大焦點之一。7月21日追加「デカスタeベルセルク無双第2章」10連撃 Ver.，以ニューギン得意的デカスタ規格挑戰高出玉紀錄。
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| e 東京喰種 超デカ超一撃ver. | 極限的一擊＝超デカの衝撃 | ★★★★★ | Boss戰、All-in機制、超稀有獎勵 |
+| e 東京喰種 | 覺醒的二重性 | ★★★ | RPG變身系統、長期營運留存設計 |
+| eリコリス・リコイル | 低風險＋高回報的雙面性 | ★★★★ | 手遊抽卡、Roguelike |
+| eソードアート・オンライン GGO | 確定機會＋深度自定義 | ★★★★★ | 射擊遊戲、BR、RPG Build系統 |
+
+**本月最具亮點的新設計：** eソードアート・オンライン GGO 的「100% ST突入→40%突破→高回報RUSH」三段式設計。與近期流行的「一擊特化型」（東京喰種超デカ）形成明確的差異化定位 —「不追求一擊9000個的極端射幸性，而是以80%繼續率的RUSH安定感取勝」。這種「寬進口＋突破關卡＋安定連莊」的結構，在商業遊戲中對應的就是「確定保底→挑戰升級→連續獎勵」的玩家友善設計。
+
+**排名結構分析：** TOP3 連續兩個月未變動（東京喰種超デカ、東京喰種、リコリス），顯示當前パチンコ市場的「頭部固化」趨勢明顯。新台要突破既有格局需要極強的IP力或革新性規格設計。SAO GGO 能以新台之姿殺入TOP4，歸功於SAO品牌力＋大都技研的演出品質＋「確定ST」這個玩家友善的差異化賣點。
+
+**長期稼動趨勢：** eリコリス・リコイル（3個月）、e 東京喰種（14個月以上）持續證明「適度規格＋高品質演出＋角色魅力」是長期稼動的黃金公式。e 東京喰種的14個月長青表現尤其驚人，在遊戲設計中等同於「Day 1 留存率轉化為 Year 1 留存率」的教科書案例。
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+
+// Hash-based scroll: scroll to heading containing the hash text
+function scrollToHash() {
+  const hash = decodeURIComponent(window.location.hash.slice(1));
+  if (!hash) return;
+  const normalizedHash = hash.replace(/[\s\-]+/g, '');
+  const headings = content.querySelectorAll('h1,h2,h3');
+  for (const el of headings) {
+    const normalizedText = el.textContent.replace(/[\s\-]+/g, '');
+    if (normalizedText.includes(normalizedHash)) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.style.transition = 'background 0.3s';
+        el.style.background = '#fff3cd';
+        setTimeout(() => { el.style.background = ''; }, 2000);
+      }, 300);
+      return;
+    }
+  }
+}
+scrollToHash();
+window.addEventListener('hashchange', scrollToHash);
+</script>
+</body>
+</html>

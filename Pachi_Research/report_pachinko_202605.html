@@ -442,10 +442,10 @@ render();
 function scrollToHash() {
   const hash = decodeURIComponent(window.location.hash.slice(1));
   if (!hash) return;
-  const normalizedHash = hash.replace(/\s+/g, '');
+  const normalizedHash = hash.replace(/[\s\-]+/g, '');
   const headings = content.querySelectorAll('h1,h2,h3');
   for (const el of headings) {
-    const normalizedText = el.textContent.replace(/\s+/g, '');
+    const normalizedText = el.textContent.replace(/[\s\-]+/g, '');
     if (normalizedText.includes(normalizedHash)) {
       setTimeout(() => {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
