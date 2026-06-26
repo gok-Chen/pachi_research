@@ -1,0 +1,460 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青斯洛機種比較報告 (2026/6)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青斯洛機種比較報告 (2026/6)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチスロ機種比較報告（2026年6月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年6月的重點パチスロ機種如下。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | L戦国乙女5 業火を穿つ宿焔の双刃 | オリンピア | 2026/06/08 |
+| 2 | スロット ソードアート・オンラインⅡ | パオン・ディーピー | 2026/06/08 |
+| 3 | L 東京喰種 | スパイキー | 2025年近期 |
+| 4 | スマスロ 甲鉄城のカバネリ 海門決戦 | サミー | 2026年近期 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | Lパチスロうみねこのなく頃に2 | 43% |
+| 2 | ニューキングハナハナV-30 | 37% |
+| 2 | A-SLOT+ ディスクアップ ULTRAREMIX | 37% |
+| 2 | スマスロ北斗の拳 | 37% |
+| 2 | パチスロ甲鉄城のカバネリ | 37% |
+| 3 | 沖ドキ！BLACK | 36% |
+
+> 勝率排名以技術介入型（ノーマルタイプ）為主。本月「うみねこ2」繼續穩坐首位（43%），較上月微升1%。「ニューキングハナハナV-30」新進榜取代「ひぐらし祭2」與「ハナハナ閃光」。整體勝率分布變動不大，技術介入型依然是勝率保證。
+
+### 導入台數關注度
+
+2026年6月8日同時導入的「L戦国乙女5」（單店最多67台）和「スロット ソードアート・オンラインⅡ」（單店最多36台）為本月最大量導入機種，迅速攀升至人氣TOP2。兩台都是強力IP續作＋高機械割（最高114.9%）的組合，導入後立刻壓過連續多月霸榜的「東京喰種」與「カバネリ」。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | L戦国乙女5 | スロット SAO Ⅱ | L 東京喰種 | スマスロ カバネリ 海門決戦 |
+|------|-----------|----------------|-----------|---------------------------|
+| 製造商 | オリンピア | パオン・ディーピー | スパイキー | サミー |
+| 類型 | スマスロ | スマスロ | L機 | スマスロ |
+| 機械割 | 97.9%～114.9% | 97.6%～114.9% | 近期公布 | 近期公布 |
+| AT類型 | ゲーム數管理型 | 差枚數管理型 | 近期公布 | 連莊型 |
+| 純增 | 約2.7枚/G（上位AT約4.8枚） | 約3.6枚/G（上位AT約7.2枚） | 近期公布 | 約高純增 |
+| 天井 | 6周期 or 999G（設定變更後4周期/650G） | AT間1200G / CZ間499G（設定變更後256G） | 有 | 有 |
+| 最強觸發器 | 上位AT＋夢幻（毎G上乗せ特化） | 上位AT（純增7.2枚＋全上乗せ3桁超） | 近期公布 | 上位AT |
+| 使用者評價 | ★2.13（274則） | ★2.29（164則） | ★★★ | ★★★★ |
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 機械割上限 | 戦国乙女5 / SAO Ⅱ（並列） | 兩者皆達114.9%，為本期最高水準 |
+| 上位AT爆發力 | スロット SAO Ⅱ | 純增7.2枚＋全上乗せ3桁超＋期待枚數約3000枚 |
+| 通常時遊玩體驗 | L戦国乙女5 | 強カワチャンス＋巫女ポイント＋乙女ストラップモード多層抽選 |
+| 系統獨創性 | スロット SAO Ⅱ | バレットサークルシステム（リール上サークル＋図柄停止位置連動） |
+| 品牌號召力 | L 東京喰種 | 連續三月穩居TOP4，超人氣IP持續力驚人 |
+| 長期稼動力 | スマスロ カバネリ 海門決戦 | 系列實績＋連續三月以上維持高人氣 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① L戦国乙女5 業火を穿つ宿焔の双刃（オリンピア）
+
+![L戦国乙女5 筐体](pachislot/images/07_sengoku_otome5/cabinet.jpg)
+![L戦国乙女5 ゲームフロー](pachislot/images/07_sengoku_otome5/game_flow.jpg)
+![L戦国乙女5 ボーナス出現率](pachislot/images/07_sengoku_otome5/hit_rate.jpg)
+
+**系列背景：** 戦国乙女系列第5作，以戰國時代武將女體化為主題的長壽人氣系列
+
+**賣點與好玩之處：**
+- 通常時以周期制管理AT當選（最大6周期/999G，設定變更後4周期/650G短縮）
+- 強カワチャンス：約1/36.8的周期ゲーム數加算ゾーン，ノーマル/ハイ兩種模式
+- 巫女ポイント：999pt減算制，0pt到達時約20%觸發乙女アタック（CZ）
+- 乙女ストラップモード：6種隱藏模式（ゴエモン/ノブナガ/ヒデヨシ/カンスケ/ミツヒデ/ヨシテル），AT當選前持續有效
+- 乙女アタック（CZ）：2G×10回合的戰鬥型CZ，期待度約52%，多勝可累積出陣ボーナス
+- AT「強カワラッシュ」：初期45G＋α，純增約2.7枚/G，ゲーム數管理型
+- 本能寺の変（AT中CZ）：4G＋α，宿焔目停止（約1/3.2）で勝利，勝利率約50%
+- 出陣ボーナス：20G的擬似ボーナス，12名乙女各有獨特上乗せ性能（平均24G～422G）
+- 決戦ノ刻：CZ累計勝利後觸發的上位CZ權利爭奪戰，勝率約55%
+- 上位AT「真強カワラッシュ」：純增約4.8枚/G，初期100G＋α
+- 夢幻：10G的毎ゲーム上乗せ特化ゾーン，宿焔目成立時フリーズ可獲100G以上
+- エンディング後進入剣聖チャンス（上位CZ），形成高次元循環
+
+**中心思想：**
+> 「乙女出陣＝角色決定命運的華麗賭注」— 以「出陣する乙女」為核心概念，同一個ボーナス由哪位乙女出陣完全改變上乗せ性能（24G～422G的巨大差異）。出陣チャンス的パネル選擇系統讓玩家體驗「命運輪盤」的緊張感，而ロゴ色（黑→綠→赤→紫）的逐步升級則對應「從雑兵到名將」的成長弧線。本能寺の変的連戦系統完美重現了戰國時代「連戰連勝→天下統一」的爽快感。
+
+
+**套用至其他遊戲的可能性：**
+- RPG的「同伴召喚」系統 — 每次召喚不同角色，戰鬥性能完全不同
+- 卡牌遊戲的「領袖技能」概念 — 隊長決定整隊的戰鬥方式
+- MOBA的「英雄選擇」機制 — 選角決定整場遊戲的節奏與策略
+- 格鬥遊戲的「角色切換」— 不同角色帶來截然不同的手感
+- 策略遊戲的「將領系統」— 派遣不同將領影響戰役結果
+
+**Slot Game 轉用分析：**
+
+- **角色決定 Free Spin 規則**
+  出陣チャンス的「パネル選擇決定乙女＝決定ボーナス性能」概念，可轉化為 Slot 的 Free Spin 觸發系統。觸發 Free Spin 時，畫面出現5張角色卡牌依序翻轉（對應出陣チャンス的パネル滑動），停在哪張卡牌就由該角色主導本輪 Free Spin 的規則。例如：劍士角色 → 每轉都有機率觸發「斬擊」（消除一整列並重新落下）；弓手角色 → Wild 出現時會「射穿」整行（Expanding Wild）；魔法師角色 → Free Spin 結束時將所有中獎金額 ×2 再結算。更高階的「雙人出陣」則是同時獲得兩個角色的規則疊加。
+
+  **舉例：** 玩家觸發 Free Spin 後，5張角色卡牌開始像走馬燈一樣旋轉。Spin 停在第4張 —「ノブナガ」登場！本輪規則：所有中獎金額自動 ×3，但 Free Spin 只有5轉（高風險高回報型）。玩家第2轉就出現大獎組合，×3 後直接拿到 150x 的獎金！但如果停在第1張「ヒデヨシ」，規則是 15轉但倍率只有 ×1（穩定低賠型）。角色的「稀有度」就像原作的パネル色（青→綠→赤→紫），越稀有的角色規則越強力。
+
+- **連勝累積升級報酬**
+  本能寺の変の「連戦＋報酬ランク昇格」系統，可轉化為 Slot 的「連續觸發 Bonus 時報酬遞增」機制。每次觸發 Bonus Round 時，如果是「連續觸發」（例如 Bonus 結束後10轉內再次觸發），報酬等級 +1（最多7級）。等級越高，Free Spin 的轉數越多、倍率越高、特殊符號越容易出現。連續6次觸發後進入「決戦ノ刻」— 一個超高期待度的特殊 Bonus，成功則進入最高等級的 Super Mode。
+
+  **舉例：** 玩家觸發了第一次 Bonus（Rank 1：10轉 Free Spin）。結束後第5轉又觸發了！連續觸發 → Rank 2（12轉＋×2 倍率）。又在 Bonus 結束後第8轉觸發 → Rank 3（15轉＋×3 倍率＋Sticky Wild）。玩家心想「再連2次就能進入決戦ノ刻了！」— 這種「越連越強」的設計讓玩家在每次 Bonus 結束後都處於「下一轉可能又觸發」的高度期待狀態。
+
+**Fish Game 轉用分析：**
+
+- **將領系統改變砲台特性**
+  12名乙女的差異化性能可轉化為「將領系統」：玩家可裝備不同將領卡牌，每位將領改變砲台的基礎特性。例如：ユウサイ將領 → 每發子彈附帶「穿透」效果（可打穿前排魚打到後排）；ノブナガ將領 → 攻擊力大幅提升但射速降低；ドウセツ將領 → 一定機率觸發「フリーズ」（畫面全魚停止1秒讓你自由瞄準）。將領卡牌有稀有度（N→R→SR→SSR），對應原作的パネル色系統。
+
+  **舉例：** 玩家裝備了 SR 級「イエヤス」將領 — 砲台特性變為「每3發必中」（命中率大幅提升，但單發傷害降低）。適合打密集小魚群快速累積獎金。突然場上出現 Boss 魚，玩家切換為 SSR 級「ユウサイ」將領 — 砲台變為「單發高傷害＋穿透」，一發子彈穿過小魚直接命中 Boss！將領的切換時機成為策略核心。
+
+- **連戰模式＋領地擴張**
+  本能寺の変的連戰系統可轉化為「領地戰」：場上分為多個區域，玩家擊殺某區域的所有魚後「佔領」該區域，佔領的區域會自動產生金幣（被動收入）。連續佔領多個區域形成「連戰」，獎勵倍率隨佔領數遞增。但如果太久沒有新佔領，已佔領的區域會「叛變」（新魚群出現），需要重新清理。這創造了「攻城掠地」的戰國感。
+
+  **舉例：** 玩家清空了左下區域的魚群 —「領地佔領！」該區域變為自己的顏色，每秒自動產生 5 金幣。立刻轉向右側區域繼續掃射 — 10秒內再次清空！「連戰 ×2！」獎勵倍率加倍，右側區域每秒產生 10 金幣。正要攻打中央區域時，左下區域亮起警告 —「叛軍出現！」新魚群開始填充。玩家必須決策：是繼續進攻中央（維持連戰倍率但可能失去左下），還是回防左下（中斷連戰但保住領地）？
+
+---
+
+### ② スロット ソードアート・オンラインⅡ（パオン・ディーピー）
+
+![スロット SAO Ⅱ 筐体](pachislot/images/08_sao2/cabinet.jpg)
+![スロット SAO Ⅱ ゲームフロー](pachislot/images/08_sao2/game_flow.jpg)
+![スロット SAO Ⅱ ボーナス出現率](pachislot/images/08_sao2/hit_rate.jpg)
+
+**原作IP：** 動畫「ソードアート・オンラインⅡ」GGO（ガンゲイル・オンライン）篇
+
+**賣點與好玩之處：**
+- バレットサークルシステム：リール上に出現するサークル内に図柄が停止すると恩恵獲得（本機最大獨創要素）
+- 通常時はゲーム數消化＋バレットカウンター（共通ベル7個でCZ抽選）でCZを目指す
+- シューティングチャージ：4種類の加算ゾーン（1～6個のバレットサークル＋2G～無限継続）
+- GGOモード：4種隱藏模式（キリト/詩乃/シノン/死銃）各有獨特恩恵，機械割100%超保證
+- CZ「スコードロンバトル」：前半10G弾痕收集＋後半4Gジャッジ，期待度約55%
+- AT「バレットオブバレッツ」：差枚數管理型，初期150枚＋α，純增約3.6枚/G
+- スナイパーチャンス：AT中CZ，約1/54，成功率50%，最大3回クリアで上位CZ權利
+- 上位CZ「デス・ガンバトル」：成功率約50%，勝利で特化ゾーン→上位AT
+- 上位AT「バレットオブバレッツフルダイブ」：純增約7.2枚/G，全上乗せ3桁超，期待枚數約3000枚
+- ウルティマ状態：上位AT時約50%突入，デス・ガンバトル成功率大幅UP
+- 絶剣：最強特化ゾーン，2200枚＋1100枚ループ上乗せ，ほぼ完走濃厚
+- 豐富的カスタム機能（キャラ7種/ナビボイス35種/楽曲14曲）
+
+**中心思想：**
+> 「狙擊的一瞬＝バレットサークルに賭ける緊張感」— 以「狙撃手シノン」為核心，將パチスロの「図柄停止」行為轉化為「射撃」的體驗。バレットサークルシステム讓每一轉都有「瞄準→射撃→命中判定」的即時感，而非傳統的「回す→待つ」被動體驗。スナイパーチャンスの3段階撃破→デス・ガン対決→上位AT的流程，完美對應原作GGO篇中「予選→本戦→最終決戦」的敘事結構。ウルティマ状態的存在讓「一度到達頂點後更容易維持」，重現了キリト在GGO中覺醒後的無雙感。
+
+**套用至其他遊戲的可能性：**
+- FPS的「精準射擊獎勵」系統 — 命中特定位置給予額外報酬
+- 節奏遊戲的「判定框」概念 — 音符落在特定區域才算Perfect
+- 動作遊戲的「弱點攻擊」機制 — 瞄準特定部位造成暴擊
+- 彈幕遊戲的「擦彈」系統 — 子彈越接近才閃避獲得越高分數
+- 射擊遊戲的「連殺獎勵（Kill Streak）」— 連續命中獲得越來越強的武器
+
+**Slot Game 轉用分析：**
+
+- **射擊判定框系統（Bullet Circle Slot）**
+  バレットサークルシステムの「リール上の特定位置に図柄が止まれば恩恵」概念，可直接轉化為 Slot 的創新機制：Spin 前，畫面上隨機出現1～6個「照準圈」覆蓋在轉輪的特定位置上。轉輪停止後，如果有任何符號剛好停在照準圈內，就觸發額外獎勵（一般符號 → 小獎金 / Wild 符號停入 → 大獎金或觸發 Feature）。照準圈的數量和位置每轉都變，創造出「這轉有6個照準圈覆蓋了大半畫面！超有機會！」的獨特期待感。
+
+  **舉例：** 本轉畫面上出現了4個紅色照準圈，分布在第2列上段、第3列中段、第4列下段、第5列中段。轉輪開始旋轉...停！第3列中段停了一個 Wild — 正好在照準圈內！「BULLET HIT! ×5 MULTIPLIER!」不只 Wild 本身的替代功能生效，還額外獲得 ×5 倍率加成。如果同一轉有多個符號命中照準圈，倍率還會疊加。玩家的視線從「看中獎線」變成「看照準圈」— 一個全新的視覺焦點。
+
+- **3段階任務進度條**
+  スナイパーチャンス3回クリア→デス・ガンバトル→上位AT 的結構，可轉化為 Slot 的「任務進度系統」：畫面上方有一條3格的進度條。每次成功完成 Bonus Round 中的特定任務（例如：Bonus 中出現3個以上 Wild），進度條 +1格。集滿3格後觸發「Boss Battle Feature」— 一個超高報酬的特殊 Bonus，成功則進入 Super Mode（對應上位AT）。進度條跨 Session 保存（退出遊戲再回來仍保留），創造長期目標感。
+
+  **舉例：** 玩家進入 Free Spin，任務顯示「本輪中出現3個以上 Scatter 即完成任務」。Free Spin 期間出現了4個 Scatter！「MISSION COMPLETE! [2/3]」進度條推進到第2格。下次再成功完成1個任務就能觸發 Boss Battle！玩家即使今天運氣不好，看到進度條 [2/3] 也會想「明天再來一定要觸發 Boss Battle」— 這就是跨 Session 進度條的留存力。
+
+**Fish Game 轉用分析：**
+
+- **照準圈瞄準系統**
+  バレットサークルの「特定位置判定」概念可轉化為 Fish Game 的「照準強化」機制：畫面上隨機出現照準圈（持續3～5秒），如果玩家在照準圈消失前擊殺圈內的魚，獲得倍率獎勵（圈越小 → 倍率越高）。這增加了「瞄準精度」的技術要素，也創造了「照準圈出現在高價值魚身上！快打！」的刺激時刻。多個照準圈同時出現時，需要快速判斷打哪個CP值最高。
+
+  **舉例：** 場上游著各種魚，突然出現3個照準圈 — 一個大圈（×2）在一群小魚上，一個中圈（×5）在一隻中型魚上，一個小圈（×10）精準套在一隻稀有魚的頭部。玩家只有4秒決定！選擇瞄準小圈的稀有魚 — 射擊！命中！「PRECISION KILL! ×10!」稀有魚本身的倍率 ×10 再 ×10 = 100倍獎金！如果手抖miss了...照準圈消失，機會不再。這就是「狙擊的一瞬」在 Fish Game 中的體現。
+
+- **デス・ガン討伐戰（Boss 三階段系統）**
+  3回クリア→デス・ガンバトル的結構可轉化為 Boss 的「三階段弱體化」系統：Boss 魚出場時有3層護盾，玩家需要先在限時內打掉3隻「護衛魚」（對應3次スナイパーチャンス成功），每打掉一隻護衛魚 Boss 就去掉一層護盾。3層護盾全部去掉後 Boss 進入「弱體化狀態」（對應デス・ガンバトル），此時攻擊 Boss 的傷害 ×5，而且 Boss 移動速度變慢。如果弱體化期間（約10秒）成功擊殺 Boss → 進入「フルダイブ Mode」（全場魚倍率 ×3 持續30秒）。
+
+  **舉例：** Boss「デス・ガン」出現在場中央，被3層紫色護盾包圍（完全無敵）。同時3隻護衛魚從三個方向游出。玩家集中火力打右邊的護衛魚 — 擊殺！「SHIELD DOWN 1/3」。其他玩家也在打 — 第2隻倒了！「SHIELD DOWN 2/3」。最後一隻！全場火力集中...擊殺！「ALL SHIELDS DOWN! WEAKNESS EXPOSED!」Boss 護盾碎裂，開始緩慢移動且發出紅光。全場玩家瘋狂射擊 Boss — 10秒內成功擊殺！「FULL DIVE MODE ACTIVATED!」全場進入30秒的超級狂歡模式。
+
+---
+
+### ③ L 東京喰種（スパイキー）
+
+![L 東京喰種 筐体](pachislot/images/04_tokyo_ghoul/cabinet.jpg)
+
+本機於4月報告已有詳細分析。連續三月維持人氣TOP4，東京喰種IP的角色魅力與「覺醒」演出設計的長期吸引力再次得到證明。
+
+**本月更新：** 從連續兩月的人氣第一跌至第三位，被6月8日新導入的戦国乙女5與SAO Ⅱ超越。但仍穩坐TOP4，顯示即使面對強力新台衝擊仍有相當的固定粉絲群。
+
+👉 [查看完整分析（2026年4月報告）](report_pachislot_202604.html#L東京喰種)
+
+---
+
+### ④ スマスロ 甲鉄城のカバネリ 海門決戦（サミー）
+
+![スマスロ カバネリ 海門決戦 筐体](pachislot/images/03_kabaneri_unato/cabinet.jpg)
+
+本機於4月報告已有詳細分析。連續三月維持高人氣，前作的成功基因完美傳承。
+
+**本月更新：** 與東京喰種同樣被新台壓至第四位。勝率排名中，前作「パチスロ甲鉄城のカバネリ」以37%與其他技術介入型並列第二，顯示カバネリ系列整體的遊技者支持度依然很高。
+
+👉 [查看完整分析（2026年4月報告）](report_pachislot_202604.html#カバネリ海門決戦)
+
+---
+
+## 4. 2026年7月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 關注重點 |
+|-----------|--------|--------|----------|
+| 07/06 | Lパチスロ からくりサーカス2 | SANKYO | 人氣漫畫IP續作，機械割97.7%～114.9% |
+| 07/06 | 戦国コレクション6 | コナミアミューズメント | 人氣系列第6作，機械割97.9%～114.9% |
+| 08/03 | スマスロ やじきた道中記参る！ | ユニバーサルブロス | ユニバ新作 |
+| 09/07 | スマスロ リコリス・リコイル | サミー | 超人氣動畫IP×サミー，機械割97.9%～114.6%，下半年最大焦點 |
+
+> ※7月6日為全19機種同時導入（パチンコ12/パチスロ7），其中「からくりサーカス2」和「戦国コレクション6」為注目パチスロ新台。9月的「スマスロ リコリス・リコイル」仍為下半年最受矚目的大作，パチンコ版已連續多月維持人氣第一。
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| L戦国乙女5 | 乙女出陣＝角色決定命運 | ★★★★ | RPG召喚系統、MOBA英雄選擇、策略遊戲將領 |
+| スロット SAO Ⅱ | 狙擊的一瞬＝照準判定 | ★★★★★ | FPS精準射擊、節奏遊戲判定、彈幕擦彈系統 |
+| L 東京喰種 | 覺醒與變貌 | ★★★ | RPG覺醒系統、動作遊戲暴走模式 |
+| スマスロ カバネリ 海門決戦 | 生存戰鬥的緊迫感 | ★★★★ | 生存遊戲、波次防禦、Boss戰 |
+
+**最具系統獨創性的設計：** スロット SAO Ⅱ 的「バレットサークルシステム」是パチスロ業界中罕見的「位置判定型」抽選系統。不是「什麼圖案停下來」，而是「圖案停在什麼位置」決定結果 — 這個概念翻轉了傳統パチスロ的遊戲體驗，也最容易移植到其他類型遊戲中。
+
+**最具角色多樣性的設計：** L戦国乙女5 的12名乙女各自擁有完全不同的ボーナス性能（從平均24G的ヒデヨシ到平均422G的ユウサイ），加上「雙人出陣」的組合變化，同一台機器能提供數十種不同的ボーナス體驗。這種「角色池」設計對手遊和 Gacha 類遊戲有極高參考價值。
+
+**排名趨勢觀察：** 本月TOP4完全洗牌 — 6/8同時導入的戦国乙女5與SAO Ⅱ 直接空降前二名，將連霸數月的東京喰種與カバネリ壓至3、4位。兩台新台的共通點是「超高機械割（114.9%）＋強力IP續作＋獨創系統」，證明了即使在人氣機種固化的市場中，真正有料的新台仍能快速翻盤。
+
+---
+
+## 補充：パチスロ ↔ Slot Game ↔ Fish Game 設計概念對照表
+
+| 設計概念 | パチスロ | Slot Game | Fish Game |
+|----------|----------|-----------|-----------|
+| 基本迴圈 | 投幣→轉軸→役物成立 | 下注→Spin→Pay Line命中 | 下注（子彈）→射擊→擊殺判定 |
+| 射幸性控制 | 機械割（97%~114%） | RTP（92%~97%） | 命中率表＋倍率表 |
+| 波動性表現 | AT/Rush突入率×出玉期待值 | Volatility（Low/Med/High） | 魚種倍率分布（小魚高頻低倍/Boss低頻高倍） |
+| Feature觸發 | CZ成功/直撃/天井 | Scatter 3個以上/Feature Buy | 能量條滿/Boss出現/特殊武器觸發 |
+| 爆發模式 | AT / Rush / 上位AT | Free Spin / Bonus Round / Super Mode | Boss Fight / Fever Time / 特殊砲台 |
+| 連鎖設計 | ボーナス循環/ST繼續 | Re-trigger / Cascading Wins | 連鎖擊殺/爆炸連鎖 |
+| 長期目標 | 天井到達/エンディング/上位AT循環 | Progressive Jackpot / 累積Feature | 砲台升級/Boss討伐計數器 |
+| 狀態遷移 | 通常→高確→AT→上位AT | Base Game→Feature→Super Feature | 通常→Fever→Super Fever |
+| 自力感 | 目押し/択當て/演出選擇 | Gamble Feature / Feature Buy選擇 | 瞄準/砲台切換/射擊時機 |
+| 視覺回饋 | リーチ演出/確定演出/フリーズ | Big Win演出/Mega Win/Epic Win | 擊殺特效/倍率飛散/畫面震動 |
+| **位置判定** | **バレットサークル（SAO Ⅱ）** | **照準圈 Slot（新概念）** | **照準強化系統** |
+
+### 本月新增設計概念：位置判定型抽選
+
+SAO Ⅱ 的バレットサークルシステム開創了パチスロ的新維度 —「位置」成為抽選結果的決定因素。這與傳統的「組合」（什麼圖案排列在一起）是完全不同的軸線，在 Slot/Fish 領域也具有巨大的移植潛力：
+
+| 平台 | 傳統方式 | 位置判定方式（新） |
+|------|----------|-------------------|
+| パチスロ | 中段に7が揃えば大当り | リール上のサークル位置に図柄が停止すれば恩恵 |
+| Slot Game | Pay Line 上に同じシンボル並び | 照準圈の位置にWild/Scatter停止で倍率UP |
+| Fish Game | 魚に弾が当たれば倍率判定 | 照準圈内で撃殺すれば追加倍率 |
+
+> 從パチスロ提取設計概念時，核心是將「狀態遷移＋期待感演出＋射幸性數學模型」三位一體的框架，轉化為目標平台的形式。本月的SAO Ⅱ 新增了「位置判定」這個第四維度，值得所有遊戲設計師關注。
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+
+// Hash-based scroll: scroll to heading containing the hash text
+function scrollToHash() {
+  const hash = decodeURIComponent(window.location.hash.slice(1));
+  if (!hash) return;
+  const normalizedHash = hash.replace(/[\s\-]+/g, '');
+  const headings = content.querySelectorAll('h1,h2,h3');
+  for (const el of headings) {
+    const normalizedText = el.textContent.replace(/[\s\-]+/g, '');
+    if (normalizedText.includes(normalizedHash)) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.style.transition = 'background 0.3s';
+        el.style.background = '#fff3cd';
+        setTimeout(() => { el.style.background = ''; }, 2000);
+      }, 300);
+      return;
+    }
+  }
+}
+scrollToHash();
+window.addEventListener('hashchange', scrollToHash);
+</script>
+</body>
+</html>
