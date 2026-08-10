@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青斯洛機種比較報告 (2026/7)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青斯洛機種比較報告 (2026/7)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチスロ機種比較報告（2026年7月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年7月的重點パチスロ機種如下。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | L 東京喰種 | スパイキー | 2025/02/03 |
+| 2 | L戦国乙女5 業火を穿つ宿焔の双刃 | オリンピア | 2026/06/08 |
+| 3 | スロット ソードアート・オンラインⅡ | パオン・ディーピー | 2026/06/08 |
+| 4 | スマスロ 甲鉄城のカバネリ 海門決戦 | サミー | 2025年近期 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | Lパチスロうみねこのなく頃に2 | 42% |
+| 2 | ニューキングハナハナV-30 | 38% |
+| 2 | A-SLOT+ ディスクアップ ULTRAREMIX | 38% |
+| 3 | スマスロ北斗の拳 | 37% |
+| 3 | パチスロ甲鉄城のカバネリ | 37% |
+
+> 勝率排名依然以技術介入型（ノーマルタイプ）為主。「うみねこ2」連續多月穩坐首位，勝率略降1%至42%。整體分布變動不大。
+
+
+### 導入台數關注度
+
+2026年7月最顯著的變化是「L 東京喰種」的大規模增台。根據入替情報（7/18-7/25週），L 東京喰種（CT區分）增台 2,946 台，為全スロット機種增台第一名，重新奪回人氣榜首位置。相對地，「スマスロ北斗の拳 転生の章2」減台 522 台（通常貸減876台/低貸增354台），顯示部分機種開始從高單價區移往低貸區。
+
+7月無重大新台導入，TOP4 由6月機種持續占據。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | L 東京喰種 | L戦国乙女5 | スロット SAO Ⅱ | スマスロ カバネリ 海門決戦 |
+|------|-----------|-----------|----------------|---------------------------|
+| 製造商 | スパイキー | オリンピア | パオン・ディーピー | サミー |
+| 類型 | スマスロ | スマスロ | スマスロ | スマスロ |
+| 機械割 | 97.5%～114.9% | 97.9%～114.9% | 97.6%～114.9% | 近期公布 |
+| AT類型 | 差枚數管理型 | ゲーム數管理型 | 差枚數管理型 | 連莊型 |
+| 純增 | 約2.8枚/G | 約2.7枚/G（上位約4.8枚） | 約3.6枚/G（上位約7.2枚） | 約高純增 |
+| 天井 | 999G | 6周期 or 999G | AT間1200G | 有 |
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 機械割上限 | 戦国乙女5/SAO Ⅱ/東京喰種（並列） | 三者皆達114.9%，為本期最高水準 |
+| 上位AT爆發力 | スロット SAO Ⅱ | 純增7.2枚＋全上乗せ3桁超＋期待枚數約3000枚 |
+| 導入台數成長 | L 東京喰種 | 7月單週增台2,946台，市場需求極強 |
+| 系統獨創性 | スロット SAO Ⅱ | バレットサークルシステム（位置判定型抽選） |
+| IP長期稼動力 | L 東京喰種 | 導入18個月仍能大規模增台，極罕見 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① L 東京喰種（スパイキー）
+
+![L 東京喰種 筐体](pachislot/images/04_tokyo_ghoul/cabinet.jpg)
+
+本機於4月報告已有詳細分析。7月重新奪回人氣榜首，並創下單週增台 2,946 台的驚人紀錄。
+
+**本月更新：** 導入超過18個月後仍能大規模增台，在パチスロ業界極為罕見。這證明了「東京喰種」IP 的持久魅力，以及本機「覺醒系統＋喰ポイント（穢れ）」設計的長期吸引力。入替情報顯示，部分店舖將 L 東京喰種 從低貸區移回通常貸區，顯示該機種的稼動率回升。
+
+👉 [查看完整分析（2026年4月報告）](report_pachislot_202604.html#L東京喰種)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年4月報告）](report_pachislot_202604.html#L東京喰種)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年4月報告）](report_pachislot_202604.html#L東京喰種)
+
+---
+
+
+### ② L戦国乙女5 業火を穿つ宿焔の双刃（オリンピア）
+
+![L戦国乙女5 筐体](pachislot/images/07_sengoku_otome5/cabinet.jpg)
+
+本機於6月報告已有詳細分析。導入後第二個月，維持人氣TOP2的高位。
+
+**本月更新：** 6月空降第一名後，本月被大規模增台的東京喰種擠至第二。但稼動率依然很高，「12名乙女各有獨特性能」的角色多樣性設計持續吸引玩家。
+
+👉 [查看完整分析（2026年6月報告）](report_pachislot_202606.html#L戦国乙女5)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年6月報告）](report_pachislot_202606.html#L戦国乙女5)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年6月報告）](report_pachislot_202606.html#L戦国乙女5)
+
+---
+
+### ③ スロット ソードアート・オンラインⅡ（パオン・ディーピー）
+
+![スロット SAO Ⅱ 筐体](pachislot/images/08_sao2/cabinet.jpg)
+
+本機於6月報告已有詳細分析。導入後第二個月，維持人氣TOP3。
+
+**本月更新：** 「バレットサークルシステム」的創新設計持續獲得好評。上位AT「フルダイブ」的爆發力（純增7.2枚＋期待枚數約3000枚）在市場上仍屬頂級水準。
+
+👉 [查看完整分析（2026年6月報告）](report_pachislot_202606.html#スロットSAOⅡ)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年6月報告）](report_pachislot_202606.html#スロットSAOⅡ)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年6月報告）](report_pachislot_202606.html#スロットSAOⅡ)
+
+---
+
+### ④ スマスロ 甲鉄城のカバネリ 海門決戦（サミー）
+
+![スマスロ カバネリ 海門決戦 筐体](pachislot/images/03_kabaneri_unato/cabinet.jpg)
+
+本機於4月報告已有詳細分析。連續四個月維持人氣TOP4，系列的長期稼動力再次得到證明。
+
+**本月更新：** 勝率排名中，前作「パチスロ甲鉄城のカバネリ」以37%維持高位，顯示カバネリ系列整體的遊技者支持度依然強勁。
+
+👉 [查看完整分析（2026年4月報告）](report_pachislot_202604.html#カバネリ海門決戦)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年4月報告）](report_pachislot_202604.html#カバネリ海門決戦)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年4月報告）](report_pachislot_202604.html#カバネリ海門決戦)
+
+---
+
+
+## 4. 2026年8月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 關注重點 |
+|-----------|--------|--------|----------|
+| 08/03 | スマスロ とんでもスキルで異世界放浪メシ | 大都技研 | 人氣異世界動畫IP，82%/93%雙ループ設計 |
+| 08/03 | スマスロ やじきた道中記参る！ | ユニバーサルブロス | ユニバ新作 |
+| 08/03 | Lスロット 邪神ちゃんドロップキック | 北電子 | コメディ動畫IP機種化 |
+| 09/07 | スマスロ リコリス・リコイル | サミー | 超人氣動畫IP×サミー，下半年最大焦點 |
+
+> 8月3日為本月最大導入日。「スマスロ とんでもスキルで異世界放浪メシ」以「82%基本ループ＋93%上位ループ」的雙重設計受到關注。9月的「スマスロ リコリス・リコイル」仍為下半年最受矚目的大作（機械割97.9%～114.6%），パチンコ版已連續多月維持高人氣。
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| L 東京喰種 | 覺醒與變貌＋穢れ累積 | ★★★★ | RPG覺醒系統、救濟機制設計 |
+| L戦国乙女5 | 乙女出陣＝角色決定命運 | ★★★★ | RPG召喚系統、MOBA英雄選擇 |
+| スロット SAO Ⅱ | 狙擊的一瞬＝照準判定 | ★★★★★ | FPS精準射擊、節奏遊戲判定 |
+| スマスロ カバネリ | 生存戰鬥的緊迫感 | ★★★★ | 生存遊戲、波次防禦、Boss戰 |
+
+**本月最值得關注的現象：** L 東京喰種 在導入18個月後仍能創下單週增台 2,946 台的紀錄，這在パチスロ業界極為罕見。通常機種在導入後6-12個月就會進入穩定期或衰退期，但東京喰種展現了「超長期稼動力」。分析其成功因素：
+
+1. **IP持久力**：東京喰種原作的角色魅力與世界觀深度
+2. **系統設計**：「喰ポイント（穢れ）」的救濟機制讓輸家也有期待感
+3. **覺醒演出**：視覺衝擊力強的「百足覺醒」「隻眼の梟」等上位AT
+4. **設定推測樂趣**：豐富的設定判別要素讓高頻玩家持續投入
+
+**市場趨勢觀察：**
+- **頭部機種固化**：TOP4 連續兩個月無新面孔，顯示強機種的「護城河」越來越深
+- **高低貸移動**：北斗転生2 的通常貸→低貸移動，反映部分機種進入生命週期後段
+- **8月新台期待**：「とんでもスキル」的雙ループ設計可能打破頭部固化局面
+- **9月リコリス效應**：パチンコ版的成功讓パチスロ版備受期待
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+
+// Hash-based scroll: scroll to heading containing the hash text
+function scrollToHash() {
+  const hash = decodeURIComponent(window.location.hash.slice(1));
+  if (!hash) return;
+  const normalizedHash = hash.replace(/[\s\-]+/g, '');
+  const headings = content.querySelectorAll('h1,h2,h3');
+  for (const el of headings) {
+    const normalizedText = el.textContent.replace(/[\s\-]+/g, '');
+    if (normalizedText.includes(normalizedHash)) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.style.transition = 'background 0.3s';
+        el.style.background = '#fff3cd';
+        setTimeout(() => { el.style.background = ''; }, 2000);
+      }, 300);
+      return;
+    }
+  }
+}
+scrollToHash();
+window.addEventListener('hashchange', scrollToHash);
+</script>
+</body>
+</html>

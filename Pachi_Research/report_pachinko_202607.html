@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青哥機種比較報告 (2026/7)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青哥機種比較報告 (2026/7)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチンコ機種比較報告（2026年7月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年7月的重點パチンコ機種如下（2026/08/10 排名抓取，排除8月新台）。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | e 東京喰種 超デカ超一撃ver. | ビスティ | 2026/06/08 |
+| 2 | eリコリス・リコイル | ニューギン | 2026/04/06 |
+| 3 | e 東京喰種 | ビスティ | 2025/04/21 |
+| 4 | e 新世紀エヴァンゲリオン ～はじまりの記憶～ | ビスティ | 2025/12/22 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | P大海物語4スペシャル | 40% |
+| 2 | P大海物語5スペシャル | 38% |
+| 3 | PA花の慶次〜傾奇一転 87ver. | 37% |
+| 4 | PAわんわんパラダイスCELEBRATION | 35% |
+| 4 | PA大海物語5 Withアグネス・ラム | 35% |
+| 5 | P大海物語5 | 34% |
+
+> 勝率排名依然以甘デジ・ライトスペック系為主。本月新進榜的是「PA花の慶次〜傾奇一転 87ver.」（6/8導入），顯示出慶次IP的強大號召力。
+
+### 7月排名重點分析
+
+2026年7月最引人注目的是 TOP4 的高度穩定性。東京喰種系列（超デカ、通常版）與リコリス・リコイル 繼續維持強勢地位，三台都已在本報告中分析過。新亮點是 e 新世紀エヴァンゲリオン ～はじまりの記憶～ 以 2025/12/22 導入的「舊台」之姿，持續維持在人氣 TOP4，展示了エヴァIP的超長期吸引力——導入後超過7個月仍然穩定排名，這在 2026 年的高競爭市場中十分罕見。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | e 東京喰種 超デカ超一撃ver. | eリコリス・リコイル | e 東京喰種 | e 新世紀エヴァンゲリオン はじまりの記憶 |
+|------|-------------------------------|---------------------|------------|------------------------------------------|
+| 製造商 | ビスティ | ニューギン | ビスティ | ビスティ |
+| 類型 | スマパチ | スマパチ | スマパチ | スマパチ |
+| 規格帶 | 超ハイスペック | ライトミドル | ミドル | ハイミドル |
+| 大當機率（通常時） | 約1/999（図柄揃い） | 1/259.7 | 約1/399（図柄揃い） | 約1/399.9（図柄揃い） |
+| ST/LT突入率 | 約50%（チャージ合算） | 50% | 約51%（チャージ昇格含む） | 約61.4%（チャージ・時短引き戻し合算） |
+| LT/RUSH繼續率 | 約50%（ST 5回転） | 約75%（ST 132回転） | 約75%（ST 130回転） | 約80%（ST 157回転） |
+| 大當出玉 | 約3000～9000個 | 上位3000～6000個＋α | 約3000～6000個 | 約2400～4800個 |
+| 特殊系統 | 超デカ出玉・ツラヌキチャレンジ | 內部模式A/B切換 | 東京喰種世界觀演出 | 専用枠「超咆哮」・暴走モード |
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 一擊出玉力 | e 東京喰種 超デカ超一撃ver. | 最大9000個，業界頂級水準 |
+| LT突入率 | e 新世紀エヴァンゲリオン はじまりの記憶 | 約61.4%，本月 TOP4 最高 |
+| LT繼續率 | e 新世紀エヴァンゲリオン はじまりの記憶 | 約80%，本月 TOP4 最高 |
+| 遊玩友善度 | eリコリス・リコイル | 1/259.7的輕規格，初當回転效率高 |
+| 長期稼動力 | e 東京喰種 | 導入超過16個月仍在TOP3 |
+| IP話題性 | e 新世紀エヴァンゲリオン はじまりの記憶 | エヴァシリーズ20周年紀念×首款LT搭載機 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① e 東京喰種 超デカ超一撃ver.（ビスティ）
+
+![e 東京喰種 超デカ超一撃ver. 筐体](pachinko/images/01_tokyo_ghoul_deka/cabinet.jpg)
+
+本機於5月報告已有詳細分析。連續三個月以上穩坐人氣第一，「約1/999初當＋最大9000個出玉」的極致設計持續吸引大量玩家。
+
+**本月更新：** 導入滿兩個月，稼動表現依然極強，不受7月新台波及。高風險高回報的設計哲學完美契合核心玩家群，並形成「東京喰種大型雙機制霸」局面。
+
+👉 [查看完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種超デカ超一撃ver)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種超デカ超一撃ver)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種超デカ超一撃ver)
+
+---
+
+### ② eリコリス・リコイル（ニューギン）
+
+![eリコリス・リコイル 筐体](pachinko/images/01_lycoris_recoil/cabinet.jpg)
+
+本機於4月報告有完整分析。導入超過4個月後仍維持 TOP2，是本月 TOP4 中規格最輕（1/259.7）但性價比最高的機種。
+
+**本月更新：** 導入4個月後穩定維持第二位，「低規格＋高品質演出＋角色魅力」的長青公式再度得到驗證。モードA/B的內部切換系統讓玩家每次連莊都有差異化體驗。
+
+👉 [查看完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年4月報告）](report_pachinko_202604.html#eリコリス・リコイル)
+
+---
+
+### ③ e 東京喰種（ビスティ）
+
+![e 東京喰種 筐体](pachinko/images/02_tokyo_ghoul/cabinet.jpg)
+
+本機於5月報告已有詳細分析。導入超過16個月仍然維持在人氣 TOP3，堪稱 2025-2026 年最具長期稼動力的パチンコ機種之一。
+
+**本月更新：** 與超デカ ver. 繼續形成「東京喰種雙璧」，兩台合計佔據 TOP3 的兩個席位。エヴァ17 的加入也是相同IP方向，顯示ビスティ在演出品質的持續優勢。
+
+👉 [查看完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種（ビスティ）)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種（ビスティ）)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年5月報告）](report_pachinko_202605.html#e東京喰種（ビスティ）)
+
+---
+
+### ④ e 新世紀エヴァンゲリオン ～はじまりの記憶～（ビスティ）
+
+![e 新世紀エヴァンゲリオン はじまりの記憶 筐体](pachinko/images/07_eva17/cabinet.jpg)
+![e 新世紀エヴァンゲリオン はじまりの記憶 ゲームフロー](pachinko/images/07_eva17/game_flow.jpg)
+![e 新世紀エヴァンゲリオン はじまりの記憶 大当り詳細](pachinko/images/07_eva17/hit_rate.jpg)
+
+**原作IP：** 動畫「新世紀エヴァンゲリオン」（庵野秀明 原作・監督）、パチンコシリーズ通算第17弾。ビスティ（旧FIELDS）のエヴァパチンコ20周年記念機種。
+
+**賣點與好玩之處：**
+- 通常時約1/399.9（図柄揃い）の ハイミドル 規格，合算大當確率約1/349.9
+- 初當後約50.5%でST直行（チャージ昇格含む）、ST非突入時は時短100回転
+- ST突入＝ラッキートリガー（LT）発動確定
+- ST「インパクトモード」157回転、繼續率約80%が本機最大の強み
+- LT中大當出玉はオール2400個以上（1200個×2回）、最大4800個（1200個×4回）
+- 新要素「暴走モード」搭載：LT中の特定条件でLT継続+αの上乗せ効果
+- 時短100回転（チャンスタイム）の引き戻し成功でもLT突入可能
+- LT突入率は図柄揃い直行・チャージ・時短引き戻し合算で約61.4%
+- 専用新筐体「超咆哮」：圧倒的な演出没入感を実現
+- エヴァシリーズ伝統の予告演出を最新スペックで完全リニューアル
+- ボイス・映像ともに圧倒的な質量：TV版の名場面を忠実に再現
+- カスタム機能搭載：先読み強度・告知方式など多段階に設定可能
+- シリーズ初の英語字幕対応：海外プレイヤーにも門戸を開く
+
+**中心思想：**
+> 「20年の記憶×繼續率80%の安定連莊」— e新世紀エヴァンゲリオン ～はじまりの記憶～ は、ビスティとエヴァIPの20年協力関係の集大成として設計されている。「シンジが逃げずに戦い続ける」という原作テーマが、「引き戻し確率と高繼續率で諦めずに連莊できる」LT設計として昇華されている。特に繼續率約80%のST157回転は、「この世界で生きていく」という覚悟に対応する安定感。通常版エヴァのパチンコが「2004年の衝撃＝1/399.9の重い確率を突破する達成感」であったとすれば、本機は「20年分の信頼に応える安定した高品質体験」を提供している。
+
+**套用至其他遊戲的可能性：**
+- 動作遊戲的「初號機覺醒系統」— 特定條件觸發暴走模式＋強化狀態
+- RPG的「使徒 Boss 戰」— 段階性攻略＋達成後的豐厚獎勵循環
+- 手遊的「高繼續率連鎖獎勵」— 確保玩家在連續投入後得到安定回報
+- 音樂遊戲的「RUSH連鎖」— 連續完美判定觸發高倍率加成
+- 卡牌遊戲的「AT FIELD（防禦貫通）」機制 — 突破防禦的爆發型攻擊設計
+
+**Slot Game 轉用分析：**
+
+- **使徒 Scatter ＋ 高繼續率 Free Spin（AT FIELD Break System）**
+  對應「LT突入率61.4%＋ST157回転80%繼續率」的核心設計：Slot 中觸發 Scatter 後進入「ATF衝突判定」，以約60%機率「貫通AT FIELD」進入主力 Free Spin。成功貫通時保底獲得2400個積分（對應LT中最低出玉），且每轉有約80%機率「繼續」再給一次Free Spin（對應ST 157回転繼續率）。此設計讓玩家在主力 Free Spin 中的每一轉都是「80%還能繼續＋20%結束」的心理博弈，維持長時間的高度緊張感。
+
+  **舉例：** 觸發3個 AT FIELD Scatter，畫面顯示初號機出擊「ATF 衝突判定 61%！」槍聲轟鳴後——「衝突突破！インパクトモード 突入！」。Free Spin 開始，第1轉獲得50x。第2轉系統詢問「繼續？（80%）」— 成功！第3轉 100x！第4轉... 第12轉... 第13轉「繼續失敗，インパクトモード終了」。前後共13轉，累積獲得1,840x的驚人獎金。那種每轉都在「還有80%機會繼續！」的期待中度過的體驗，完美還原 ST 連莊的緊張節奏。
+
+- **暴走モード 上乗せ系統（Berserk Multiplier Stack）**
+  對應「暴走モード」的特殊加成設計：Free Spin 中，每次特定符號（如「呪印保留」風格的特殊 Wild）出現，累積「暴走計数」。當計數達到閾值（如5次），觸發「暴走モード発動！」— 接下來的 Free Spin 全轉倍率×2，且額外追加5轉的上乗せ。暴走モード中再次累積可連鎖觸發，理論上可疊加多層。此設計創造出「越玩越強的正向反饋循環」，對應シンジの覚醒の階段。
+
+  **舉例：** Free Spin 進行中，第3轉出現「呪印 Wild」，計數器顯示 1/5。第7轉再出現，2/5。第10轉...第14轉達到5/5！「暴走モード発動！」畫面變成紅黑色調，所有倍率×2，額外再給5轉。這5轉中第2轉又開始累積新一輪暴走計數... 最終觸發雙層暴走，倍率×4。玩家從「這輪 Free Spin 只有小中」的普通體驗，轉化為「暴走の連鎖爆発」的震撼大獎。
+
+**Fish Game 轉用分析：**
+
+- **AT FIELD 防禦系統（盾魚機制）**
+  對應エヴァ最具代表性的「絶対領域（AT FIELD）」機制：捕魚機中導入「盾魚」系統，部分魚種帶有 AT FIELD 防護罩（半透明發光護盾），一般攻擊無法造成傷害。玩家必須使用特殊「AT FIELD 貫通砲」（需消耗額外彈藥，高費用高回報）才能突破，突破後獲得大量分數。此設計要求玩家判斷「高費用貫通是否值得」，創造策略性。AT FIELD 的厚度對應魚的稀有度，超稀有魚的護盾需多次貫通，形成「多輪投入→最終爆破」的節奏。
+
+  **舉例：** 場上出現一隻「使徒 ラミエル」魚（超稀有），外層包覆多層六角形 AT FIELD。一般砲打上去全反彈。玩家按下「AT FIELD 貫通砲」（消耗3倍彈藥），第一擊破開最外層護盾，播放エヴァ主題曲片段。繼續貫通，第三擊——最後一層護盾崩潰！「ラミエル 撃破！」爆出5000分大獎。消耗了300彈藥，但獲得5000分，投入感十足。
+
+- **使徒 Wave Boss 系統（週期性 Boss 挑戰）**
+  對應原作中「第○使徒 出現！」的週期性緊張感設計：每隔固定時間（如10分鐘），場上出現當「使徒」(特殊Boss魚)——從弱到強依序為：Sachiel（第1次）→ Ramiel（第2次）→ Sahaquiel（第3次，最強）。每位使徒有獨特的行動模式和弱點，需要特定策略才能高效擊殺。成功擊殺進入「Victory Fanfare」演出，全場進入30秒高分時段（對應AT解除後的RUSH段）。若多人協作擊殺，額外獲得「協力Bonus」。
+
+  **舉例：** 警報響起「第3使徒 サキエル 接近！」場上出現一隻帶十字光芒頭冠的大型魚，HP 6000，弱點在胸前的「コア」（特定時機才暴露）。普通攻擊可緩慢磨血，但攻擊コア時傷害×5！玩家需要觀察 サキエル 的動作週期（每8秒コア暴露3秒），在那3秒集中猛打。10分鐘後 第6使徒 カギ「使徒 第3形態 発現！」 難度升級。每次使徒出現都是「短暫高壓的集體戰鬥事件」，打破日常捕魚的平靜，讓玩家注意力高度集中。
+
+---
+
+## 4. 2026年8月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 關注重點 |
+|-----------|--------|--------|----------|
+| 08/03 | eフィーバー機動戦士ガンダムSEED クライマックス | SANKYO | ガンダムSEED×LT搭載、已登上8月人氣第1位 |
+| 08/03 | e ソードアート・オンライン アリシゼーション 夜空 | 京楽 | SAO最新作、1/199.9の軽規格、8月人氣第2位 |
+| 08/03 | e 七つの大罪3 | サミー | 時短突破型の新規格、LT搭載 |
+| 09/上旬 | eフィーバー妖怪ウォッチ | SANKYO | 社會現象級IP初次パチンコ化 |
+| 11月頃 | P羽根BASTARD!! -暗黒の破壊神- | SANKYO | KUGITAMAプロジェクト第1弾、羽根物新概念 |
+
+> **業界重大動向**：豊丸産業於 7月31日正式停止パチンコ事業，結束66年的歷史。8月3日同時導入 ガンダムSEED クライマックス、SAO アリシゼーション 夜空 等強力機種，其中 SAO 夜空在7月29日先行導入即創下320人排隊的記錄。SANKYO的「KUGITAMA」プロジェクト首款機種預定11月登場，以羽根物新概念挑戰市場。
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| e 東京喰種 超デカ超一撃ver. | 極限的一擊＝超デカの衝撃 | ★★★★★ | Boss戰、All-in機制、超稀有獎勵 |
+| eリコリス・リコイル | 低風險＋高回報的雙面性 | ★★★★ | 手遊抽卡、Roguelike、新手友善設計 |
+| e 東京喰種 | 覺醒的二重性 | ★★★ | RPG變身系統、長期營運留存設計 |
+| e 新世紀エヴァンゲリオン はじまりの記憶 | 20年記憶×AT FIELD貫通 | ★★★★★ | 動作覺醒、防禦突破、高繼續率連鎖 |
+
+**本月最具亮點的設計：** e 新世紀エヴァンゲリオン ～はじまりの記憶～ 的「ST157回転＋80%繼續率」組合。在本月 TOP4 中是繼續率最高的機種，且 LT 突入率也是最高（61.4%）。這種「高突入＋高繼續」的雙高設計，在業界中屬於頂級水準，卻維持了1/399.9的適度難度，避免了超ハイスペック機種的過度門檻。
+
+**市場趨勢觀察：** 
+- **TOP4 高穩定性**：7月排名前4全部是6月導入以前的機種，新台衝擊力有限。7/6 大量導入的新台（e東京リベンジャーズ聖夜決戦編等）暫時未進入 TOP4。
+- **ビスティの三冠王**：本月 TOP4 中有3台是 ビスティ製（東京喰種超デカ、東京喰種、エヴァ17），顯示該廠商在演出品質和IP選擇上的絕對競爭力。
+- **IPの長期稼動力**：エヴァ17（7個月）、リコリス（4個月）、東京喰種（16個月）全部展示了「高品質IP機種的長期稼動力」，相對於快速更迭的其他機種更具投資價值。
+- **豊丸産業退出**：7月31日正式停止パチンコ事業，業界整合持續進行。
+- **8月の新時代**：ガンダムSEED クライマックス 和 SAO アリシゼーション 夜空 已在8月3日導入，並迅速佔領人氣排名前兩位，暗示7月 TOP4 的格局將在8月改寫。
+
+**長期稼動力分析：** e 東京喰種 系列（通常版超過16個月、超デカ ver. 超過2個月仍居頂）和 eリコリス・リコイル（4個月）持續證明「適度規格＋高品質演出＋角色魅力」是長期稼動的黃金公式。エヴァ17 的7個月連榜表現同樣是優秀的長期稼動案例——特別是在 2026 年高競爭市場中，新台每月導入量大，能撐過7個月且仍在 TOP4 已屬異常稀有。
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+
+// Hash-based scroll: scroll to heading containing the hash text
+function scrollToHash() {
+  const hash = decodeURIComponent(window.location.hash.slice(1));
+  if (!hash) return;
+  const normalizedHash = hash.replace(/[\s\-]+/g, '');
+  const headings = content.querySelectorAll('h1,h2,h3');
+  for (const el of headings) {
+    const normalizedText = el.textContent.replace(/[\s\-]+/g, '');
+    if (normalizedText.includes(normalizedHash)) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.style.transition = 'background 0.3s';
+        el.style.background = '#fff3cd';
+        setTimeout(() => { el.style.background = ''; }, 2000);
+      }, 300);
+      return;
+    }
+  }
+}
+scrollToHash();
+window.addEventListener('hashchange', scrollToHash);
+</script>
+</body>
+</html>
