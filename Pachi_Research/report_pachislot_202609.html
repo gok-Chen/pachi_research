@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青斯洛機種比較報告 (2026/9)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青斯洛機種比較報告 (2026/9)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# パチスロ機種比較報告（2026年9月版）
+
+> 出處：[DMMぱちタウン](https://p-town.dmm.com/machines) 機種資訊整理
+> ※內容為出處網站資訊之摘要與重新整理
+
+---
+
+## 1. 人氣排名與關注度
+
+根據 DMMぱちタウン 的「人氣機種」區塊及新台導入資訊，2026年9月的重點パチスロ機種如下（2026/09/29 排名抓取）。
+
+### 人氣機種 TOP4（DMMぱちタウン 刊載順序）
+
+| 排名 | 機種名 | 製造商 | 導入日 |
+|------|--------|--------|--------|
+| 1 | L 東京喰種 | スパイキー | 2025/02/03 |
+| 2 | スマスロ リコリス・リコイル | サミー | 2026/09/07 |
+| 3 | スマスロ とある魔術の禁書目録2 | 藤商事 | 2026/08/03 |
+| 4 | Lパチスロ 彼女、お借りします | SANKYO | 2026/09/07 |
+
+### 勝率排名（DMMぱちタウン App 收支數據）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | ドラゴンハナハナ～閃光～ | 40% |
+| 2 | Lパチスロうみねこのなく頃に2 | 38% |
+| 3 | ニューキングハナハナV-30 | 37% |
+| 4 | A-SLOT+ ディスクアップ ULTRAREMIX | 36% |
+| 5 | スマスロ北斗の拳 | 36% |
+
+> 勝率排名仍以技術介入型（ノーマルタイプ）為主。ハナハナ系列、ディスクアップ系列持續展現高勝率特性，對於追求穩定收益的玩家依然是首選。
+
+### 9月排名重點分析
+
+2026年9月最大的亮點是「スマスロ リコリス・リコイル」空降人氣榜第二位。9月7日導入的這台新機種以純增約8.4枚/G的高速出玉和「疑似ボーナス連打」的爽快遊戲性，一舉躍升至僅次於東京喰種的位置。
+
+特別值得注目的是：
+- **東京喰種王朝延續**：導入超過19個月的 L 東京喰種 繼續穩坐人氣榜首，創造パチスロ史上罕見的長期稼動紀錄。
+- **リコリコ旋風襲來**：導入僅3週就空降第二位，純增約8.4枚/G 的高速出玉和話題動畫 IP 是成功關鍵。
+- **とある系列穩定輸出**：禁書目録2 導入近2個月仍維持 TOP3，「幻想變換」系統的獨特性持續吸引玩家。
+- **かのかり緊追在後**：彼女、お借りします 同為9月7日導入，以114.9%的高機械割和「1Gレンチャンス」系統躋身 TOP4。
+- **6月雙雄退位**：SAO Ⅱ 和 戦国乙女5 被9月新台擠出 TOP4，但稼動率依然維持高水準。
+
+---
+
+## 2. 主要機種規格比較
+
+### 基本規格一覽
+
+| 項目 | L 東京喰種 | スマスロ リコリス・リコイル | スマスロ とある魔術の禁書目録2 | Lパチスロ 彼女、お借りします |
+|------|-----------|---------------------------|-------------------------------|---------------------------|
+| 製造商 | スパイキー | サミー | 藤商事 | SANKYO |
+| 類型 | スマスロ | スマスロ | スマスロ | スマスロ |
+| 機械割 | 97.5%～114.9% | 97.9%～114.6% | 97.9%～113.3% | 97.7%～114.9% |
+| AT類型 | 差枚數管理型 | 疑似ボーナス連打型 | ゲーム數管理型 | 疑似ボーナス＋1G連型 |
+| 純增 | 約4.0枚/G | 約8.4枚/G | 約4.0枚/G | 約5.0枚/G |
+| 天井 | 999G | AT間850G+α / CZ間600G+α | 表示800G+α / 実1200G | 1000G+α |
+
+### 規格優劣比較
+
+| 比較項目 | 最優秀機種 | 說明 |
+|----------|-----------|------|
+| 機械割上限 | 東京喰種 / 彼女、お借りします（並列） | 兩者皆達114.9%，為本期最高水準 |
+| 純增速度 | スマスロ リコリス・リコイル | 純增8.4枚/G，業界頂級水準 |
+| 系統獨創性 | スマスロ とある魔術の禁書目録2 | 「幻想變換」系統極具特色 |
+| 1G連性能 | Lパチスロ 彼女、お借りします | 「1Gレンチャンス」連打設計 |
+| IP長期稼動力 | L 東京喰種 | 導入19個月仍維持人氣第一 |
+| 話題性 | スマスロ リコリス・リコイル | 2022年話題動畫首度パチスロ化 |
+
+---
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① L 東京喰種（スパイキー）
+
+![L 東京喰種 筐体](pachislot/images/04_tokyo_ghoul/cabinet.jpg)
+
+本機於4月報告已有詳細分析。導入超過19個月仍穩坐人氣榜首，是2025-2026年パチスロ市場最具長期稼動力的機種，創造業界傳說。
+
+**本月更新：** 即使面對9月多台話題新台的強力挑戰，東京喰種仍維持第一位。「覺醒系統＋喰ポイント（穢れ）」的累積爆發設計、AT中的「BITES」特化ゾーン、以及「有馬貴将ジャッジメント」的終極爆發力，持續吸引新舊玩家。19個月的人氣王座是スマスロ時代的空前紀錄。
+
+👉 [查看完整分析（2026年4月報告）](report_pachislot_202604.html#L東京喰種)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年4月報告）](report_pachislot_202604.html#L東京喰種)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年4月報告）](report_pachislot_202604.html#L東京喰種)
+
+---
+
+### ② スマスロ リコリス・リコイル（サミー）
+
+![スマスロ リコリス・リコイル 筐体](pachislot/images/10_lycoris_recoil/cabinet.jpg)
+![スマスロ リコリス・リコイル ゲームフロー](pachislot/images/10_lycoris_recoil/game_flow.jpg)
+![スマスロ リコリス・リコイル 大当り詳細](pachislot/images/10_lycoris_recoil/hit_rate.jpg)
+
+**原作IP：** 動畫「リコリス・リコイル」（A-1 Pictures 製作）。2022年夏季播出的原創動畫，描繪「リコリス」（秘密組織 DA 的少女特工）千束與たきな的故事。獨特的百合＋動作＋咖啡廳日常的組合在播出時成為話題。
+
+**賣點與好玩之處：**
+- 純增約8.4枚/G，業界頂級的出玉速度
+- 機械割 97.9%～114.6%，設定6時高達114.6%
+- 「リコリスラッシュ」是疑似ボーナス連打型AT
+- AT 有通常版（リコリスラッシュ20/50）和上位版（リコリスラッシュW）
+- 「才能」系統：レベル0/1/2 影響小役變換和ボーナス期待度
+- 「千束ラッシュ」和「たきなラッシュ」兩種模式，各強化不同小役
+- 1000pt 達成で上位CZ「リコイル オブ リコリス」突入
+- 上位CZ 成功率約70%，成功後進入上位ラッシュ
+- 「レジェンダリーリコリス」是最強特化ゾーン，期待枚數約2400枚
+- 設定判別要素豐富：サミートロフィー、終了画面、プロローグエピソード等
+- 搭載楽曲：ALIVE、花の塔、タカラモノ、Radiant、Trigger
+
+**中心思想：**
+> 「日常與非日常的雙重生活」— スマスロ リコリス・リコイル 以「疑似ボーナス連打」為核心設計，對應原作中「喫茶リコリコでの日常」與「リコリスとしての戦い」的交替循環。通常ラッシュ（20G/50G）是「日常的任務」，上位ラッシュW是「真正的戦場」。「才能」系統對應千束和たきな各自的特長——千束強化チェリー（直覺行動），たきな強化スイカ（精密射撃）。1000pt累積後的上位CZ挑戰則是「決定命運的一戦」，成功與否決定能否進入真正的高回報狀態。純增8.4枚/G的高速出玉對應千束的「超人的反射神經」——一切都在瞬間決勝負。
+
+**套用至其他遊戲的可能性：**
+- 射擊遊戲的「雙人搭檔」系統 — 兩位角色各有特化能力
+- 手遊的「日常任務＋特殊任務」系統 — 日常累積資源後挑戰高難度
+- 動作遊戲的「連打系統」— 連續成功觸發更強的攻擊
+- 育成遊戲的「才能開發」系統 — 角色能力的多層次強化
+- 節奏遊戲的「咖啡廳經營」模式 — 日常與戰鬥的切換
+
+**Slot Game 轉用分析：**
+
+- **疑似ボーナス連打系統（Pseudo Bonus Chain）**
+  對應「リコリスラッシュ」的疑似ボーナス連打設計：Free Spin 中觸發ボーナス後獲得固定枚數（100/200/300枚等），ボーナス結束後有約75%機率繼續 Free Spin。這種「獲得獎金→繼續挑戰」的循環讓每次ボーナス都是新的起點，而非終點。純增8.4枚對應的高速派彩讓整體節奏非常爽快。
+
+  **舉例：** 觸發「リコリスラッシュ」進入 20G 的ボーナス高確狀態。第5G觸發「リコリスボーナス」——獲得 100 枚！ボーナス結束後「繼續判定...成功！」進入「リコリスラッシュ50」。第12G再次觸發「リコリスボーナスW」——獲得 200 枚！如此連打直到繼續判定失敗。每次ボーナス的瞬間派彩和「下一次還能繼續嗎？」的緊張感構成獨特魅力。
+
+- **雙層ラッシュ系統（Dual Rush Tier）**
+  對應「通常ラッシュ→上位ラッシュ」的層級設計：Free Spin 中累積 1000pt 後可挑戰「上位CZ」，成功率約70%。成功後進入「上位ラッシュ」——繼續率更高、ボーナス必定是高配版。這種「累積→挑戰→升級」的流程讓玩家在通常ラッシュ時就有「升級期待」。
+
+  **舉例：** 通常ラッシュ中持續累積 pt...800pt...900pt...「1000pt達成！」進入「リコイル オブ リコリス」（上位CZ）。10G的挑戰開始——第3G出現レア役！「成功期待度アップ！」...最終G——「上位ラッシュ突入！」畫面轉為金色，接下來的ボーナス全部是高配版，繼續率也提升。那種「升級成功！」的達成感正是本機的醍醐味。
+
+**Fish Game 轉用分析：**
+
+- **雙人切換系統（Dual Agent Switch）**
+  對應「千束」和「たきな」的雙主角設定：玩家可在兩位リコリス之間切換，各有不同的砲台特性。千束模式是「直覺射擊」——自動瞄準最近的魚，射速快但傷害略低；たきな模式是「精密射擊」——手動瞄準，射速慢但傷害高且可穿透。根據場上情況切換角色是制勝關鍵。
+
+  **舉例：** 場上同時出現大量快速小魚和緩慢移動的大魚。切換至「千束模式」——砲台自動追蹤小魚，快速清場。小魚清完後切換至「たきな模式」——瞄準大魚弱點，2發高傷害彈藥擊殺。切換時有1秒冷卻時間，如何在適當時機切換考驗玩家判斷。
+
+- **喫茶リコリコ經營系統（Café LycoReco Management）**
+  對應原作「喫茶リコリコ」的設定：遊戲中設置「咖啡廳區域」，擊殺特定魚類可獲得「咖啡豆」。累積咖啡豆可兌換各種 Buff——「千束特調」：30秒射速 ×1.5；「たきな特調」：30秒傷害 ×1.5；「くるみ特調」：30秒自動瞄準輔助。這種「收集→兌換」的系統增加遊玩深度。
+
+  **舉例：** 擊殺「咖啡魚」獲得5顆咖啡豆，累積至30顆後可在「喫茶リコリコ」兌換 Buff。選擇「千束特調」——接下來30秒射速提升50%，適合清理小魚潮。或選擇「くるみ特調」——啟動自動瞄準輔助，適合新手玩家。不同的選擇對應不同的遊玩風格。
+
+---
+
+### ③ スマスロ とある魔術の禁書目録2（藤商事）
+
+![スマスロ とある魔術の禁書目録2 筐体](pachislot/images/09_toaru_index2/cabinet.jpg)
+
+本機於8月報告已有詳細分析。導入近2個月仍維持 TOP3，「幻想變換」系統的獨特性持續吸引玩家。
+
+**本月更新：** 被リコリコ超越滑落至第三位，但稼動率依然維持高水準。約1/99的「幻想リプレイ」觸發後3G間的「幻想變換」系統依然是業界獨創，讓普通小役也能「升級」為高價值結果。6種層級分明的特化ゾーン（從五和+50G到自動書記+750G）提供明確的報酬階梯感。
+
+👉 [查看完整分析（2026年8月報告）](report_pachislot_202608.html#toaru_index2)
+
+**Slot Game 轉用分析：**
+
+👉 [查看 Slot Game 完整分析（2026年8月報告）](report_pachislot_202608.html#toaru_index2)
+
+**Fish Game 轉用分析：**
+
+👉 [查看 Fish Game 完整分析（2026年8月報告）](report_pachislot_202608.html#toaru_index2)
+
+---
+
+### ④ Lパチスロ 彼女、お借りします（SANKYO）
+
+![Lパチスロ 彼女、お借りします 筐体](pachislot/images/11_kanokari/cabinet.jpg)
+![Lパチスロ 彼女、お借りします ゲームフロー](pachislot/images/11_kanokari/game_flow.jpg)
+![Lパチスロ 彼女、お借りします 大当り詳細](pachislot/images/11_kanokari/hit_rate.jpg)
+
+**原作IP：** 漫畫/動畫「彼女、お借りします」（宮島禮吏 原作）。累計發行超過1350萬部的人氣戀愛喜劇，描繪大學生・木ノ下和也與「出租女友」水原千鶴的戀愛故事。
+
+**賣點與好玩之處：**
+- 純增約5.0枚/G，機械割 97.7%～114.9%（設定6時為本期最高水準）
+- 通常時是レア役和規定ゲーム數契機的CZ，成功後進入ボーナス
+- 「變換高確率」狀態下レア役會被強化
+- ボーナス後必定進入「1Gレンチャンス」（1G連抽選ゾーン）
+- 1Gレンチャンス中約40%機率獲得追加ボーナス
+- ボーナス連打で出玉を増やすゲーム性
+- 設定6的機械割114.9%是本期最高水準（與東京喰種並列）
+- 天井1000G+α，相對容易到達
+- 4位ヒロイン各有專屬演出：水原千鶴、更科瑠夏、桜沢墨、七海麻美
+- 設定判別：終了画面、シナリオ、ゾーン構造等多種要素
+
+**中心思想：**
+> 「出租的約會，真實的心動」— Lパチスロ 彼女、お借りします 以「1Gレンチャンス」為核心設計，對應原作中「每次約會（レンタル）都可能發展成真實戀情」的主題。ボーナス後必定進入的1Gレンチャンス是「約會後的告白時刻」——成功（約40%）則繼續下一次約會（ボーナス連打），失敗則暫時分離（通常時復歸）。「變換高確率」對應和也對千鶴的感情「越來越認真」——一旦進入狀態，原本普通的互動（小役）也會變得特別（強化）。4位ヒロイン的存在則是「後宮」系作品的醍醐味，讓玩家能選擇自己喜愛的角色進行遊玩。
+
+**套用至其他遊戲的可能性：**
+- 戀愛模擬遊戲的「約會連打」系統 — 成功約會後獲得追加約會機會
+- 手遊的「好感度累積」系統 — 累積後進入特殊劇情
+- 卡牌遊戲的「連鎖」機制 — 成功後觸發追加效果
+- 節奏遊戲的「安可」系統 — 成功通關後有機會挑戰隱藏曲
+- 抽卡遊戲的「連抽」機制 — 抽中後有機率觸發追加抽選
+
+**Slot Game 轉用分析：**
+
+- **1Gレンチャンス系統（1G Reroll Chance）**
+  對應「ボーナス後1Gレンチャンス」的核心機制：Free Spin 或 Bonus 結束時進入「1G 再抽選」，約40%機率直接獲得追加 Free Spin/Bonus。這種「結束時的逆轉機會」讓每次看似結束的瞬間都充滿期待。連續成功的話可以無限連打。
+
+  **舉例：** Bonus 結束，獲得 80x——「1Gレンチャンス！」畫面顯示千鶴伸出手，玩家按下按鈕...「成功！」追加 Bonus 開始！再次獲得 100x——「1Gレンチャンス！」...「成功！」又一次追加！如此連打5次，總獲得 500x。那種「本以為結束了但還能繼續」的驚喜感正是本機魅力。
+
+- **ヒロイン選擇系統（Heroine Selection）**
+  對應4位ヒロイン各有特色的設定：遊戲開始時選擇1位ヒロイン，各有不同的特化能力。「水原千鶴」：平衡型；「更科瑠夏」：高頻率低倍率；「桜沢墨」：低頻率高倍率；「七海麻美」：特殊演出多。選擇不同角色會影響遊玩體驗和報酬結構。
+
+  **舉例：** 遊戲開始選擇「更科瑠夏」——活潑的瑠夏擔任導航，Bonus 觸發率 ×1.2 但單次倍率略低。或選擇「桜沢墨」——害羞的墨擔任導航，Bonus 觸發率較低但單次倍率 ×1.3。喜歡穩定的玩家選千鶴，喜歡爆發的選墨，喜歡頻繁演出的選瑠夏。
+
+**Fish Game 轉用分析：**
+
+- **約會時間系統（Date Time Event）**
+  對應「出租女友」的約會概念：玩家可消費「レンタル幣」開始「約會時間」（30秒），期間內選擇的ヒロイン會出現在畫面上提供輔助效果。千鶴提供瞄準輔助、瑠夏提供射速 Buff、墨提供傷害 Buff、麻美提供暴擊率 Buff。約會時間結束後有機率進入「告白タイム」獲得額外獎勵。
+
+  **舉例：** 消費50枚レンタル幣開始「水原千鶴との約會」——千鶴出現在畫面右側，接下來30秒所有射擊自動追蹤最近的魚。約會時間結束——「告白タイム！」按下按鈕...「成功！」獲得500分額外獎勵＋下次約會免費！「告白」成功率約40%，對應1Gレンチャンス的設計。
+
+- **ヒロイン好感度系統（Heroine Affection Gauge）**
+  對應戀愛作品的「好感度」概念：持續使用同一位ヒロイン會累積「好感度 Gauge」，滿格時該ヒロイン的約會效果永久強化10%。4位ヒロイン各自獨立累積，鼓勵玩家專注培養喜愛的角色，或挑戰全員好感度MAX的成就。
+
+  **舉例：** 持續選擇「桜沢墨」進行約會，好感度 Gauge 逐漸累積...50%...80%...100%！「墨との絆MAX！」從此墨的約會時間傷害 Buff 從 ×1.3 永久提升至 ×1.4。繼續培養其他角色，挑戰「四人の彼女」成就——4位ヒロイン全員好感度MAX後獲得特殊稱號和獎勵。
+
+---
+
+## 4. 2026年10月以後的注目新台
+
+| 預定導入日 | 機種名 | 製造商 | 關注重點 |
+|-----------|--------|--------|----------|
+| 10/05 | マイジャグラーⅥ | 北電子 | ジャグラー系列最新作、ノーマルタイプ |
+| 10/05 | スマスロ 獣王 | サミー | 經典IP復活、機械割97.8%～114.3% |
+| 10/05 | スマスロパリピ孔明 | 山佐 | 話題動畫IP、ST型AT |
+| 10/05 | スマスロ モンスターハンターライズ：サンブレイク | アデリオン | 人氣遊戲IP |
+| 10/19 | Lウミンチュ | 岡崎産業 | ∀タイプ新機種 |
+| 11/02 | スロット Vivy -Fluorite Eye's Song- | 大都技研 | 話題動畫IP、差枚數管理型AT |
+| 11/02 | L ソードアート・オンライン オルタナティブ ガンゲイル・オンライン | 京楽 | SAO 外傳IP |
+
+> **業界動向**：10月5日是「新台大爆發日」，同時導入多款重量級機種。「マイジャグラーⅥ」作為ノーマルタイプ王者的最新作備受期待，有望影響勝率排名。「獣王」和「パリピ孔明」則是話題IP的パチスロ化。11月的「Vivy」和「SAO GGO」也值得關注。
+
+---
+
+## 5. 綜合總結：中心思想比較與其他遊戲轉用可能性
+
+| 機種 | 中心思想關鍵字 | 其他遊戲轉用度 | 轉用目標類型範例 |
+|------|---------------|---------------|-----------------|
+| L 東京喰種 | 覺醒的二重性＋穢れ累積 | ★★★★★ | RPG變身、累積爆發、長期留存 |
+| スマスロ リコリス・リコイル | 日常與非日常＋高速連打 | ★★★★★ | 雙人切換、疑似ボーナス連打、才能系統 |
+| スマスロ とある魔術の禁書目録2 | 幻想變換＋角色特化 | ★★★★★ | 狀態變換、角色差異化、連鎖系統 |
+| Lパチスロ 彼女、お借りします | 約會連打＋ヒロイン選擇 | ★★★★☆ | 1G連打、角色選擇、好感度系統 |
+
+**本月最具亮點的設計：** スマスロ リコリス・リコイル 的「疑似ボーナス連打＋才能系統」。純增約8.4枚/G的高速出玉讓每次ボーナス都能快速獲得報酬，而ボーナス後約75%的繼續率讓「連打」成為常態而非例外。「才能」系統（レベル0→1→2）讓對應小役的期待度逐步提升，玩家有「培育」的感覺。加上「千束ラッシュ/たきなラッシュ」的雙模式設計，讓同一台機器能提供不同的遊玩體驗。這種「高速＋連打＋培育＋選擇」的多層次設計值得學習。
+
+**市場趨勢觀察：**
+- **東京喰種王朝延續**：導入19個月仍穩居第一，創造スマスロ時代的空前紀錄。
+- **リコリコ旋風襲來**：導入僅3週就空降第二，證明「高純增＋話題IP」的市場破壞力。
+- **9月新台雙雄並立**：リコリコ和かのかり同日導入分居第二、第四，9月新台表現亮眼。
+- **とある系列穩定輸出**：禁書目録2 導入近2個月仍維持 TOP3，「幻想變換」系統的獨創性獲得認可。
+- **6月機種退位但長青**：SAO Ⅱ 和 戦国乙女5 被擠出 TOP4，但稼動率依然高，證明優質 IP 機種的持久力。
+- **ハナハナ系列勝率穩定**：技術介入型機種在勝率榜持續領先，對追求穩定收益的玩家有吸引力。
+
+**長期稼動力分析：** L 東京喰種 導入19個月仍維持人氣第一，這在スマスロ時代是空前絕後的紀錄。其成功要素包括：「覺醒＋穢れ」的累積爆發系統、適度的機械割、以及「有馬貴将ジャッジメント」的終極爆發力。リコリス・リコイル 的長期稼動力有待觀察，但純增8.4枚/G的高速出玉和話題 IP 的組合有潛力成為長青機種。彼女、お借りします 的114.9%高機械割對設定狙い玩家有吸引力，但一般遊玩時的表現有待觀察。
+
+---
+
+> 本報告根據 [DMMぱちタウン](https://p-town.dmm.com/machines) 公開資訊製作。
+> 各機種詳細規格與演出資訊請參閱各機種頁面。
+> Content was rephrased for compliance with licensing restrictions.
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+
+// Hash-based scroll: scroll to heading containing the hash text
+function scrollToHash() {
+  const hash = decodeURIComponent(window.location.hash.slice(1));
+  if (!hash) return;
+  const normalizedHash = hash.replace(/[\s\-]+/g, '');
+  const headings = content.querySelectorAll('h1,h2,h3');
+  for (const el of headings) {
+    const normalizedText = el.textContent.replace(/[\s\-]+/g, '');
+    if (normalizedText.includes(normalizedHash)) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.style.transition = 'background 0.3s';
+        el.style.background = '#fff3cd';
+        setTimeout(() => { el.style.background = ''; }, 2000);
+      }, 300);
+      return;
+    }
+  }
+}
+scrollToHash();
+window.addEventListener('hashchange', scrollToHash);
+</script>
+</body>
+</html>
