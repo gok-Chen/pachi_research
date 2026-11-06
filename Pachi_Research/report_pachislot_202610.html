@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柏青斯洛機種比較報告 (2026/10)</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; background: #f8f9fa; color: #2d3748; min-height: 100vh; scroll-behavior: smooth; }
+.toolbar { position: sticky; top: 0; z-index: 100; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.toolbar h1 { font-size: 16px; color: #e53e3e; white-space: nowrap; }
+.toolbar a { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; text-decoration: none; }
+.toolbar a:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.toolbar button { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.toolbar button:hover { background: #e2e8f0; border-color: #e53e3e; color: #e53e3e; }
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.toc { position: sticky; top: 70px; align-self: flex-start; width: 240px; min-width: 240px; max-height: calc(100vh - 80px); overflow-y: auto; padding: 20px 12px; border-right: 1px solid #e2e8f0; background: #fff; }
+.toc h3 { font-size: 13px; color: #e53e3e; margin-bottom: 12px; letter-spacing: 0.5px; }
+.toc a { display: block; padding: 5px 8px; margin: 2px 0; font-size: 12px; color: #4a5568; text-decoration: none; border-radius: 4px; line-height: 1.4; }
+.toc a:hover { background: #edf2f7; color: #e53e3e; }
+.toc a.toc-h1 { font-weight: 700; font-size: 13px; margin-top: 8px; }
+.toc a.toc-h2 { padding-left: 16px; }
+.toc a.toc-h3 { padding-left: 28px; font-size: 11px; color: #718096; }
+.content { flex: 1; padding: 32px 40px 80px; min-width: 0; }
+.content h1 { font-size: 28px; color: #1a202c; border-bottom: 2px solid #e53e3e; padding-bottom: 12px; margin: 32px 0 20px; }
+.content h2 { font-size: 22px; color: #e53e3e; margin: 28px 0 16px; padding-left: 12px; border-left: 4px solid #e53e3e; }
+.content h3 { font-size: 18px; color: #2d3748; margin: 20px 0 12px; }
+.content h4, .content h5 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+.content p { line-height: 1.8; margin: 10px 0; color: #4a5568; }
+.content ul, .content ol { padding-left: 24px; margin: 10px 0; }
+.content li { line-height: 1.8; margin: 4px 0; }
+.content blockquote { border-left: 4px solid #e53e3e; background: #fff5f5; padding: 12px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; color: #4a5568; }
+.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.content th { background: #edf2f7; color: #e53e3e; padding: 10px 14px; text-align: left; border: 1px solid #e2e8f0; white-space: nowrap; }
+.content td { padding: 9px 14px; border: 1px solid #e2e8f0; vertical-align: top; }
+.content tr:nth-child(even) { background: #f7fafc; }
+.content tr:hover { background: #edf2f7; }
+.content code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e53e3e; }
+.content pre { background: #1a202c; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.content pre code { background: none; padding: 0; color: #e2e8f0; }
+.content hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+.content a { color: #e53e3e; text-decoration: none; }
+.content a:hover { text-decoration: underline; }
+.content strong { color: #1a202c; }
+.content img { max-width: 100%; height: auto; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: block; cursor: zoom-in; }
+.content img:hover { transform: scale(1.01); }
+.img-error { background: #fed7d7; color: #c53030; padding: 8px 12px; border-radius: 4px; font-size: 12px; margin: 8px 0; display: inline-block; }
+.lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+.btn-top { position: fixed; bottom: 24px; right: 24px; background: #e53e3e; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; opacity: 0; transition: opacity 0.3s; box-shadow: 0 2px 8px rgba(229,62,62,0.3); z-index: 50; }
+.btn-top.visible { opacity: 1; }
+.btn-top:hover { background: #c53030; }
+/* Slot/Fish analysis styling */
+.slot-analysis { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.fish-analysis { background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+.example-block { border: 1px dashed #cbd5e0; background: #f7fafc; padding: 12px 16px; margin: 8px 0; border-radius: 6px; font-size: 13px; line-height: 1.7; }
+@media (max-width: 900px) { .toc { display: none !important; } .content { padding: 16px; } .toolbar { padding: 10px 16px; } .content table { font-size: 12px; } .content th, .content td { padding: 6px 8px; } }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>&#x1F4C4; 柏青斯洛機種比較報告 (2026/10)</h1>
+  <a href="../index.html">&#x2190; 報告一覽</a>
+  <button id="btn-toc">&#x1F4D1; 目次</button>
+</div>
+<div class="layout">
+  <nav class="toc active" id="toc"></nav>
+  <div class="content" id="content"></div>
+</div>
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="enlarged"></div>
+<button class="btn-top" id="btn-top" title="回到頂部">&#x2191;</button>
+<script type="text/markdown" id="report-md">
+# 柏青斯洛機種比較報告（2026年10月）
+
+> 報告期間：2026/10/01–10/31；整理與補查日期：2026/11/05（台灣日期）。
+> 月間實績使用 PAPIMO 的「2026-10／月間／全類型／未排除新台」榜單；DMM 人氣則保留 10/15 月中快照。11/05 的人氣榜僅作期後追蹤，不回填成 10 月名次。
+> 稼動是平均打入量，並非派彩或淨利；勝率是平台依正負差玉／差枚台數試算，並非玩家個人的獲利機率。榜單未列樣本台數，不能推估全日本市占。
+> 機種規格、作者設計解讀與 Slot／Fish 提案分開呈現；提案示範數值均非原機規格。
+
+## 1. 10 月月間實績與關注度
+
+### 10 月月間稼動 TOP10（PAPIMO）
+
+| 排名 | 機種 | 平均打入量（枚） | 研究重點 |
+|---|---|---:|---|
+| 1 | L魔法少女にあこがれて | 19,015 | 10/19 新台，多路入口與上位回補 |
+| 2 | マイジャグラーⅥ | 18,005 | 普通型也有高稼動，補入比較 |
+| 3 | スマスロ 獣王 | 17,544 | 現輪倒數與後續庫存 |
+| 4 | スロット ソードアート・オンラインⅡ | 14,462 | 勿與 11 月 GGO 混用 |
+| 5 | L ToLOVEるダークネス | 14,074 | 後續比較對象 |
+| 6 | スマスロ モンスターハンターライズ：サンブレイク | 13,747 | 討伐進度與伙伴支援 |
+| 7 | パチスロ 革命機ヴァルヴレイヴ | 13,398 | 勿與續作混用 |
+| 8 | L青春ブタ野郎はバニーガール先輩の夢を見ない | 11,988 | 後續比較對象 |
+| 9 | L戦国乙女5 業火を穿つ宿焔の双刃 | 11,903 | 後續比較對象 |
+| 10 | マイジャグラーⅤ | 10,433 | 舊代普通型比較基準 |
+
+### 10 月月間勝率 TOP5（PAPIMO）
+
+| 排名 | 機種 | 平台勝率 |
+|---|---|---:|
+| 1 | A-SLOT+ ディスクアップ ULTRAREMIX | 42.1% |
+| 2 | マイジャグラーⅥ | 41.5% |
+| 3 | スマスロ タコスロ | 38.2% |
+| 4 | パチスロディスクアップ2 | 37.5% |
+| 5 | スマスロ サンダーV | 37.5% |
+
+資料來源：[PAPIMO 月間稼動](https://report.papimo.jp/ps/kado.php?term=2)、[PAPIMO 月間勝率](https://report.papimo.jp/ps/win_rate.php?term=2)、[統計定義與限制](https://report.papimo.jp/common/comment.php)。11/05 讀取時月份欄為 2026-10。連結為動態頁，日後開啟可能改顯示其他月份，請重新選擇 2026-10。
+
+新台在月內的可營業日數不同，平台平均稼動也受開放時間影響。此處不把稼動乘上月天數、不換算營收，也不把不同平台的勝率串成趨勢線。
+
+### 10/15 月中關注快照（歷史資料）
+
+#### 10/15 DMM 人氣 TOP4（非月間實績）
+
+| 排名 | 機種名 | 製造商 | 導入日 | DMM ID | 本期處理 |
+|------|--------|--------|--------|--------|----------|
+| 1 | スマスロ モンスターハンターライズ：サンブレイク | アデリオン | 2026/10/05 | 5095 | 新增完整分析 |
+| 2 | スマスロ 獣王 | サミー | 2026/10/05 | 5061 | 新增完整分析 |
+| 3 | スマスロ リコリス・リコイル | サミー | 2026/09/07 | 5033 | 重複，連回9月 |
+| 4 | L 東京喰種 | スパイキー | 2025/02/03 | 4742 | 重複，連回4月 |
+
+來源：[DMM パチスロ人氣榜](https://p-town.dmm.com/machines/popularity/slot)。同次榜單第5為スマスロパリピ孔明；它不替換本期 TOP4 的分析對象。
+
+#### 10/15 DMM App 勝率快照（保留舊紀錄）
+
+| 排名 | 機種名 | 勝率 |
+|------|--------|------|
+| 1 | ドラゴンハナハナ～閃光～ | 42% |
+| 2 | Lパチスロうみねこのなく頃に2 | 40% |
+| 3 | A-SLOT+ ディスクアップ ULTRAREMIX | 38% |
+| 4 | スマスロ北斗の拳 | 37% |
+| 5 | ニューキングハナハナV-30 | 36% |
+| 6 | スマスロバジリスク～甲賀忍法帖～絆2 天膳 BLACK EDITION | 36% |
+
+來源：[DMM 勝率榜](https://p-town.dmm.com/rankings/machines/slot?prefecture=)。每30分鐘更新，資料來自 App 使用者登錄，這不是10月全月勝率。列表未提供樣本數與期間；機械割與 App 勝率是不同指標，不能互相替代。
+
+### 月中觀察與月底補充
+
+兩台10/05新台佔據本次前二，9月的リコリス與長期在榜的東京喰種仍在前四。從設計角度，本期可以比較「討伐累積」、「儲存下一輪」及「短獎勵循環」三種期待來源。這是對玩法結構的解讀，不據此宣稱某機種已經取得長期市場成功。
+
+## 2. 月中四台主要機種規格比較（月底新增機種另列）
+
+| 項目 | モンハン サンブレイク | 獣王 | リコリス・リコイル | 東京喰種 |
+|------|---------------------|------|------------------|----------|
+| 機械割 | 97.5%～112.4% | 97.8%～114.3% | 97.9%～114.6% | 97.5%～114.9% |
+| 主循環 | AT中盟勇クエスト討伐 | SCナビ回數＋ストック | ラッシュ→ボーナス→再挑戰 | 差枚數管理AT→對決→上乘 |
+| 純增 | 通常AT約2.7枚/G；上位約6.6枚/G | SC約8.0枚/G | ボーナス約8.4枚/G | AT約4.0枚/G |
+| 初始／管理單位 | 通常AT40G+α；盟勇クエスト分段挑戰 | ベルナビ10／20／30回或EX | ラッシュ中抽選ボーナス | 差枚數管理 |
+| 升級或延續目標 | 討伐累積、上位CZ與上位AT | 消化中取得SCストック | 點數MAX→上位CZ→上位ラッシュ | BITES與有馬貴将ジャッジメント |
+
+規格來源：[モンハン](https://p-town.dmm.com/machines/5095)、[獣王](https://p-town.dmm.com/machines/5061)、[リコリス](https://p-town.dmm.com/machines/5033)、[東京喰種](https://p-town.dmm.com/machines/4742)。AT 是依指示操作取得獎勵的區間，CZ 是進入獎勵區的挑戰；「ナビ」是操作提示，「ストック」是已儲存的後續區間。純增的計算區間不同，例如リコリス的8.4是ボーナス中，不代表整個通常流程都以相同速度給獎。
+
+
+原月中四台的細部分析沿用10/15紀錄；11/05重新查閱Re:ゼロ、電音部、モンハン與獣王的基本規格表，未逐項重新核實所有進階解析。月底新增機種規格如下。
+
+| 新增機種 | 機械割／出玉率 | 主要節奏 | 機率口徑 |
+|---|---|---|---|
+| 魔法少女にあこがれて | 97.6%～112.0% | 通常AT約2.5枚/G，上位約5.0枚/G | 1/249.6是Bonus，不是AT初當 |
+| マイジャグラーⅥ | 97.0%～109.4% | 普通型，BB／RB | 原廠合成1/163.8～1/114.6 |
+
+來源：[DMM 魔法少女](https://p-town.dmm.com/machines/5113)、[北電子原廠](https://www.kitadenshi.co.jp/slot/myjuggler6/)，11/05補查。
+
+## 3. 各機種賣點・中心思想・遊戲設計分析
+
+### ① スマスロ モンスターハンターライズ：サンブレイク（アデリオン）
+
+![モンハン サンブレイク 筐体](pachislot/images/12_monster_hunter_sunbreak/cabinet.jpg)
+![モンハン サンブレイク 遊戲流程](pachislot/images/12_monster_hunter_sunbreak/game_flow.jpg)
+![モンハン サンブレイク ボーナス出現率](pachislot/images/12_monster_hunter_sunbreak/hit_rate.jpg)
+
+**賣點與好玩之處：**
+通常流程由CZ挑戰進入「サンブレイクラッシュ」，通常AT初始40G+α、純增約2.7枚/G。AT中透過盟勇クエスト討伐怪物；盟勇クエスト的ST部分通常5G（特定盟勇為6G），之後接3G討伐與1G決著部分。通常AT從20頭討伐起抽選上位CZ；上位AT「サンブレイクラッシュG」純增約6.6枚/G。不同階段的回數與目標各有功能，不等於「打滿20頭必定進上位」。來源：[DMM モンハン](https://p-town.dmm.com/machines/5095)。
+
+**中心思想：**
+設計解讀：「小勝利累積成下一階段的目標」。單次討伐有短期回饋，討伐數又形成中期進度，上位狀態提供遠期目標。盟勇把條件差異變成具體角色，玩家看到的是「隊伍幫了什麼忙」，而非只有隱藏的機率改變。
+
+**套用至其他遊戲的可能性：**
+RPG 可把短任務的完成數接到進階副本；動作遊戲可用伙伴影響特定戰鬥階段；卡牌遊戲則可讓連續勝場解鎖一場獨立升級挑戰。完成數、解鎖與成功應分開顯示。
+
+**Slot Game 轉用分析：**
+
+- **討伐進度接升級挑戰**
+  設計提案：Bonus 形式為10轉 Free Spin。每次出現完整怪物圖案組合算1次討伐，本輪最多計3次；集滿3次後立即進行1次升級判定。成功則剩餘轉數的中獎×2，失敗維持原倍率；不追加回數，同輪不再挑戰。轉數歸零即結束並清空討伐計數。
+
+  **舉例：** 玩家第2、5、8轉各完成1次討伐，第8轉後挑戰成功，最後2轉中獎×2。若升級失敗，最後2轉仍以原倍率結算；若10轉內只討伐2次，直接結束，不補發第3次機會。升級只到本輪結束，不延續到下一輪 Bonus。
+
+- **伙伴提供一次明確支援**
+  設計提案：8轉 Free Spin 中，進入時可選1位伙伴。防守伙伴提供「第一次空轉後補1轉」，進攻伙伴提供「第一次中獎×2」；每輪只生效1次。防守方案最多9轉，進攻方案維持8轉，未觸發的支援在結束時失效。
+
+  **舉例：** 玩家選防守伙伴，第3轉沒中獎，伙伴補回1轉，支援圖示變灰，之後空轉不再補。9轉用完就結算。若選進攻伙伴但8轉皆未中獎，支援沒有發動，仍在第8轉結束；不能把未使用效果帶到下個 Bonus。
+
+**機率設計要點套用：**
+
+以下是轉用後的示範規格與機率，不是原機比例，也尚未校準成正式配獎。
+
+**討伐進度接升級挑戰**
+
+規格與機率：沿用10轉、集3次討伐。每轉20%出現一次完整討伐組合；第3次完成後，以50%判定升級，成功則之後剩餘轉數的中獎×2，失敗維持原倍率。每輪只挑戰一次。
+
+**例子：** 第2、5、8轉完成討伐，第8轉後升級成功；最後2轉中獎才×2，第8轉原獎不追溯加倍。
+
+**伙伴提供一次明確支援**
+
+規格與機率：示範8轉中每轉25%得10倍、75%沒獎。防守伙伴在第一次沒獎後補1轉；進攻伙伴將第一次10倍改成20倍。都只用一次。
+
+**例子：** 選進攻伙伴，第3轉首次中獎，拿20倍；之後再次中獎仍是10倍。兩伙伴的回報是否相近，需另校準。
+
+**Fish Game 轉用分析：**
+
+- **三次小討伐接一場 Boss**
+  設計提案：活動總長60秒、給80發免費專用彈。擊殺3隻任務魚後出現Boss，剩餘時間與彈藥不補充。每隻任務魚20活動分，Boss另給200分；Boss被擊殺、時間到或彈用完任一成立就結束。
+
+  **舉例：** 玩家花35秒、50發完成3隻任務魚，已有60分，剩25秒與30發打Boss。若失敗就帶著60分退出；若擊殺則總計260分並收回剩餘專用彈。60秒只打掉2隻就拿40分退出，不會自動延長讓玩家完成第三隻。
+
+- **伙伴效果綁定單場任務**
+  設計提案：30秒、40發免費彈的單場討伐，可選穿透伙伴或破盾伙伴。前者每10發有1發可穿過前排小魚；後者第10發若命中護盾額外造成1次破盾效果。支援不補彈、不延時，Boss擊殺或時間／彈藥用盡便結束。
+
+  **舉例：** 玩家選破盾伙伴，第10發命中護盾，護盾被削弱；若這發打空，該次支援便用掉，不保證破盾。之後仍靠剩餘30發與時間完成討伐，失敗沒有Boss擊殺獎。下一場必須重新選伙伴，效果不永久保留。
+
+**機率設計要點套用：**
+
+以下是轉用後的示範規格與機率，不是原機比例，也尚未校準成正式配獎。
+
+**三次小討伐接一場 Boss**
+
+規格與機率：沿用60秒80發；示範每次有效命中任務魚，20%擊殺一隻、得20分；完成3隻後才出Boss，對Boss每次有效命中5%擊殺、得200分。不補時間與彈。
+
+**例子：** 完成3隻已有60分，再擊殺Boss就共260分；若時間到仍未擊殺Boss，保留60分。
+
+**伙伴效果綁定單場任務**
+
+規格與機率：沿用30秒40發。示範各發80%形成有效命中；穿透伙伴每第10發可越過前排，命中仍照80%判定；破盾伙伴的第10發若有效命中護盾，必定額外觸發一次破盾效果。
+
+**例子：** 選破盾伙伴，第10發抽到80%的有效命中且打到護盾，就發動支援；若打空就用掉這次機會。
+
+---
+
+### ② スマスロ 獣王（サミー）
+
+![獣王 筐体](pachislot/images/13_juou/cabinet.jpg)
+![獣王 遊戲流程](pachislot/images/13_juou/game_flow.jpg)
+![獣王 ボーナス出現率](pachislot/images/13_juou/hit_rate.jpg)
+
+**賣點與好玩之處：**
+「サバンナチャンス（SC）」純增約8.0枚/G，依ベルナビ回數管理，基本為10／20／30回或EX。SC也採ストック管理，持有ストック就能經潛伏區延續；SC後潛伏區最多29G。SC中的ボーナス可取得後續SC，特殊的ボーナス高確期間還會暫停SCナビ回數扣減。來源：[DMM 獣王](https://p-town.dmm.com/machines/5061)。不能把10次ナビ直接寫成10次普通轉動，也不能把高確期待度當成保證中獎。
+
+**中心思想：**
+設計解讀：「把現在這輪與已存好的下一輪同時放在玩家眼前」。剩餘ナビ形成當下的倒數，ストック則形成未來還能再玩的期待；特定區間暫停扣減，讓玩家感覺暫時受到保護。
+
+**套用至其他遊戲的可能性：**
+Roguelike 可把額外房間獎勵做成任務券；卡牌可用儲存回合進入下一場；動作遊戲可在短暫強化時凍結主計時器。必須區分「已確保的後續次數」與「僅提高下一次成功率」。
+
+**Slot Game 轉用分析：**
+
+- **可看見的下一輪券**
+  設計提案：Bonus 形式為每輪5轉 Free Spin，進入時給1張輪次券；開始每輪扣1張。Free Spin中的特殊圖案可加1張，但整個Bonus最多追加2張，最多共3輪15轉。每完成一輪只算Bonus內的一個子輪次，不重算成另一個Bonus。
+
+  **舉例：** 玩家第一輪第2轉取得1張券，本輪剩3轉不變，畫面另顯示「下一輪1張」。5轉結束後消耗該券，再玩5轉；第二輪沒有拿券，結束即結算全部獎金。若第一輪沒拿券，5轉就退出；上限用完後不再發券，券也不能帶到下一次Bonus。
+
+- **主回數暫停的小挑戰**
+  設計提案：10轉 Free Spin 中最多觸發1次額外小挑戰，挑戰固定3轉、不扣主回數。3轉內成功給10倍投注，沒有成功就給0；無論成敗都回到原本剩餘回數。因此總轉動數最多13轉，小挑戰不能再觸發自己。
+
+  **舉例：** 主回合剩4轉時進入小挑戰，畫面顯示「主回合暫停／額外3轉」。3轉都失敗後仍回到主回合剩4轉；成功也是回到剩4轉，只多了10倍獎金。主回數用完後整輪結束，暫停效果不保留。
+
+**機率設計要點套用：**
+
+以下是轉用後的示範規格與機率，不是原機比例，也尚未校準成正式配獎。
+
+**可看見的下一輪券**
+
+規格與機率：沿用每輪5轉，進入先有1張券。每轉5%得1張額外券，全Bonus最多追加2張；拿券不立刻加獎，只保證下一輪5轉。追加用完後不再發券。
+
+**例子：** 第一輪第2轉拿1張券，本輪剩餘轉數不變；本輪結束後消耗券，再玩5轉。
+
+**主回數暫停的小挑戰**
+
+規格與機率：沿用10轉；主回合每轉10%開小挑戰，整輪最多一次。進入時以50%決定本次成功，固定用3轉揭曉；成功共給10倍、失敗0倍，均不扣主回數。
+
+**例子：** 主回合剩4轉時開小挑戰，3轉後成功拿10倍，再回主回合剩4轉；不重抽第二場小挑戰。
+
+**Fish Game 轉用分析：**
+
+- **一波結算再使用下一波券**
+  設計提案：活動進入時給1張波次券；每波消耗1張並提供20秒、30發免費專用彈。指定魚有機會給下一波券，整場最多追加2張、最多3波。每波時間到或彈用完就結算；無券則退出，有券才開下一波，前波剩彈不累加。
+
+  **舉例：** 第一波拿到1張券，20秒到先結算本波已擊殺的獎勵，再扣券開第二波、重新給30發。第二波沒拿券就退出；沒擊殺指定魚並不沒收已得獎勵。最多第三波結束必定退出，所有券清空，不能無限連波。
+
+- **凍結主計時的支線**
+  設計提案：主活動30秒、50發免費彈，僅可進1次支線。支線固定5秒、另給10發免費彈，主時間與主彈暫停；支線擊殺目標給100活動分。5秒到或支線10發用完便回主場，未用支線彈收回；主場擊殺總目標或時間／主彈用盡即退出。
+
+  **舉例：** 主場剩12秒、20發時開支線，5秒內沒打倒目標就得0支線分，回主場仍是12秒、20發。若支線成功則多100分，但主場資源不增加；主場最後失敗也保留100分。支線不能再開一次，整場結束後支援狀態歸零。
+
+**機率設計要點套用：**
+
+以下是轉用後的示範規格與機率，不是原機比例，也尚未校準成正式配獎。
+
+**一波結算再使用下一波券**
+
+規格與機率：沿用每波20秒30發、先有1張波次券。示範每次擊殺指定魚以20%給下一波券；全場最多追加2張。每張券只開一波，不直接給分。
+
+**例子：** 第一波擊殺指定魚並拿券，波次結束後開第二波、重新給30發；最多第三波結束必定退出。
+
+**凍結主計時的支線**
+
+規格與機率：沿用主場30秒50發；示範每次擊殺指定魚，10%開支線，全場最多一次。支線5秒10發，每次有效命中目標10%擊殺；成功只給一次100分。
+
+**例子：** 主場剩12秒20發時進支線；支線擊殺拿100分，5秒到後回主場仍是12秒20發。
+
+---
+
+### ③ スマスロ リコリス・リコイル（サミー）
+
+![リコリス・リコイル 筐体](pachislot/images/10_lycoris_recoil/cabinet.jpg)
+
+本次第3，9月表列第2。核心是CZ→ラッシュ→ボーナス，ボーナス累積點數到MAX後取得上位CZ權利，成功才進上位ラッシュ；「取得挑戰權」不代表已經升級。本次確認機械割97.9%～114.6%，ボーナス純增約8.4枚/G。來源：[DMM リコリス](https://p-town.dmm.com/machines/5033)。
+
+👉 [查看完整分析（2026年9月報告）](report_pachislot_202609.html#スマスロリコリス・リコイル)
+
+歷月 Slot/Fish 提案見上述機種段落。設計上可繼續研究「短輪獎勵後還有下一次」與「累積點數換挑戰權」，但舊提案中的示範延續率不是本期重新核實的機種規格。
+
+---
+
+### ④ L 東京喰種（スパイキー）
+
+![L 東京喰種 筐体](pachislot/images/04_tokyo_ghoul/cabinet.jpg)
+
+本次第4，9月表列第1；單一快照的名次變化不能直接解釋為稼動大幅下滑。原機為純增約4.0枚/G的差枚數管理AT，透過喰種對決進入BITES上乘區，並有有馬貴将ジャッジメント。來源：[DMM 東京喰種](https://p-town.dmm.com/machines/4742)。
+
+👉 [查看完整分析（2026年4月報告）](report_pachislot_202604.html#L東京喰種)
+
+歷月 Slot/Fish 提案見上述機種段落。本期保留「累積後觸發爆發」的設計研究方向，不以在榜時間證明特定機制必然改善留存。
+
+### ⑤ 月底補入：L魔法少女にあこがれて（ニューギン）
+
+![魔法少女にあこがれて 機台](pachislot/images/14_mahoako/cabinet.webp)
+![魔法少女にあこがれて 遊戲流程](pachislot/images/14_mahoako/game_flow.jpg)
+![魔法少女にあこがれて ボーナス出現率](pachislot/images/14_mahoako/hit_rate.jpg)
+
+**原機規格與賣點：** 10/19導入，機械割97.6%～112.0%。通常經CZ爭取AT，亦有全狀態共通1/249.6的ボーナス入口；這是Bonus出現率，並非AT初當率。通常AT純增約2.5枚/G、初始G數由特化區決定；上位AT約5.0枚/G，上位結束後另有期待度約60%的引回區。來源：[DMM 機種頁](https://p-town.dmm.com/machines/5113)，11/05補查，不能稱10/31封存規格。
+
+**中心思想（設計解讀）：** 用多條入口讓等待有不同事件，再把上位結束接成一次回補期待。月間稼動第1與11/05關注榜第9是不同指標，不能據此認定退燒，也不能把高稼動等同高滿意度。
+
+**套用至其他遊戲的可能性：** 任務進度與獨立事件都可解鎖同一關卡；UI應顯示每條入口的進度是否共享，以及進入後何時清空。
+
+**Slot Game 轉用分析：**
+
+- **雙入口、同一Bonus**：提案為6轉Free Spin，普通盤面可由3個入口圖案或本局獨立事件觸發。同一局兩者都成立時仍只給一輪，不重複派發。6轉用完即結算，入口進度不跨Bonus。
+
+  **舉例：** 玩家同局集滿入口又抽中事件，畫面顯示「取得6轉」，不是12轉；未達任一入口則按普通盤面結算。兩入口的聯合機率須另行配平。
+
+- **上位後僅一次回補**：提案上位8轉結束後，做唯一一次示範40%回補；成功給4轉普通Bonus，失敗結算。回補4轉不能再升級或觸發回補，全輪最多12轉。
+
+  **舉例：** 上位已得50倍，回補失敗仍保留50倍；成功後4轉再得10倍則結算60倍。原機的約60%不直接搬入此提案。
+
+**機率設計要點套用：**
+
+以下是轉用後的示範規格與機率，不是原機比例，也尚未校準成正式配獎。
+
+**雙入口、同一Bonus**
+
+規格與機率：示範每轉5%出現3個入口圖案；另外獨立以2%觸發事件入口。任一成立就給同一輪6轉，兩者同時成立也只給6轉。
+
+**例子：** 本轉圖案入口與事件入口都中了，畫面仍只顯示「取得6轉」，不變12轉。
+
+**上位後僅一次回補**
+
+規格與機率：沿用上位8轉結束後，40%追加4轉普通Bonus、60%直接結算；追加4轉不能再開回補。原機上位後引回的概念，轉成這一次明確判定。
+
+**例子：** 上位已拿50倍，回補成功再玩4轉、多拿10倍，最後共60倍；回補失敗就結算50倍。
+
+**Fish Game 轉用分析：**
+
+- **兩條路徑共用一次Boss資格**：60秒活動、80發免費彈，擊殺3隻任務魚或取得1枚事件徽章均可召喚Boss；同場最多召喚一次，不補時間與彈藥。Boss擊殺給200活動分，未擊殺則沒有Boss分。
+
+  **舉例：** 第3隻任務魚同時掉徽章，只出1隻Boss；剩20秒與15發延續挑戰，失敗就帶著先前已得活動分退出，資格清空。
+
+- **一次救援波**：20秒、30發免費彈的強化波結束後做唯一一次回補判定，成功另開10秒、10發普通波，失敗退出。普通波不能再回補，每波只結算實際擊殺獎勵。
+
+  **舉例：** 強化波拿200分，回補波沒擊殺仍以200分離場；剩餘彈藥不跨波累積，整場最多30秒、40發。
+
+**機率設計要點套用：**
+
+以下是轉用後的示範規格與機率，不是原機比例，也尚未校準成正式配獎。
+
+**兩條路徑共用一次Boss資格**
+
+規格與機率：沿用60秒80發；每次有效命中任務魚20%擊殺，集3隻出Boss。每次任務魚擊殺另有10%掉徽章，先拿到徽章也能出Boss；同場只出一次。
+
+**例子：** 第一隻魚就掉徽章，立即出Boss；之後完成第3隻任務魚，也不再召喚第二隻Boss。
+
+**一次救援波**
+
+規格與機率：沿用強化波20秒30發；結束後示範30%開普通救援波、70%退出。救援波10秒10發，每次有效命中活動魚10%捕獲，普通波不再開救援。
+
+**例子：** 強化波已得200分，抽到30%回補；救援波沒捕獲任何魚，最後仍拿200分。
+
+### ⑥ 月底補入：マイジャグラーⅥ（北電子）
+
+**原機規格與賣點：** PAPIMO列為普通型，10/05導入；月間稼動第2、平台勝率第2。原廠列出設定1～6的出玉率97.0%～109.4%，BB為1/273.1～1/229.1，RB為1/409.6～1/229.1；原廠合成確率表為1/163.8～1/114.6，不以自行四捨五入值替代。原廠註明數字是工場資料算出的預測值。來源：[北電子產品頁](https://www.kitadenshi.co.jp/slot/myjuggler6/)。
+
+**中心思想（設計解讀）：** 本期不能只研究多層上位AT；普通型同樣進入高稼動與高勝率榜，值得把「基本結果是否清楚、操作與告知是否俐落」納入原型比較。此為研究假設，榜單本身無法證明告知設計造成稼動。
+
+**套用至其他遊戲的可能性：** 簡單任務可使用單一明確完成訊號，將操作回饋與結果揭曉保持一致；不必每次都增加額外升級階段。
+
+**Slot Game 轉用分析：**
+
+- **單層結果告知**：提案普通轉動一次揭曉0／5／20倍，成功時亮燈並顯示金額，無Free Spin、無後續隱藏關卡。每轉結束即完成結算，不累積未告知的獎勵。
+
+  **舉例：** 本轉5倍先明示金額再播短音效；下一轉未中顯示0，前轉獎金保留。燈效只反映已決定的結果，不替下一轉預告。
+
+- **同結果的兩種播報**：提案可選立即或2秒後告知，僅改表現時間；中獎率與派彩表共用，無額外抽選，按跳過立刻揭曉。
+
+  **舉例：** 20倍結果在兩模式均為20倍，動畫延遲不追加倍數；未中獎也必須在2秒內清楚結束。
+
+**機率設計要點套用：**
+
+以下是轉用後的示範規格與機率，不是原機比例，也尚未校準成正式配獎。
+
+**單層結果告知**
+
+規格與機率：每轉只選一個結果：88%沒獎、10%得5倍、2%得20倍，立即結算，不接免費轉或升級。這是把普通型「基本中獎頻率＋大小獎分配」套進Slot。
+
+**例子：** 抽到10%分支就拿5倍；下一轉若抽到88%沒獎，就直接顯示0，不另開隱藏關卡。
+
+**同結果的兩種播報**
+
+規格與機率：立即／2秒後告知都共用88%沒獎、10%得5倍、2%得20倍。先抽結果，再選播報方式，播報不再抽機率。
+
+**例子：** 本轉已抽到20倍，等2秒或按跳過都拿20倍；不因等待再送一次中獎機會。
+
+**Fish Game 轉用分析：**
+
+- **命中、擊殺與得分分開**：30秒、40發免費彈活動中，命中只顯示命中提示，擊殺才亮得分燈並給固定100活動分；未擊殺0分，時間或彈量用盡即結算。
+
+  **舉例：** 命中5發但未擊殺仍不亮得分燈；最後擊殺1隻則拿100分，避免把每發命中演成已獲獎。
+
+- **簡潔告知模式**：同一活動可關閉長播報，只保留擊殺金額、音效與總分；不影響彈耗、命中或擊殺規則，活動結束清空專用彈。
+
+  **舉例：** 已擊殺兩隻就顯示200分，切換播報模式不重算或另送分。未完成目標也不把提示燈當成完成獎勵。
+
+**機率設計要點套用：**
+
+以下是轉用後的示範規格與機率，不是原機比例，也尚未校準成正式配獎。
+
+**命中、擊殺與得分分開**
+
+規格與機率：沿用30秒40發；示範每發80%有效命中，命中後再以10%判定擊殺；擊殺固定100分。命中但未擊殺只給命中提示、不給分。
+
+**例子：** 連續命中5發但都未擊殺，仍是0分；第6發命中且擊殺，才亮得分燈並加100分。
+
+**簡潔告知模式**
+
+規格與機率：簡潔／完整播報共用每發80%有效命中、命中後10%擊殺、每隻100分。播報不占用可射擊時間，也不額外抽分數。
+
+**例子：** 同樣擊殺兩隻，兩模式都拿200分；簡潔模式只省略長播報，不提高擊殺率。
+
+## 4. 月中追蹤清單與期後更新
+
+以下表格保留10/15查詢時的預定資訊。10/19列項在本報告中屬月內新台；11/02已早於本次整理日，不再統稱未來新台。已實際補查的EVA／魔法少女詳見上節，其餘不以舊預定表冒稱已驗證上市。
+
+
+| 預定導入日 | 機種 | 製造商 | 後續研究問題 |
+|------------|------|--------|--------------|
+| 2026/10/19 | L魔法少女にあこがれて | ニューギン | 原作題材如何形成獎勵循環？ |
+| 2026/10/19 | Lウミンチュ | 岡崎産業 | 與本期AT機的回饋節奏差異？ |
+| 2026/11/02 | L ソードアート・オンライン オルタナティブ ガンゲイル・オンライン | 京楽 | 與既有SAO系列如何區分玩法？ |
+| 2026/11/02 | スマスロ ラグナドール | ミズホ | 育成題材可如何表達狀態變化？ |
+| 2026/11/02 | スロット Vivy -Fluorite Eye’s Song- | 大都技研 | 音樂與章節推進如何結合？ |
+| 2026/11/16 | スマート沖スロ ハイハイシオサイRe | パイオニア | 沖スロ如何處理簡明回饋與期待？ |
+
+來源：[DMM 新台日曆](https://p-town.dmm.com/machines/new_calendar)，本次讀取其動態列表。題目是待研究方向；尚未列出的數值不自行補齊，預定日期也可能變更。
+
+### 11/05 期後關注追蹤（不列入10月實績）
+
+11/05 DMM當下前四依序為リコリス、東京喰種、モンハンサンブレイク、獣王。這只能反映補查當時的關注度，不能替換10/15快照或作為10月全月排名。
+
+來源：[DMM 當下人氣榜](https://p-town.dmm.com/machines/popularity/slot)，本次以瀏覽器讀取；一般網頁擷取器回403，不以搜尋摘要補名次。
+
+## 5. 綜合總結
+
+| 機種 | 設計解讀 | 優先轉用的體驗 | 必須交代的邊界 |
+|------|----------|----------------|----------------|
+| モンハン サンブレイク | 討伐進度接下一階段 | 短任務累積、伙伴支援 | 目標數與升級失敗結果 |
+| 獣王 | 現在倒數與未來庫存並存 | 下一輪券、主回數暫停 | 波數上限、券消耗與清空 |
+| リコリス・リコイル | 短獎勵接升級挑戰 | 點數滿格換挑戰權 | 滿格不等於升級成功 |
+| 東京喰種 | 對決與集中上乘 | 累積後釋放的回饋 | 累積是否保留、何時結算 |
+| 魔法少女 | 多路入口、上位後回補 | 雙入口同一Bonus、一次回補 | 同局去重與回補上限 |
+| マイジャグラーⅥ | 普通型、結果易讀的研究方向 | 單層告知、同結果兩種播報 | 告知不可暗示額外獎勵 |
+
+本期最值得做原型的是「可看見的下一輪券」，它能把未來獎勵與當下剩餘回數分開顯示；其次是討伐數接升級挑戰，讓短期成果產生中期目標。這些是設計研究判斷，需透過原型與玩家測試評估。月底已補入PAPIMO月間實績，以及魔法少女與マイジャグラーⅥ的分析。月間榜同時出現多層AT與普通型，原型宜同時比較「有下一階段」與「單層清楚告知」，不能先假定層次越多越有留存。
+
+## 6. パチスロ ↔ Slot Game ↔ Fish Game 設計概念對照
+
+| 原機概念 | Slot 提案 | Fish 提案 | 玩家要看懂什麼 |
+|----------|-----------|-----------|----------------|
+| 討伐數累積 | 本輪3次討伐後做升級判定 | 任務魚完成後出Boss | 達標只解鎖挑戰，未保證成功 |
+| 盟勇支援 | 每輪一次的補轉或倍獎 | 單場穿透或破盾支援 | 支援次數與失效時點 |
+| SCストック | 有上限的下一輪券 | 有上限的波次券 | 已獲券數、扣券時機 |
+| 回數暫停 | 主回合外的固定3轉挑戰 | 5秒支線凍結主時間 | 凍結不等於無限時長 |
+| 點數滿格換上位CZ | 進度滿格後再判定升級 | 能量滿格後開Boss挑戰 | 成功與失敗各回到哪個狀態 |
+| 多路入口 | 同局觸發去重 | 共用一次Boss資格 | 同時成立不重複發獎 |
+| 上位後回補 | 一次回補普通Bonus | 一次救援波 | 不遞迴追加 |
+| 普通型比較方向 | 單層結果告知 | 命中與擊殺得分分開 | 提示不冒充派彩 |
+
+## 7. 資料版本與驗證紀錄
+
+- 2026/11/05：以瀏覽器確認PAPIMO月間稼動與勝率的月份欄均為2026-10、全類型、未排除新台；讀取平台FAQ確認指標定義。
+- 10/15 DMM快照與既有四台詳細分析保留，未將其冒稱全月榜。新台規格為11/05補查版本；規格表中未重新查閱的歷史細節維持原擷取日期。
+- 新增圖表由DMM機種頁取得，供來源對照；圖中日文、払い出し與設定別機率應依各機口徑閱讀。
+- 原試產Markdown與HTML保留於本機 `.session-handoff/archive/reports-202610-trial/`。未取得全國市占、全月DMM歷史關注榜或留存資料，不補推估值。
+
+</script>
+<script>
+const content = document.getElementById('content');
+const toc = document.getElementById('toc');
+const btnToc = document.getElementById('btn-toc');
+const btnTop = document.getElementById('btn-top');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function buildTOC() {
+  const headings = content.querySelectorAll('h1,h2,h3');
+  if (!headings.length) { toc.style.display = 'none'; return; }
+  let s = '<h3>目次</h3>';
+  headings.forEach((el, i) => {
+    const id = 'h-' + i; el.id = id;
+    const lv = el.tagName.toLowerCase();
+    const t = el.textContent.length > 35 ? el.textContent.slice(0, 35) + '...' : el.textContent;
+    s += '<a href="#' + id + '" class="toc-' + lv + '">' + t + '</a>';
+  });
+  toc.innerHTML = s;
+}
+
+function wrapAnalysisSections() {
+  const paragraphs = content.querySelectorAll('p');
+  paragraphs.forEach(p => {
+    const strong = p.querySelector('strong');
+    if (!strong) return;
+    const text = strong.textContent;
+    let className = null;
+    if (text.includes('Slot Game 轉用分析')) className = 'slot-analysis';
+    else if (text.includes('Fish Game 轉用分析')) className = 'fish-analysis';
+    if (!className) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = className;
+    let sibling = p.nextElementSibling;
+    const collected = [];
+    while (sibling && !['H2','H3','HR'].includes(sibling.tagName) && !sibling.querySelector('strong[class]')) {
+      const strongInside = sibling.querySelector('strong');
+      if (strongInside && (strongInside.textContent.includes('Slot Game 轉用分析') || strongInside.textContent.includes('Fish Game 轉用分析'))) break;
+      collected.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+    collected.forEach(el => wrapper.appendChild(el));
+  });
+}
+
+function wrapExamples() {
+  content.querySelectorAll('strong').forEach(strong => {
+    if (!strong.textContent.includes('舉例')) return;
+    const p = strong.closest('p');
+    if (!p || p.closest('.example-block')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'example-block';
+    p.parentNode.insertBefore(wrapper, p);
+    wrapper.appendChild(p);
+  });
+}
+
+function render() {
+  const mdEl = document.getElementById('report-md');
+  if (!mdEl) return;
+  let html = marked.parse(mdEl.textContent);
+  content.innerHTML = html;
+  content.querySelectorAll('img').forEach(img => {
+    img.loading = 'lazy';
+    img.onerror = function() {
+      const e = document.createElement('span');
+      e.className = 'img-error';
+      e.textContent = '\u26A0 ' + img.getAttribute('src');
+      img.parentNode.insertBefore(e, img.nextSibling);
+      img.style.display = 'none';
+    };
+    img.onclick = () => { lightboxImg.src = img.src; lightbox.classList.add('active'); };
+  });
+  wrapAnalysisSections();
+  wrapExamples();
+  buildTOC();
+}
+
+btnToc.addEventListener('click', () => toc.classList.toggle('active'));
+lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400));
+btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+render();
+
+// Hash-based scroll: scroll to heading containing the hash text
+function scrollToHash() {
+  const hash = decodeURIComponent(window.location.hash.slice(1));
+  if (!hash) return;
+  const normalizedHash = hash.replace(/[\s\-]+/g, '');
+  const headings = content.querySelectorAll('h1,h2,h3');
+  for (const el of headings) {
+    const normalizedText = el.textContent.replace(/[\s\-]+/g, '');
+    if (normalizedText.includes(normalizedHash)) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.style.transition = 'background 0.3s';
+        el.style.background = '#fff3cd';
+        setTimeout(() => { el.style.background = ''; }, 2000);
+      }, 300);
+      return;
+    }
+  }
+}
+scrollToHash();
+window.addEventListener('hashchange', scrollToHash);
+</script>
+</body>
+</html>
